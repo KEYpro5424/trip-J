@@ -568,9 +568,13 @@
             
             <!-- Day 1 マップ -->
             <div id="map-day1" class="bg-white p-3 rounded-2xl shadow-md border border-gray-100 day-content">
-                <div class="w-full h-48 sm:h-64 bg-gray-200 rounded-xl overflow-hidden relative">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d103847.66288824247!2d138.80489600000003!3d35.47466820000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sja!2sjp!4v1700000000000!5m2!1sja!2sjp" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
+                <a href="https://maps.app.goo.gl/RVsaocAX3VcDBN7k9" target="_blank" class="block w-full h-48 sm:h-64 bg-green-50 rounded-xl overflow-hidden relative group cursor-pointer border border-green-100 hover:border-green-300 transition-colors">
+                    <div class="absolute inset-0 flex flex-col items-center justify-center">
+                        <i class="fa-solid fa-map-location-dot text-5xl text-brand-green mb-3 group-hover:scale-110 transition-transform"></i>
+                        <span class="bg-brand-green text-white font-bold py-2 px-6 rounded-full shadow-sm">Day1のルートをMapで開く</span>
+                        <span class="text-xs text-gray-500 mt-2">（Google Mapsアプリが起動します）</span>
+                    </div>
+                </a>
                 <div class="mt-3 text-sm text-gray-600 font-medium">
                     <p><i class="fa-solid fa-location-dot text-red-500 mr-1"></i>Day1 山梨スポット</p>
                     <div class="flex flex-wrap gap-2 mt-2">
@@ -586,6 +590,7 @@
             <!-- Day 2 マップ -->
             <div id="map-day2" class="bg-white p-3 rounded-2xl shadow-md border border-gray-100 day-content hidden">
                 <div class="w-full h-48 sm:h-64 bg-gray-200 rounded-xl overflow-hidden relative">
+                    <!-- Day 2のルートURLがあれば、Day1と同じように書き換えることができます -->
                     <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d25983.332355523097!2d139.066752!3d35.101736!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sja!2sjp!4v1700000000001!5m2!1sja!2sjp" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
                 <div class="mt-3 text-sm text-gray-600 font-medium">
