@@ -122,16 +122,61 @@
         <section>
             <div class="flex items-center mb-4">
                 <i class="fa-solid fa-users text-brand-pink text-xl mr-2"></i>
-                <h2 class="text-xl font-bold border-b-2 border-brand-pink pb-1">メンバー</h2>
+                <h2 class="text-xl font-bold border-b-2 border-brand-pink pb-1">メンバー・制作スタッフ</h2>
             </div>
-            <div class="flex gap-4 justify-center">
-                <div class="flex flex-col items-center">
-                    <div class="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center text-2xl mb-1 shadow-inner border-2 border-blue-200">👨</div>
-                    <span class="text-sm font-bold">たろう</span>
+            
+            <div class="space-y-4">
+                <!-- JTB -->
+                <div class="bg-pink-50 p-3 rounded-xl border border-pink-100">
+                    <span class="text-xs font-bold text-brand-pink block mb-2"><i class="fa-solid fa-building mr-1"></i>JTB</span>
+                    <div class="grid grid-cols-1 gap-1 text-sm text-gray-700">
+                        <div class="bg-white px-3 py-1.5 rounded shadow-sm">青山 瑚子</div>
+                        <div class="bg-white px-3 py-1.5 rounded shadow-sm">宮坂 希</div>
+                        <div class="bg-white px-3 py-1.5 rounded shadow-sm">佐藤 怜美</div>
+                    </div>
                 </div>
-                <div class="flex flex-col items-center">
-                    <div class="w-14 h-14 bg-pink-100 rounded-full flex items-center justify-center text-2xl mb-1 shadow-inner border-2 border-pink-200">👩</div>
-                    <span class="text-sm font-bold">はなこ</span>
+
+                <!-- セプテーニ -->
+                <div class="bg-blue-50 p-3 rounded-xl border border-blue-100">
+                    <span class="text-xs font-bold text-brand-blue block mb-2"><i class="fa-solid fa-building mr-1"></i>セプテーニ</span>
+                    <div class="grid grid-cols-1 gap-1 text-sm text-gray-700">
+                        <div class="bg-white px-3 py-1.5 rounded shadow-sm">福井 沙也果</div>
+                        <div class="bg-white px-3 py-1.5 rounded shadow-sm">加藤 凜乃</div>
+                    </div>
+                </div>
+
+                <!-- 監督・制作 -->
+                <div class="bg-yellow-50 p-3 rounded-xl border border-yellow-100">
+                    <span class="text-xs font-bold text-yellow-600 block mb-2"><i class="fa-solid fa-clapperboard mr-1"></i>監督・制作</span>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-1 text-sm text-gray-700">
+                        <div class="bg-white px-3 py-1.5 rounded shadow-sm"><span class="text-xs text-gray-400 block">監督</span>佐藤 恵美</div>
+                        <div class="bg-white px-3 py-1.5 rounded shadow-sm"><span class="text-xs text-gray-400 block">監督補佐</span>金澤 善風</div>
+                        <div class="bg-white px-3 py-1.5 rounded shadow-sm"><span class="text-xs text-gray-400 block">制作</span>市川 拓弥</div>
+                        <div class="bg-white px-3 py-1.5 rounded shadow-sm"><span class="text-xs text-gray-400 block">制作</span>加藤 芳崇</div>
+                        <div class="bg-white px-3 py-1.5 rounded shadow-sm"><span class="text-xs text-gray-400 block">制作</span>佐藤 汐</div>
+                    </div>
+                </div>
+
+                <!-- 撮影・技術 -->
+                <div class="bg-green-50 p-3 rounded-xl border border-green-100">
+                    <span class="text-xs font-bold text-green-600 block mb-2"><i class="fa-solid fa-camera-retro mr-1"></i>撮影・技術</span>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-1 text-sm text-gray-700">
+                        <div class="bg-white px-3 py-1.5 rounded shadow-sm"><span class="text-xs text-gray-400 block">カメラマン</span>時光 佑輔</div>
+                        <div class="bg-white px-3 py-1.5 rounded shadow-sm"><span class="text-xs text-gray-400 block">撮影チーフ</span>山城 俊介</div>
+                        <div class="bg-white px-3 py-1.5 rounded shadow-sm"><span class="text-xs text-gray-400 block">撮影セカンド</span>伊藤 隼幹</div>
+                        <div class="bg-white px-3 py-1.5 rounded shadow-sm"><span class="text-xs text-gray-400 block">照明</span>ふじまたゆうと</div>
+                        <div class="bg-white px-3 py-1.5 rounded shadow-sm"><span class="text-xs text-gray-400 block">録音</span>池本あずさ</div>
+                        <div class="bg-white px-3 py-1.5 rounded shadow-sm"><span class="text-xs text-gray-400 block">録音助手</span>魚野 陽多</div>
+                    </div>
+                </div>
+
+                <!-- スタイリスト・ヘアメイク -->
+                <div class="bg-purple-50 p-3 rounded-xl border border-purple-100">
+                    <span class="text-xs font-bold text-purple-600 block mb-2"><i class="fa-solid fa-wand-magic-sparkles mr-1"></i>スタイリスト・HM</span>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-1 text-sm text-gray-700">
+                        <div class="bg-white px-3 py-1.5 rounded shadow-sm"><span class="text-xs text-gray-400 block">STY</span>小澤 奈月</div>
+                        <div class="bg-white px-3 py-1.5 rounded shadow-sm"><span class="text-xs text-gray-400 block">HM</span>木附沢 美耶</div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -144,73 +189,120 @@
             
             <!-- ====== DAY 1 (山梨) ====== -->
             <div id="schedule-day1" class="relative day-content">
+                <!-- 08:15 -->
                 <div class="relative flex mb-8 timeline-item">
                     <div class="timeline-line"></div>
-                    <div class="z-10 flex-shrink-0 w-10 h-10 bg-brand-blue rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-4">
-                        <i class="fa-solid fa-car-side"></i>
+                    <div class="z-10 flex-shrink-0 w-10 h-10 bg-blue-400 rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-4">
+                        <i class="fa-solid fa-mountain-sun"></i>
                     </div>
-                    <div class="bg-gray-50 rounded-2xl p-4 shadow-sm border border-gray-100 flex-grow relative overflow-hidden">
+                    <div class="bg-white rounded-2xl p-4 shadow-sm border-l-4 border-blue-400 flex-grow relative overflow-hidden">
                         <div class="flex items-baseline gap-2 mb-1">
-                            <span class="font-bold text-brand-blue text-lg">07:30</span>
-                            <h3 class="font-bold text-gray-800">新宿駅 出発</h3>
+                            <span class="font-bold text-blue-500 text-lg">08:15</span>
+                            <h3 class="font-bold text-gray-800">Fujiyama ツインテラス</h3>
                         </div>
-                        <p class="text-sm text-gray-600 mb-2">レンタカーで出発！中央道で山梨方面へ。</p>
+                        <div class="text-xs text-gray-500 mt-2 bg-gray-50 inline-block px-2 py-1 rounded border border-gray-100">
+                            <i class="fa-solid fa-car-side mr-1 text-gray-400"></i>09:35 出発 (30分移動)
+                        </div>
                     </div>
                 </div>
 
+                <!-- 10:05 -->
                 <div class="relative flex mb-8 timeline-item">
                     <div class="timeline-line"></div>
                     <div class="z-10 flex-shrink-0 w-10 h-10 bg-cyan-400 rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-4">
-                        <i class="fa-solid fa-snowflake"></i>
+                        <i class="fa-solid fa-person-walking"></i>
                     </div>
-                    <div class="bg-white rounded-2xl p-4 shadow-md border-l-4 border-cyan-400 flex-grow">
+                    <div class="bg-white rounded-2xl p-4 shadow-sm border-l-4 border-cyan-400 flex-grow relative overflow-hidden">
                         <div class="flex items-baseline gap-2 mb-1">
-                            <span class="font-bold text-cyan-500 text-lg">09:30</span>
-                            <h3 class="font-bold text-gray-800">鳴沢氷穴</h3>
+                            <span class="font-bold text-cyan-500 text-lg">10:05</span>
+                            <h3 class="font-bold text-gray-800">河口湖周辺散策</h3>
                         </div>
-                        <p class="text-sm text-gray-600 mb-2">真夏でも0度！天然の冷蔵庫でひんやり涼む洞窟探検🧊</p>
+                        <div class="text-xs text-gray-500 mt-2 bg-gray-50 inline-block px-2 py-1 rounded border border-gray-100">
+                            <i class="fa-solid fa-car-side mr-1 text-gray-400"></i>11:35 出発 (30分移動・セッティング45分)
+                        </div>
                     </div>
                 </div>
 
+                <!-- 12:50 -->
+                <div class="relative flex mb-8 timeline-item">
+                    <div class="timeline-line"></div>
+                    <div class="z-10 flex-shrink-0 w-10 h-10 bg-brand-pink rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-4">
+                        <i class="fa-solid fa-camera"></i>
+                    </div>
+                    <div class="bg-pink-50 rounded-2xl p-4 shadow-sm border border-pink-100 flex-grow relative overflow-hidden">
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="font-bold text-brand-pink text-lg">12:50</span>
+                            <h3 class="font-bold text-gray-800">車内カット撮影</h3>
+                        </div>
+                        <p class="text-sm text-pink-700 font-bold mt-1 mb-2">13:50 終了・衣装チェンジ！！👗✨</p>
+                        <div class="text-xs text-gray-500 bg-white inline-block px-2 py-1 rounded border border-pink-100">
+                            <i class="fa-solid fa-car-side mr-1 text-gray-400"></i>14:30 出発 (1時間移動)
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 15:30 -->
                 <div class="relative flex mb-8 timeline-item">
                     <div class="timeline-line"></div>
                     <div class="z-10 flex-shrink-0 w-10 h-10 bg-brand-yellow rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-4">
-                        <i class="fa-solid fa-camera"></i>
+                        <i class="fa-solid fa-droplet"></i>
                     </div>
-                    <div class="bg-white rounded-2xl p-4 shadow-md border border-gray-100 flex-grow">
+                    <div class="bg-white rounded-2xl p-4 shadow-sm border-l-4 border-brand-yellow flex-grow relative overflow-hidden">
                         <div class="flex items-baseline gap-2 mb-1">
-                            <span class="font-bold text-brand-yellow text-lg">11:30</span>
-                            <h3 class="font-bold text-gray-800">忍野八海で食べ歩き</h3>
+                            <span class="font-bold text-yellow-500 text-lg">15:30</span>
+                            <h3 class="font-bold text-gray-800">忍野八海</h3>
                         </div>
-                        <p class="text-sm text-gray-600">透明度抜群の池を散策。お昼ご飯は周辺の屋台や湧水蕎麦！</p>
+                        <div class="text-xs text-gray-500 mt-2 bg-gray-50 inline-block px-2 py-1 rounded border border-gray-100">
+                            <i class="fa-solid fa-car-side mr-1 text-gray-400"></i>16:30 出発 (20分移動)
+                        </div>
                     </div>
                 </div>
 
+                <!-- 16:50 -->
                 <div class="relative flex mb-8 timeline-item">
                     <div class="timeline-line"></div>
                     <div class="z-10 flex-shrink-0 w-10 h-10 bg-brand-green rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-4">
-                        <i class="fa-solid fa-mountain-sun"></i>
+                        <i class="fa-solid fa-fish-fins"></i>
                     </div>
-                    <div class="bg-white rounded-2xl p-4 shadow-md border border-gray-100 flex-grow">
+                    <div class="bg-white rounded-2xl p-4 shadow-sm border-l-4 border-brand-green flex-grow relative overflow-hidden">
                         <div class="flex items-baseline gap-2 mb-1">
-                            <span class="font-bold text-brand-green text-lg">14:00</span>
-                            <h3 class="font-bold text-gray-800">河口湖・大石公園</h3>
+                            <span class="font-bold text-green-500 text-lg">16:50</span>
+                            <h3 class="font-bold text-gray-800">森の中水族館</h3>
                         </div>
-                        <p class="text-sm text-gray-600">夏の花々と富士山の絶景スポット。カフェで休憩☕️</p>
+                        <div class="text-xs text-gray-500 mt-2 bg-gray-50 inline-block px-2 py-1 rounded border border-gray-100">
+                            <i class="fa-solid fa-car-side mr-1 text-gray-400"></i>17:50 出発
+                        </div>
                     </div>
                 </div>
 
+                <!-- 18:10 -->
+                <div class="relative flex mb-8 timeline-item">
+                    <div class="timeline-line"></div>
+                    <div class="z-10 flex-shrink-0 w-10 h-10 bg-orange-400 rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-4">
+                        <i class="fa-solid fa-campground"></i>
+                    </div>
+                    <div class="bg-orange-50 rounded-2xl p-4 shadow-sm border border-orange-100 flex-grow relative overflow-hidden">
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="font-bold text-orange-500 text-lg">18:10</span>
+                            <h3 class="font-bold text-gray-800">PICA Fujiyama</h3>
+                        </div>
+                        <p class="text-sm text-orange-700 font-bold mt-1 mb-2">21:50 終了⛺️</p>
+                        <div class="text-xs text-gray-500 bg-white inline-block px-2 py-1 rounded border border-orange-100">
+                            <i class="fa-solid fa-car-side mr-1 text-gray-400"></i>22:15 出発 (2時間移動)
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 24:00 -->
                 <div class="relative flex timeline-item">
                     <div class="timeline-line"></div>
                     <div class="z-10 flex-shrink-0 w-10 h-10 bg-indigo-500 rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-4">
                         <i class="fa-solid fa-bed"></i>
                     </div>
-                    <div class="bg-indigo-50 rounded-2xl p-4 shadow-md border border-indigo-100 flex-grow">
-                        <div class="flex items-baseline gap-2 mb-1">
-                            <span class="font-bold text-indigo-500 text-lg">17:30</span>
-                            <h3 class="font-bold text-gray-800">熱海の宿へ到着</h3>
-                        </div>
-                        <p class="text-sm text-gray-600">山梨から熱海へ移動（約1.5時間）。チェックイン後は温泉＆夕食！♨️</p>
+                    <div class="bg-indigo-50 rounded-2xl p-4 shadow-sm border border-indigo-100 flex-grow text-center">
+                        <div class="font-bold text-indigo-500 text-xl mb-1">24:00</div>
+                        <h3 class="font-bold text-gray-800">プリンス スマート イン熱海</h3>
+                        <p class="text-xs text-gray-600 mt-1">宿泊・1日目お疲れ様でした！🌙</p>
                     </div>
                 </div>
             </div>
@@ -301,9 +393,11 @@
                 <div class="mt-3 text-sm text-gray-600 font-medium">
                     <p><i class="fa-solid fa-location-dot text-red-500 mr-1"></i>Day1 山梨スポット</p>
                     <div class="flex flex-wrap gap-2 mt-2">
-                        <span class="bg-gray-100 text-xs px-2 py-1 rounded-full border border-gray-200">1. 鳴沢氷穴</span>
-                        <span class="bg-gray-100 text-xs px-2 py-1 rounded-full border border-gray-200">2. 忍野八海</span>
-                        <span class="bg-gray-100 text-xs px-2 py-1 rounded-full border border-gray-200">3. 大石公園</span>
+                        <span class="bg-gray-100 text-xs px-2 py-1 rounded-full border border-gray-200">1. Fujiyama ツインテラス</span>
+                        <span class="bg-gray-100 text-xs px-2 py-1 rounded-full border border-gray-200">2. 河口湖周辺</span>
+                        <span class="bg-gray-100 text-xs px-2 py-1 rounded-full border border-gray-200">3. 忍野八海</span>
+                        <span class="bg-gray-100 text-xs px-2 py-1 rounded-full border border-gray-200">4. 森の中水族館</span>
+                        <span class="bg-gray-100 text-xs px-2 py-1 rounded-full border border-gray-200">5. PICA Fujiyama</span>
                     </div>
                 </div>
             </div>
