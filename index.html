@@ -481,12 +481,16 @@
                 <!-- 1日目マップ -->
                 <div id="map-day1" class="day-content relative bg-white p-3 rounded-2xl shadow-sm border border-red-100">
                     <h3 class="text-xs font-bold text-brand-jtb mb-2"><i class="fa-solid fa-location-dot mr-1"></i>1日目：山梨ルート</h3>
-                    <div class="w-full h-48 bg-gray-100 rounded-xl overflow-hidden relative">
+                    <div class="w-full h-48 bg-gray-100 rounded-xl overflow-hidden relative group cursor-pointer">
+                        <!-- マップアプリを開くための透明なボタン -->
+                        <a href="https://maps.app.goo.gl/z1LRvCdDDYC7HzeV7" target="_blank" rel="noopener noreferrer" class="absolute inset-0 z-10 flex items-center justify-center bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <span class="bg-white/90 text-brand-jtb text-xs font-bold px-3 py-1.5 rounded-full shadow-sm"><i class="fa-solid fa-arrow-up-right-from-square mr-1"></i>マップアプリで開く</span>
+                        </a>
                         <iframe 
                             src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d103755.94723383822!2d138.65476307399878!3d35.53488439775363!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e0!4m5!1s0x6019672ebdd927c3%3A0x6a05e2cc34b22db7!2z5q-F6YeO5YWr5rW3!3m2!1d35.460492899999995!2d138.8231362!4m5!1s0x60195e347e3a890f%3A0xb3bd0f1e8bf1c30e!2z5rKz5Y-j5rmW!3m2!1d35.517094299999996!2d138.7517616!5e0!3m2!1sja!2sjp!4v1716281000000!5m2!1sja!2sjp" 
                             width="100%" 
                             height="100%" 
-                            style="border:0;" 
+                            style="border:0; pointer-events: none;" 
                             allowfullscreen="" 
                             loading="lazy">
                         </iframe>
@@ -496,12 +500,16 @@
                 <!-- 2日目マップ -->
                 <div id="map-day2" class="day-content relative hidden bg-white p-3 rounded-2xl shadow-sm border border-blue-100">
                     <h3 class="text-xs font-bold text-blue-500 mb-2"><i class="fa-solid fa-location-dot mr-1"></i>2日目：熱海ルート</h3>
-                    <div class="w-full h-48 bg-gray-100 rounded-xl overflow-hidden relative">
+                    <div class="w-full h-48 bg-gray-100 rounded-xl overflow-hidden relative group cursor-pointer">
+                        <!-- マップアプリを開くための透明なボタン -->
+                        <a href="https://maps.app.goo.gl/cc8GqLiMahwkQnHK9" target="_blank" rel="noopener noreferrer" class="absolute inset-0 z-10 flex items-center justify-center bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <span class="bg-white/90 text-blue-500 text-xs font-bold px-3 py-1.5 rounded-full shadow-sm"><i class="fa-solid fa-arrow-up-right-from-square mr-1"></i>マップアプリで開く</span>
+                        </a>
                         <iframe 
                             src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d13029.071720815147!2d139.0659850165036!3d35.09918712399998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e0!4m5!1s0x6019ebdcb86b7201%3A0x501bbda3eb20dc9!2z54ax5rW36aeF!3m2!1d35.103233899999995!2d139.0776766!4m5!1s0x6019eb9e7f45afb1%3A0x6b4fb6c185bb81d!2z54ax5rW35riv!3m2!1d35.091398899999996!2d139.077227!5e0!3m2!1sja!2sjp!4v1716281200000!5m2!1sja!2sjp" 
                             width="100%" 
                             height="100%" 
-                            style="border:0;" 
+                            style="border:0; pointer-events: none;" 
                             allowfullscreen="" 
                             loading="lazy">
                         </iframe>
