@@ -171,6 +171,33 @@
             </div>
         </section>
 
+        <!-- 共有Wi-Fi情報 -->
+        <section class="mt-2 mb-2">
+            <div class="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-2xl shadow-sm border border-blue-100 p-4 relative overflow-hidden">
+                <!-- 背景アイコン -->
+                <div class="absolute -right-3 -top-3 text-5xl text-blue-200 opacity-40"><i class="fa-solid fa-wifi"></i></div>
+                
+                <div class="flex items-center gap-2 mb-3 border-b-2 border-blue-200 pb-1 inline-flex relative z-10">
+                    <i class="fa-solid fa-wifi text-blue-500"></i>
+                    <span class="font-bold text-gray-800 text-sm">ロケバス / 共有 Wi-Fi</span>
+                </div>
+                
+                <div class="space-y-2 text-sm text-gray-700 relative z-10">
+                    <div class="flex justify-between items-center bg-white p-2.5 rounded-xl border border-blue-50 shadow-sm">
+                        <span class="text-[10px] text-white bg-blue-400 px-2 py-0.5 rounded-full font-bold w-10 text-center">ID</span>
+                        <span class="font-bold tracking-wider flex-grow text-gray-800 ml-3 text-sm">TOUR_WIFI_2026</span>
+                    </div>
+                    <div class="flex justify-between items-center bg-white p-2.5 rounded-xl border border-blue-50 shadow-sm">
+                        <span class="text-[10px] text-white bg-blue-400 px-2 py-0.5 rounded-full font-bold w-10 text-center">PASS</span>
+                        <span id="wifi-pass" class="font-bold tracking-wider flex-grow text-gray-800 ml-3 text-sm">shooting0806</span>
+                        <button onclick="copyWifiPass(this)" class="bg-blue-100 hover:bg-blue-200 text-blue-600 text-[10px] font-bold py-1.5 px-3 rounded-lg transition active:scale-95 flex items-center shadow-sm">
+                            <i class="fa-regular fa-copy mr-1"></i>コピー
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section>
             <details class="bg-white rounded-2xl shadow-sm border border-red-100 overflow-hidden group">
                 <summary class="bg-gradient-to-r from-red-50 to-orange-50 p-4 font-bold text-gray-800 cursor-pointer flex justify-between items-center group-open:border-b border-red-100 select-none">
@@ -965,6 +992,33 @@
             if (desc1) desc1.innerText = '取得失敗';
             if (desc2) desc2.innerText = '取得失敗';
         }
+    }
+
+    // コピー機能
+    function copyWifiPass(btn) {
+        const passText = document.getElementById('wifi-pass').innerText;
+        const textArea = document.createElement("textarea");
+        textArea.value = passText;
+        document.body.appendChild(textArea);
+        textArea.select();
+        try {
+            document.execCommand('copy');
+            const originalHTML = btn.innerHTML;
+            // ボタンを「コピー完了」スタイルに変更
+            btn.innerHTML = '<i class="fa-solid fa-check mr-1"></i>完了!';
+            btn.classList.replace('bg-blue-100', 'bg-green-100');
+            btn.classList.replace('text-blue-600', 'text-green-600');
+            
+            // 2秒後に元のデザインに戻す
+            setTimeout(() => {
+                btn.innerHTML = originalHTML;
+                btn.classList.replace('bg-green-100', 'bg-blue-100');
+                btn.classList.replace('text-green-600', 'text-blue-600');
+            }, 2000);
+        } catch (err) {
+            console.error('コピー失敗', err);
+        }
+        document.body.removeChild(textArea);
     }
 
     setInterval(updateCurrentLocation, 60000);
