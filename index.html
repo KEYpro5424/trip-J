@@ -2,29 +2,33 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <!-- スマホでの意図しないズームやサイズ変更を防ぐ設定を追加 -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>山梨・熱海 1泊2日のしおり</title>
-    <!-- Tailwind CSSの読み込み -->
+    <!-- 視認性向上のためのビューポート設定 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>山梨・熱海 1泊2日ツアー</title>
+    
+    <!-- エラー修正: Tailwind CSS本体を一番最初に読み込む -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fontsの読み込み（手書き風＆ころんとした丸ゴシック） -->
+    
+    <!-- Google Fontsの読み込み（手書き風タイトル＆丸ゴシック本文） -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Yusei+Magic&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
-    <!-- FontAwesomeの読み込み（アイコン用） -->
+    
+    <!-- FontAwesomeの読み込み -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- Tailwindの設定 -->
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        'brand-jtb': '#C92434', /* JTB Dynamic Red */
-                        'brand-red-light': '#FCA5A5',
-                        'brand-orange': '#FB923C',
-                        'brand-yellow': '#FBBF24',
-                        'brand-pink': '#F472B6',
-                        'brand-bg': '#FFF1F2', /* Very light pink/red background */
+                        'brand-jtb': '#C92434', /* JTBレッド（メイン） */
+                        'brand-dark': '#1F2937', /* 濃いグレー（テキスト用・高コントラスト） */
+                        'brand-bg': '#FDF8F8', /* ほんのり温かい白（背景用） */
+                        'brand-blue': '#0284C7', /* アクセントブルー */
+                        'brand-orange': '#EA580C', /* アクセントオレンジ */
+                        'brand-teal': '#0D9488', /* アクセントティール */
                     },
                     fontFamily: {
                         'cute-title': ['"Yusei Magic"', 'sans-serif'],
@@ -34,18 +38,14 @@
             }
         }
     </script>
+
     <style>
         /* 全体のベーススタイル */
         body {
             font-family: 'cute-body', sans-serif;
-            background-color: #FFF1F2; /* 暖色の背景 */
-            background-image: 
-                radial-gradient(#FECDD3 2px, transparent 2px),
-                radial-gradient(#FECDD3 2px, transparent 2px);
-            background-size: 30px 30px;
-            background-position: 0 0, 15px 15px;
-            color: #374151;
-            scroll-behavior: smooth; /* スムーススクロール */
+            background-color: #FDF8F8; /* 読みやすい明るい背景 */
+            color: #1F2937; /* 文字色を濃くしてコントラストを高める */
+            scroll-behavior: smooth;
         }
 
         h1, h2, h3, .cute-title-font {
@@ -63,52 +63,28 @@
             top: 2rem;
             bottom: -1rem;
             width: 2px;
-            background-color: #FDA4AF; /* 線も暖色に */
+            background-color: #E5E7EB;
             z-index: 0;
         }
         .timeline-item:last-child .timeline-line { display: none; }
         
-        /* フワフワ動くアニメーション */
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
-        .animate-float { animation: float 4s ease-in-out infinite; }
-
-        /* バスマーカーのアニメーション */
-        @keyframes pulse-bus {
-            0% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.1); opacity: 0.8; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-        .current-bus-marker {
-            position: absolute;
-            left: -12px; /* タイムラインの線の上に被せる */
-            top: 20px;
-            background-color: #C92434;
-            color: white;
-            border-radius: 9999px;
-            width: 28px;
-            height: 28px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            border: 2px solid white;
-            z-index: 20;
-            animation: pulse-bus 2s infinite;
-        }
-        
-        /* 進行済みのタイムライン線 */
-        .timeline-line.passed {
-            background-color: #e5e7eb; /* 灰色にする */
-        }
-        /* 進行済みのアイコン枠 */
+        /* 進行済みのスタイル */
         .timeline-item.passed .timeline-icon-wrap {
             filter: grayscale(100%);
-            opacity: 0.6;
+            opacity: 0.5;
+        }
+        .timeline-line.passed {
+            background-color: #D1D5DB;
+        }
+        
+        /* 現在地のバスアイコンアニメーション */
+        @keyframes bounce-horizontal {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(-5px); }
+        }
+        .current-location-bus {
+            animation: bounce-horizontal 1s infinite;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
         }
     </style>
 </head>
@@ -116,345 +92,306 @@
 
 <div class="w-full max-w-md mx-auto bg-white min-h-[100dvh] shadow-xl overflow-x-hidden relative">
     
-    <header class="relative h-64 sm:h-72 bg-gradient-to-br from-brand-jtb via-rose-500 to-orange-400 overflow-hidden rounded-b-[2rem] shadow-md z-10 flex flex-col justify-center">
-        <div class="absolute top-[10%] left-[10%] text-white opacity-60 text-4xl animate-float" style="animation-delay: 0s;"><i class="fa-solid fa-cloud"></i></div>
-        <div class="absolute top-[20%] right-[10%] text-white opacity-80 text-5xl animate-float" style="animation-delay: 1s;"><i class="fa-solid fa-cloud"></i></div>
-        <div class="absolute bottom-[30%] left-[15%] text-white opacity-40 text-3xl animate-float" style="animation-delay: 2s;"><i class="fa-solid fa-cloud"></i></div>
+    <!-- 表紙（ヘッダー） -->
+    <header class="relative h-64 sm:h-72 bg-gradient-to-br from-[#8B1A25] via-brand-jtb to-[#F43F5E] overflow-hidden rounded-b-[2rem] shadow-md z-10 flex flex-col justify-center">
+        <!-- 背景の装飾（薄いアイコン） -->
+        <div class="absolute top-4 left-4 text-white opacity-20 text-4xl"><i class="fa-solid fa-mountain-sun"></i></div>
+        <div class="absolute bottom-10 right-8 text-white opacity-20 text-5xl"><i class="fa-solid fa-water"></i></div>
         
         <div class="absolute inset-0 flex flex-col items-center justify-center text-white z-10 p-4">
-            <span class="bg-white text-brand-jtb text-xs font-bold px-3 py-1 rounded-full mb-3 shadow-sm transform -rotate-2">Summer Trip 2026</span>
-            <h1 class="text-4xl font-bold mb-2 tracking-wider text-center drop-shadow-md">山梨・熱海<br>1泊2日ツアー</h1>
-            <p class="text-base font-medium opacity-90 tracking-widest mt-2"><i class="fa-regular fa-calendar-days mr-2"></i>2026.08.06 - 08.07</p>
+            <span class="bg-white text-brand-jtb text-xs font-extrabold px-3 py-1 rounded-full mb-3 shadow-md transform -rotate-2">Summer Trip 2026</span>
+            <h1 class="text-4xl font-bold mb-2 tracking-wider text-center drop-shadow-lg text-white">山梨・熱海<br>1泊2日ツアー</h1>
+            <p class="text-base font-bold opacity-100 tracking-widest mt-2 drop-shadow-md"><i class="fa-regular fa-calendar-days mr-2"></i>2026.08.06 - 08.07</p>
         </div>
-        
-        <svg class="absolute bottom-0 w-full h-auto" viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-            <path fill="#ffffff" fill-opacity="1" d="M0,288L48,272C96,256,192,224,288,197.3C384,171,480,149,576,165.3C672,181,768,235,864,250.7C960,267,1056,245,1152,224C1248,203,1344,181,1392,170.7L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
-        </svg>
     </header>
 
-    <nav class="sticky top-0 bg-white/95 backdrop-blur-sm shadow-sm z-30 px-4 py-3 flex justify-between rounded-b-xl mb-6 border-b border-gray-100">
-        <a href="#schedule" class="flex flex-col items-center text-gray-500 hover:text-brand-jtb transition w-1/3 py-1">
+    <!-- ナビゲーション -->
+    <nav class="sticky top-0 bg-white shadow-md z-30 px-2 py-3 flex justify-between rounded-b-xl mb-6 border-b border-gray-200">
+        <a href="#schedule" class="flex flex-col items-center text-gray-600 hover:text-brand-jtb transition w-1/3 py-1">
             <i class="fa-regular fa-clock text-xl mb-1"></i>
             <span class="text-xs font-bold">日程</span>
         </a>
-        <a href="#schedule" class="flex flex-col items-center text-gray-500 hover:text-brand-jtb transition w-1/2 py-1">
-            <i class="fa-regular fa-clock text-xl mb-1"></i>
-            <span class="text-xs font-bold">日程</span>
-        </a>
-        <a href="#map" class="flex flex-col items-center text-gray-500 hover:text-brand-orange transition w-1/2 border-l border-gray-100 py-1">
+        <a href="#map" class="flex flex-col items-center text-gray-600 hover:text-brand-jtb transition w-1/3 border-l border-gray-200 py-1">
             <i class="fa-solid fa-map-location-dot text-xl mb-1"></i>
             <span class="text-xs font-bold">マップ</span>
+        </a>
+        <a href="#items" class="flex flex-col items-center text-gray-600 hover:text-brand-jtb transition w-1/3 border-l border-gray-200 py-1">
+            <i class="fa-solid fa-suitcase-rolling text-xl mb-1"></i>
+            <span class="text-xs font-bold">持ち物</span>
         </a>
     </nav>
 
     <!-- お天気ウィジェット -->
     <div class="px-4 sm:px-6 mb-6">
-        <div class="bg-rose-50 p-2 rounded-2xl border border-rose-100 shadow-sm">
-            <a class="weatherwidget-io" href="https://forecast7.com/ja/35d50138d76/yamanashi/" data-label_1="YAMANASHI / ATAMI" data-label_2="WEATHER" data-font="Zen Maru Gothic" data-icons="Climacons Animated" data-mode="Current" data-days="3" data-theme="pure" data-basecolor="transparent" data-accent="rgba(255, 255, 255, 0)" data-textcolor="#c92434" data-highcolor="#fb923c" data-lowcolor="#f472b6" >YAMANASHI / ATAMI WEATHER</a>
+        <div class="bg-white p-1 rounded-2xl border border-gray-200 shadow-sm overflow-hidden min-h-[90px] flex items-center justify-center w-full">
+            <a class="weatherwidget-io" href="https://forecast7.com/ja/35d50138d76/yamanashi/" data-label_1="山梨 / 熱海" data-label_2="天気予報" data-font="Zen Maru Gothic" data-icons="Climacons Animated" data-mode="Current" data-days="3" data-theme="pure" data-basecolor="transparent" data-accent="rgba(255, 255, 255, 0)" data-textcolor="#1F2937" data-highcolor="#C92434" data-lowcolor="#0284C7" style="display: block; width: 100%;">山梨 / 熱海 天気予報</a>
             <script>
             !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
             </script>
         </div>
     </div>
 
-    <div class="px-4 sm:px-6 mb-6">
-        <div class="flex justify-center space-x-3 bg-gray-100 p-1.5 rounded-full">
-            <button id="btn-day1" onclick="switchTab('day1')" class="w-1/2 py-2 bg-gradient-to-r from-brand-jtb to-rose-500 text-white rounded-full text-sm font-bold shadow-sm transition-all">Day 1: 山梨 (8/6)</button>
-            <button id="btn-day2" onclick="switchTab('day2')" class="w-1/2 py-2 bg-transparent text-gray-500 rounded-full text-sm font-bold transition-all">Day 2: 熱海 (8/7)</button>
-        </div>
-    </div>
+    <div class="px-5 sm:px-6 space-y-10 pb-10">
 
-    <div class="px-6 space-y-10 pb-10">
-
+        <!-- メンバー・制作スタッフ (アコーディオン化) -->
         <section>
-            <details class="bg-white rounded-2xl shadow-sm border border-rose-100 overflow-hidden group">
-                <summary class="bg-rose-50/50 p-3 sm:p-4 cursor-pointer flex justify-between items-center group-open:border-b border-rose-100 select-none">
+            <details class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden group">
+                <summary class="bg-gray-50 hover:bg-gray-100 p-4 cursor-pointer flex justify-between items-center group-open:border-b border-gray-200 select-none transition-colors">
                     <div class="flex items-center">
-                        <i class="fa-solid fa-users text-brand-jtb text-xl mr-2"></i>
-                        <h2 class="text-xl font-bold text-gray-800 m-0">メンバー・制作スタッフ</h2>
+                        <i class="fa-solid fa-users text-brand-jtb text-xl mr-3"></i>
+                        <h2 class="text-lg font-bold text-gray-900 m-0 tracking-wide">メンバー・制作スタッフ</h2>
                     </div>
-                    <i class="fa-solid fa-chevron-down text-gray-400 transition-transform group-open:rotate-180"></i>
+                    <i class="fa-solid fa-chevron-down text-gray-400 transition-transform duration-300 group-open:rotate-180"></i>
                 </summary>
                 
-                <div class="p-4 space-y-3 bg-white">
-                <!-- JTB -->
-                <div class="bg-rose-50 p-2.5 rounded-xl border border-rose-200 shadow-sm">
-                    <span class="text-[11px] font-bold text-brand-jtb block mb-1.5"><i class="fa-solid fa-building mr-1"></i>JTB</span>
-                    <div class="flex flex-wrap gap-2">
-                        <div class="flex flex-col items-center w-[60px]">
-                            <img src="https://placehold.co/100x100/FFE4E6/c92434?text=JTB" alt="青山 瑚子" class="w-9 h-9 rounded-full object-cover mb-1 border-2 border-white shadow-sm">
-                            <span class="text-[9px] font-bold text-gray-700 text-center leading-tight">青山 瑚子</span>
-                        </div>
-                        <div class="flex flex-col items-center w-[60px]">
-                            <img src="https://placehold.co/100x100/FFE4E6/c92434?text=JTB" alt="宮坂 希" class="w-9 h-9 rounded-full object-cover mb-1 border-2 border-white shadow-sm">
-                            <span class="text-[9px] font-bold text-gray-700 text-center leading-tight">宮坂 希</span>
-                        </div>
-                        <div class="flex flex-col items-center w-[60px]">
-                            <img src="https://placehold.co/100x100/FFE4E6/c92434?text=JTB" alt="佐藤 怜美" class="w-9 h-9 rounded-full object-cover mb-1 border-2 border-white shadow-sm">
-                            <span class="text-[9px] font-bold text-gray-700 text-center leading-tight">佐藤 怜美</span>
+                <div class="p-4 space-y-4 bg-white">
+                    <!-- JTB -->
+                    <div class="bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
+                        <span class="text-[12px] font-bold text-brand-jtb block mb-2 pb-1 border-b border-red-100"><i class="fa-solid fa-building mr-1"></i>JTB</span>
+                        <div class="flex flex-wrap gap-3">
+                            <div class="flex flex-col items-center w-[55px]">
+                                <img src="https://placehold.co/100x100/FEE2E2/C92434?text=JTB" alt="青山" class="w-10 h-10 rounded-full object-cover mb-1 border border-gray-200 shadow-sm">
+                                <span class="text-[10px] font-bold text-gray-800 text-center leading-tight">青山 瑚子</span>
+                            </div>
+                            <div class="flex flex-col items-center w-[55px]">
+                                <img src="https://placehold.co/100x100/FEE2E2/C92434?text=JTB" alt="宮坂" class="w-10 h-10 rounded-full object-cover mb-1 border border-gray-200 shadow-sm">
+                                <span class="text-[10px] font-bold text-gray-800 text-center leading-tight">宮坂 希</span>
+                            </div>
+                            <div class="flex flex-col items-center w-[55px]">
+                                <img src="https://placehold.co/100x100/FEE2E2/C92434?text=JTB" alt="佐藤" class="w-10 h-10 rounded-full object-cover mb-1 border border-gray-200 shadow-sm">
+                                <span class="text-[10px] font-bold text-gray-800 text-center leading-tight">佐藤 怜美</span>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- セプテーニ -->
-                <div class="bg-orange-50 p-2.5 rounded-xl border border-orange-200 shadow-sm">
-                    <span class="text-[11px] font-bold text-brand-orange block mb-1.5"><i class="fa-solid fa-building mr-1"></i>セプテーニ</span>
-                    <div class="flex flex-wrap gap-2">
-                        <div class="flex flex-col items-center w-[60px]">
-                            <img src="https://placehold.co/100x100/FFEDD5/fb923c?text=SEP" alt="福井 沙也果" class="w-9 h-9 rounded-full object-cover mb-1 border-2 border-white shadow-sm">
-                            <span class="text-[9px] font-bold text-gray-700 text-center leading-tight">福井 沙也果</span>
-                        </div>
-                        <div class="flex flex-col items-center w-[60px]">
-                            <img src="https://placehold.co/100x100/FFEDD5/fb923c?text=SEP" alt="加藤 凜乃" class="w-9 h-9 rounded-full object-cover mb-1 border-2 border-white shadow-sm">
-                            <span class="text-[9px] font-bold text-gray-700 text-center leading-tight">加藤 凜乃</span>
+                    <!-- セプテーニ -->
+                    <div class="bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
+                        <span class="text-[12px] font-bold text-brand-orange block mb-2 pb-1 border-b border-orange-100"><i class="fa-solid fa-building mr-1"></i>セプテーニ</span>
+                        <div class="flex flex-wrap gap-3">
+                            <div class="flex flex-col items-center w-[55px]">
+                                <img src="https://placehold.co/100x100/FFEDD5/EA580C?text=SEP" alt="福井" class="w-10 h-10 rounded-full object-cover mb-1 border border-gray-200 shadow-sm">
+                                <span class="text-[10px] font-bold text-gray-800 text-center leading-tight">福井 沙也果</span>
+                            </div>
+                            <div class="flex flex-col items-center w-[55px]">
+                                <img src="https://placehold.co/100x100/FFEDD5/EA580C?text=SEP" alt="加藤" class="w-10 h-10 rounded-full object-cover mb-1 border border-gray-200 shadow-sm">
+                                <span class="text-[10px] font-bold text-gray-800 text-center leading-tight">加藤 凜乃</span>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- セプテーニ -->
-                <div class="bg-blue-50 p-2.5 rounded-xl border border-blue-100">
-                    <span class="text-[11px] font-bold text-brand-blue block mb-1.5"><i class="fa-solid fa-building mr-1"></i>セプテーニ</span>
-                    <div class="flex flex-wrap gap-2">
-                        <div class="flex flex-col items-center w-[65px]">
-                            <img src="https://placehold.co/100x100/BFDBFE/3b82f6?text=SEP" alt="福井 沙也果" class="w-10 h-10 rounded-full object-cover mb-1 border-2 border-white shadow-sm">
-                            <span class="text-[10px] font-bold text-gray-700 text-center leading-tight">福井 沙也果</span>
-                        </div>
-                        <div class="flex flex-col items-center w-[65px]">
-                            <img src="https://placehold.co/100x100/BFDBFE/3b82f6?text=SEP" alt="加藤 凜乃" class="w-10 h-10 rounded-full object-cover mb-1 border-2 border-white shadow-sm">
-                            <span class="text-[10px] font-bold text-gray-700 text-center leading-tight">加藤 凜乃</span>
+                    <!-- 監督・制作 -->
+                    <div class="bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
+                        <span class="text-[12px] font-bold text-brand-teal block mb-2 pb-1 border-b border-teal-100"><i class="fa-solid fa-clapperboard mr-1"></i>監督・制作</span>
+                        <div class="flex flex-wrap gap-3">
+                            <div class="flex flex-col items-center w-[55px]">
+                                <img src="https://placehold.co/100x100/CCFBF1/0D9488?text=Dir" alt="佐藤" class="w-10 h-10 rounded-full object-cover mb-1 border border-gray-200 shadow-sm">
+                                <span class="text-[9px] text-gray-500 block">監督</span>
+                                <span class="text-[10px] font-bold text-gray-800 text-center leading-tight">佐藤 恵美</span>
+                            </div>
+                            <div class="flex flex-col items-center w-[55px]">
+                                <img src="https://placehold.co/100x100/CCFBF1/0D9488?text=Dir+" alt="金澤" class="w-10 h-10 rounded-full object-cover mb-1 border border-gray-200 shadow-sm">
+                                <span class="text-[9px] text-gray-500 block">監督補佐</span>
+                                <span class="text-[10px] font-bold text-gray-800 text-center leading-tight">金澤 善風</span>
+                            </div>
+                            <div class="flex flex-col items-center w-[55px]">
+                                <img src="https://placehold.co/100x100/CCFBF1/0D9488?text=Prd" alt="市川" class="w-10 h-10 rounded-full object-cover mb-1 border border-gray-200 shadow-sm">
+                                <span class="text-[9px] text-gray-500 block">制作</span>
+                                <span class="text-[10px] font-bold text-gray-800 text-center leading-tight">市川 拓弥</span>
+                            </div>
+                            <div class="flex flex-col items-center w-[55px]">
+                                <img src="https://placehold.co/100x100/CCFBF1/0D9488?text=Prd" alt="加藤" class="w-10 h-10 rounded-full object-cover mb-1 border border-gray-200 shadow-sm">
+                                <span class="text-[9px] text-gray-500 block">制作</span>
+                                <span class="text-[10px] font-bold text-gray-800 text-center leading-tight">加藤 芳崇</span>
+                            </div>
+                            <div class="flex flex-col items-center w-[55px]">
+                                <img src="https://placehold.co/100x100/CCFBF1/0D9488?text=Prd" alt="佐藤" class="w-10 h-10 rounded-full object-cover mb-1 border border-gray-200 shadow-sm">
+                                <span class="text-[9px] text-gray-500 block">制作</span>
+                                <span class="text-[10px] font-bold text-gray-800 text-center leading-tight">佐藤 汐</span>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- 監督・制作 -->
-                <div class="bg-amber-50 p-2.5 rounded-xl border border-amber-200 shadow-sm">
-                    <span class="text-[11px] font-bold text-amber-600 block mb-1.5"><i class="fa-solid fa-clapperboard mr-1"></i>監督・制作</span>
-                    <div class="flex flex-wrap gap-2">
-                        <div class="flex flex-col items-center w-[60px]">
-                            <img src="https://placehold.co/100x100/FEF3C7/d97706?text=Dir" alt="佐藤 恵美" class="w-9 h-9 rounded-full object-cover mb-1 border-2 border-white shadow-sm">
-                            <span class="text-[8px] text-gray-400 block -mb-0.5">監督</span>
-                            <span class="text-[9px] font-bold text-gray-700 text-center leading-tight">佐藤 恵美</span>
-                        </div>
-                        <div class="flex flex-col items-center w-[60px]">
-                            <img src="https://placehold.co/100x100/FEF3C7/d97706?text=Dir+" alt="金澤 善風" class="w-9 h-9 rounded-full object-cover mb-1 border-2 border-white shadow-sm">
-                            <span class="text-[8px] text-gray-400 block -mb-0.5">監督補佐</span>
-                            <span class="text-[9px] font-bold text-gray-700 text-center leading-tight">金澤 善風</span>
-                        </div>
-                        <div class="flex flex-col items-center w-[60px]">
-                            <img src="https://placehold.co/100x100/FEF3C7/d97706?text=Prd" alt="市川 拓弥" class="w-9 h-9 rounded-full object-cover mb-1 border-2 border-white shadow-sm">
-                            <span class="text-[8px] text-gray-400 block -mb-0.5">制作</span>
-                            <span class="text-[9px] font-bold text-gray-700 text-center leading-tight">市川 拓弥</span>
-                        </div>
-                        <div class="flex flex-col items-center w-[60px]">
-                            <img src="スクリーンショット 2026-08-01 17.50.14.jpg" alt="加藤 芳崇" class="w-9 h-9 rounded-full object-cover mb-1 border-2 border-white shadow-sm object-top">
-                            <span class="text-[8px] text-gray-400 block -mb-0.5">制作</span>
-                            <span class="text-[9px] font-bold text-gray-700 text-center leading-tight">加藤 芳崇</span>
-                        </div>
-                        <div class="flex flex-col items-center w-[60px]">
-                            <img src="https://placehold.co/100x100/FEF3C7/d97706?text=Prd" alt="佐藤 汐" class="w-9 h-9 rounded-full object-cover mb-1 border-2 border-white shadow-sm">
-                            <span class="text-[8px] text-gray-400 block -mb-0.5">制作</span>
-                            <span class="text-[9px] font-bold text-gray-700 text-center leading-tight">佐藤 汐</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 撮影・技術 -->
-                <div class="bg-rose-50 p-2.5 rounded-xl border border-rose-200 shadow-sm">
-                    <span class="text-[11px] font-bold text-rose-500 block mb-1.5"><i class="fa-solid fa-camera-retro mr-1"></i>撮影・技術</span>
-                    <div class="flex flex-wrap gap-2">
-                        <div class="flex flex-col items-center w-[60px]">
-                            <img src="https://placehold.co/100x100/FFE4E6/f43f5e?text=Cam" alt="時光 佑輔" class="w-9 h-9 rounded-full object-cover mb-1 border-2 border-white shadow-sm">
-                            <span class="text-[8px] text-gray-400 block -mb-0.5">カメラマン</span>
-                            <span class="text-[9px] font-bold text-gray-700 text-center leading-tight">時光 佑輔</span>
-                        </div>
-                        <div class="flex flex-col items-center w-[60px]">
-                            <img src="https://placehold.co/100x100/FFE4E6/f43f5e?text=1st" alt="山城 俊介" class="w-9 h-9 rounded-full object-cover mb-1 border-2 border-white shadow-sm">
-                            <span class="text-[8px] text-gray-400 block -mb-0.5">撮影チーフ</span>
-                            <span class="text-[9px] font-bold text-gray-700 text-center leading-tight">山城 俊介</span>
-                        </div>
-                        <div class="flex flex-col items-center w-[60px]">
-                            <img src="https://placehold.co/100x100/FFE4E6/f43f5e?text=2nd" alt="伊藤 隼幹" class="w-9 h-9 rounded-full object-cover mb-1 border-2 border-white shadow-sm">
-                            <span class="text-[8px] text-gray-400 block -mb-0.5">撮影セカンド</span>
-                            <span class="text-[9px] font-bold text-gray-700 text-center leading-tight">伊藤 隼幹</span>
-                        </div>
-                        <div class="flex flex-col items-center w-[60px]">
-                            <img src="https://placehold.co/100x100/FFE4E6/f43f5e?text=Lgt" alt="ふじまたゆうと" class="w-9 h-9 rounded-full object-cover mb-1 border-2 border-white shadow-sm">
-                            <span class="text-[8px] text-gray-400 block -mb-0.5">照明</span>
-                            <span class="text-[9px] font-bold text-gray-700 text-center leading-tight">ふじまたゆうと</span>
-                        </div>
-                        <div class="flex flex-col items-center w-[60px]">
-                            <img src="https://placehold.co/100x100/FFE4E6/f43f5e?text=Snd" alt="池本あずさ" class="w-9 h-9 rounded-full object-cover mb-1 border-2 border-white shadow-sm">
-                            <span class="text-[8px] text-gray-400 block -mb-0.5">録音</span>
-                            <span class="text-[9px] font-bold text-gray-700 text-center leading-tight">池本あずさ</span>
-                        </div>
-                        <div class="flex flex-col items-center w-[60px]">
-                            <img src="https://placehold.co/100x100/FFE4E6/f43f5e?text=Ast" alt="魚野 陽多" class="w-9 h-9 rounded-full object-cover mb-1 border-2 border-white shadow-sm">
-                            <span class="text-[8px] text-gray-400 block -mb-0.5">録音助手</span>
-                            <span class="text-[9px] font-bold text-gray-700 text-center leading-tight">魚野 陽多</span>
+                    <!-- 撮影・技術 / スタイリスト -->
+                    <div class="bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
+                        <span class="text-[12px] font-bold text-brand-blue block mb-2 pb-1 border-b border-blue-100"><i class="fa-solid fa-camera-retro mr-1"></i>技術・HM</span>
+                        <div class="flex flex-wrap gap-3">
+                            <div class="flex flex-col items-center w-[55px]">
+                                <img src="https://placehold.co/100x100/E0F2FE/0284C7?text=Cam" alt="時光" class="w-10 h-10 rounded-full object-cover mb-1 border border-gray-200 shadow-sm">
+                                <span class="text-[9px] text-gray-500 block">カメラマン</span>
+                                <span class="text-[10px] font-bold text-gray-800 text-center leading-tight">時光 佑輔</span>
+                            </div>
+                            <div class="flex flex-col items-center w-[55px]">
+                                <img src="https://placehold.co/100x100/E0F2FE/0284C7?text=1st" alt="山城" class="w-10 h-10 rounded-full object-cover mb-1 border border-gray-200 shadow-sm">
+                                <span class="text-[9px] text-gray-500 block">チーフ</span>
+                                <span class="text-[10px] font-bold text-gray-800 text-center leading-tight">山城 俊介</span>
+                            </div>
+                            <div class="flex flex-col items-center w-[55px]">
+                                <img src="https://placehold.co/100x100/E0F2FE/0284C7?text=Snd" alt="池本" class="w-10 h-10 rounded-full object-cover mb-1 border border-gray-200 shadow-sm">
+                                <span class="text-[9px] text-gray-500 block">録音</span>
+                                <span class="text-[10px] font-bold text-gray-800 text-center leading-tight">池本あずさ</span>
+                            </div>
+                            <div class="flex flex-col items-center w-[55px]">
+                                <img src="https://placehold.co/100x100/E0F2FE/0284C7?text=STY" alt="小澤" class="w-10 h-10 rounded-full object-cover mb-1 border border-gray-200 shadow-sm">
+                                <span class="text-[9px] text-gray-500 block">STY</span>
+                                <span class="text-[10px] font-bold text-gray-800 text-center leading-tight">小澤 奈月</span>
+                            </div>
+                            <div class="flex flex-col items-center w-[55px]">
+                                <img src="https://placehold.co/100x100/E0F2FE/0284C7?text=HM" alt="木附沢" class="w-10 h-10 rounded-full object-cover mb-1 border border-gray-200 shadow-sm">
+                                <span class="text-[9px] text-gray-500 block">HM</span>
+                                <span class="text-[10px] font-bold text-gray-800 text-center leading-tight">木附沢 美耶</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <!-- スタイリスト・ヘアメイク -->
-                <div class="bg-pink-50 p-2.5 rounded-xl border border-pink-200 shadow-sm">
-                    <span class="text-[11px] font-bold text-pink-600 block mb-1.5"><i class="fa-solid fa-wand-magic-sparkles mr-1"></i>スタイリスト・HM</span>
-                    <div class="flex flex-wrap gap-2">
-                        <div class="flex flex-col items-center w-[60px]">
-                            <img src="https://placehold.co/100x100/FCE7F3/db2777?text=STY" alt="小澤 奈月" class="w-9 h-9 rounded-full object-cover mb-1 border-2 border-white shadow-sm">
-                            <span class="text-[8px] text-gray-400 block -mb-0.5">STY</span>
-                            <span class="text-[9px] font-bold text-gray-700 text-center leading-tight">小澤 奈月</span>
-                        </div>
-                        <div class="flex flex-col items-center w-[60px]">
-                            <img src="https://placehold.co/100x100/FCE7F3/db2777?text=HM" alt="木附沢 美耶" class="w-9 h-9 rounded-full object-cover mb-1 border-2 border-white shadow-sm">
-                            <span class="text-[8px] text-gray-400 block -mb-0.5">HM</span>
-                            <span class="text-[9px] font-bold text-gray-700 text-center leading-tight">木附沢 美耶</span>
-                        </div>
-                    </div>
-                </div>
                 </div>
             </details>
         </section>
 
+        <!-- 日程切り替えタブ -->
+        <div class="flex justify-center space-x-2 bg-gray-100 p-1.5 rounded-full shadow-inner mb-4">
+            <button id="btn-day1" onclick="switchTab('day1')" class="w-1/2 py-2.5 bg-brand-jtb text-white rounded-full text-sm font-bold shadow-md transition-all">Day 1: 山梨 (8/6)</button>
+            <button id="btn-day2" onclick="switchTab('day2')" class="w-1/2 py-2.5 bg-transparent text-gray-600 hover:bg-gray-200 rounded-full text-sm font-bold transition-all">Day 2: 熱海 (8/7)</button>
+        </div>
+
         <section id="schedule">
             <div class="flex items-center mb-6">
-                <i class="fa-regular fa-calendar-check text-brand-jtb text-xl mr-2"></i>
-                <h2 class="text-xl font-bold border-b-2 border-brand-jtb pb-1 text-gray-800">スケジュール</h2>
+                <i class="fa-regular fa-calendar-check text-brand-jtb text-2xl mr-3"></i>
+                <h2 class="text-xl font-bold border-b-2 border-brand-jtb pb-1 text-gray-900 tracking-wide">スケジュール</h2>
             </div>
             
             <!-- ====== DAY 1 (山梨) ====== -->
             <div id="schedule-day1" class="relative day-content">
                 <!-- 08:15 -->
-                <div class="relative flex mb-8 timeline-item" data-time="2026-08-06T08:15:00">
+                <div class="relative flex mb-8 timeline-item" data-time="2026-08-06T08:15:00" data-end-time="2026-08-06T10:04:59">
                     <div class="timeline-line"></div>
-                    <div class="z-10 flex-shrink-0 w-10 h-10 bg-rose-400 rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-4 timeline-icon-wrap">
+                    <div class="z-10 flex-shrink-0 w-10 h-10 bg-gray-800 rounded-full border-4 border-white shadow-md flex items-center justify-center text-white mr-4 timeline-icon-wrap">
                         <i class="fa-solid fa-mountain-sun"></i>
                     </div>
-                    <div class="bg-white rounded-2xl p-4 shadow-sm border-l-4 border-rose-400 flex-grow relative overflow-hidden">
-                        <div class="flex items-baseline gap-2 mb-1">
-                            <span class="font-bold text-rose-500 text-lg">08:15</span>
-                            <h3 class="font-bold text-gray-800">Fujiyama ツインテラス</h3>
+                    <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-200 flex-grow relative overflow-hidden">
+                        <div class="flex items-baseline gap-2 mb-2">
+                            <span class="font-bold text-gray-800 text-xl tracking-tight">08:15</span>
+                            <h3 class="font-bold text-gray-900 text-[15px]">Fujiyama ツインテラス</h3>
                         </div>
-                        <a href="https://maps.google.com/?cid=365001063880284616" target="_blank" class="inline-block mt-1 text-[10px] text-rose-600 bg-rose-50 px-2 py-1 rounded-full border border-rose-100 hover:bg-rose-100 transition">
-                            <i class="fa-solid fa-map-location-dot mr-1"></i>Mapで見る
+                        <a href="https://maps.google.com/?cid=365001063880284616" target="_blank" class="inline-flex items-center mt-1 text-[11px] font-bold text-gray-700 bg-gray-100 px-3 py-1.5 rounded-full hover:bg-gray-200 transition border border-gray-300">
+                            <i class="fa-solid fa-map-location-dot mr-1.5 text-brand-jtb"></i>Mapで見る
                         </a>
-                        <div class="text-xs text-gray-500 mt-2 bg-gray-50 inline-block px-2 py-1 rounded border border-gray-100 block w-fit">
-                            <i class="fa-solid fa-car-side mr-1 text-gray-400"></i>09:35 出発 (30分移動)
+                        <div class="text-xs font-medium text-gray-600 mt-3 bg-gray-50 px-3 py-1.5 rounded border border-gray-200 block w-fit">
+                            <i class="fa-solid fa-car-side mr-1.5 text-gray-500"></i>09:35 出発 (30分移動)
                         </div>
                     </div>
                 </div>
 
                 <!-- 10:05 -->
-                <div class="relative flex mb-8 timeline-item" data-time="2026-08-06T10:05:00">
+                <div class="relative flex mb-8 timeline-item" data-time="2026-08-06T10:05:00" data-end-time="2026-08-06T12:49:59">
                     <div class="timeline-line"></div>
-                    <div class="z-10 flex-shrink-0 w-10 h-10 bg-orange-400 rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-4 timeline-icon-wrap">
+                    <div class="z-10 flex-shrink-0 w-10 h-10 bg-gray-800 rounded-full border-4 border-white shadow-md flex items-center justify-center text-white mr-4 timeline-icon-wrap">
                         <i class="fa-solid fa-person-walking"></i>
                     </div>
-                    <div class="bg-white rounded-2xl p-4 shadow-sm border-l-4 border-orange-400 flex-grow relative overflow-hidden">
-                        <div class="flex items-baseline gap-2 mb-1">
-                            <span class="font-bold text-orange-500 text-lg">10:05</span>
-                            <h3 class="font-bold text-gray-800">河口湖周辺散策</h3>
+                    <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-200 flex-grow relative overflow-hidden">
+                        <div class="flex items-baseline gap-2 mb-2">
+                            <span class="font-bold text-gray-800 text-xl tracking-tight">10:05</span>
+                            <h3 class="font-bold text-gray-900 text-[15px]">河口湖周辺散策</h3>
                         </div>
-                        <a href="https://maps.google.com/?cid=3011696811526290759" target="_blank" class="inline-block mt-1 text-[10px] text-orange-600 bg-orange-50 px-2 py-1 rounded-full border border-orange-100 hover:bg-orange-100 transition">
-                            <i class="fa-solid fa-map-location-dot mr-1"></i>Mapで見る
+                        <a href="https://maps.google.com/?cid=3011696811526290759" target="_blank" class="inline-flex items-center mt-1 text-[11px] font-bold text-gray-700 bg-gray-100 px-3 py-1.5 rounded-full hover:bg-gray-200 transition border border-gray-300">
+                            <i class="fa-solid fa-map-location-dot mr-1.5 text-brand-jtb"></i>Mapで見る
                         </a>
-                        <div class="text-xs text-gray-500 mt-2 bg-gray-50 inline-block px-2 py-1 rounded border border-gray-100 block w-fit">
-                            <i class="fa-solid fa-car-side mr-1 text-gray-400"></i>11:35 出発 (30分移動・セッティング45分)
+                        <div class="text-xs font-medium text-gray-600 mt-3 bg-gray-50 px-3 py-1.5 rounded border border-gray-200 block w-fit">
+                            <i class="fa-solid fa-car-side mr-1.5 text-gray-500"></i>11:35 出発 (セッティング45分)
                         </div>
                     </div>
                 </div>
 
                 <!-- 12:50 -->
-                <div class="relative flex mb-8 timeline-item" data-time="2026-08-06T12:50:00">
+                <div class="relative flex mb-8 timeline-item" data-time="2026-08-06T12:50:00" data-end-time="2026-08-06T15:29:59">
                     <div class="timeline-line"></div>
-                    <div class="z-10 flex-shrink-0 w-10 h-10 bg-pink-500 rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-4 timeline-icon-wrap">
+                    <div class="z-10 flex-shrink-0 w-10 h-10 bg-brand-jtb rounded-full border-4 border-white shadow-md flex items-center justify-center text-white mr-4 timeline-icon-wrap">
                         <i class="fa-solid fa-camera"></i>
                     </div>
-                    <div class="bg-pink-50 rounded-2xl p-4 shadow-sm border border-pink-200 flex-grow relative overflow-hidden">
-                        <div class="flex items-baseline gap-2 mb-1">
-                            <span class="font-bold text-pink-600 text-lg">12:50</span>
-                            <h3 class="font-bold text-gray-800">車内カット撮影</h3>
+                    <div class="bg-red-50 rounded-2xl p-4 shadow-sm border border-red-200 flex-grow relative overflow-hidden">
+                        <div class="flex items-baseline gap-2 mb-2">
+                            <span class="font-bold text-brand-jtb text-xl tracking-tight">12:50</span>
+                            <h3 class="font-bold text-gray-900 text-[15px]">車内カット撮影</h3>
                         </div>
-                        <p class="text-sm text-pink-700 font-bold mt-1 mb-2">13:50 終了・衣装チェンジ！！👗✨</p>
-                        <div class="text-xs text-gray-500 bg-white inline-block px-2 py-1 rounded border border-pink-100 block w-fit">
-                            <i class="fa-solid fa-car-side mr-1 text-gray-400"></i>14:30 出発 (1時間移動)
+                        <p class="text-[13px] text-brand-jtb font-bold mt-2 mb-3 bg-white px-2 py-1 rounded inline-block border border-red-100">13:50 終了・衣装チェンジ👗✨</p>
+                        <div class="text-xs font-medium text-gray-600 bg-white inline-block px-3 py-1.5 rounded border border-gray-200 block w-fit">
+                            <i class="fa-solid fa-car-side mr-1.5 text-gray-400"></i>14:30 出発 (1時間移動)
                         </div>
                     </div>
                 </div>
 
                 <!-- 15:30 -->
-                <div class="relative flex mb-8 timeline-item" data-time="2026-08-06T15:30:00">
+                <div class="relative flex mb-8 timeline-item" data-time="2026-08-06T15:30:00" data-end-time="2026-08-06T16:49:59">
                     <div class="timeline-line"></div>
-                    <div class="z-10 flex-shrink-0 w-10 h-10 bg-amber-400 rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-4 timeline-icon-wrap">
+                    <div class="z-10 flex-shrink-0 w-10 h-10 bg-brand-blue rounded-full border-4 border-white shadow-md flex items-center justify-center text-white mr-4 timeline-icon-wrap">
                         <i class="fa-solid fa-droplet"></i>
                     </div>
-                    <div class="bg-white rounded-2xl p-4 shadow-sm border-l-4 border-amber-400 flex-grow relative overflow-hidden">
-                        <div class="flex items-baseline gap-2 mb-1">
-                            <span class="font-bold text-amber-500 text-lg">15:30</span>
-                            <h3 class="font-bold text-gray-800">忍野八海</h3>
+                    <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-200 flex-grow relative overflow-hidden">
+                        <div class="flex items-baseline gap-2 mb-2">
+                            <span class="font-bold text-brand-blue text-xl tracking-tight">15:30</span>
+                            <h3 class="font-bold text-gray-900 text-[15px]">忍野八海</h3>
                         </div>
-                        <a href="https://maps.google.com/?cid=1601773399916388209" target="_blank" class="inline-block mt-1 text-[10px] text-amber-600 bg-amber-50 px-2 py-1 rounded-full border border-amber-100 hover:bg-amber-100 transition">
-                            <i class="fa-solid fa-map-location-dot mr-1"></i>Mapで見る
+                        <a href="https://maps.google.com/?cid=1601773399916388209" target="_blank" class="inline-flex items-center mt-1 text-[11px] font-bold text-gray-700 bg-gray-100 px-3 py-1.5 rounded-full hover:bg-gray-200 transition border border-gray-300">
+                            <i class="fa-solid fa-map-location-dot mr-1.5 text-brand-blue"></i>Mapで見る
                         </a>
-                        <div class="text-xs text-gray-500 mt-2 bg-gray-50 inline-block px-2 py-1 rounded border border-gray-100 block w-fit">
-                            <i class="fa-solid fa-car-side mr-1 text-gray-400"></i>16:30 出発 (20分移動)
+                        <div class="text-xs font-medium text-gray-600 mt-3 bg-gray-50 px-3 py-1.5 rounded border border-gray-200 block w-fit">
+                            <i class="fa-solid fa-car-side mr-1.5 text-gray-500"></i>16:30 出発 (20分移動)
                         </div>
                     </div>
                 </div>
 
                 <!-- 16:50 -->
-                <div class="relative flex mb-8 timeline-item" data-time="2026-08-06T16:50:00">
+                <div class="relative flex mb-8 timeline-item" data-time="2026-08-06T16:50:00" data-end-time="2026-08-06T18:09:59">
                     <div class="timeline-line"></div>
-                    <div class="z-10 flex-shrink-0 w-10 h-10 bg-teal-400 rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-4 timeline-icon-wrap">
+                    <div class="z-10 flex-shrink-0 w-10 h-10 bg-brand-teal rounded-full border-4 border-white shadow-md flex items-center justify-center text-white mr-4 timeline-icon-wrap">
                         <i class="fa-solid fa-fish-fins"></i>
                     </div>
-                    <div class="bg-white rounded-2xl p-4 shadow-sm border-l-4 border-teal-400 flex-grow relative overflow-hidden">
-                        <div class="flex items-baseline gap-2 mb-1">
-                            <span class="font-bold text-teal-500 text-lg">16:50</span>
-                            <h3 class="font-bold text-gray-800">森の中水族館</h3>
+                    <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-200 flex-grow relative overflow-hidden">
+                        <div class="flex items-baseline gap-2 mb-2">
+                            <span class="font-bold text-brand-teal text-xl tracking-tight">16:50</span>
+                            <h3 class="font-bold text-gray-900 text-[15px]">森の中水族館</h3>
                         </div>
-                        <a href="https://maps.google.com/?cid=12729255689447508924" target="_blank" class="inline-block mt-1 text-[10px] text-teal-600 bg-teal-50 px-2 py-1 rounded-full border border-teal-100 hover:bg-teal-100 transition">
-                            <i class="fa-solid fa-map-location-dot mr-1"></i>Mapで見る
+                        <a href="https://maps.google.com/?cid=12729255689447508924" target="_blank" class="inline-flex items-center mt-1 text-[11px] font-bold text-gray-700 bg-gray-100 px-3 py-1.5 rounded-full hover:bg-gray-200 transition border border-gray-300">
+                            <i class="fa-solid fa-map-location-dot mr-1.5 text-brand-teal"></i>Mapで見る
                         </a>
-                        <div class="text-xs text-gray-500 mt-2 bg-gray-50 inline-block px-2 py-1 rounded border border-gray-100 block w-fit">
-                            <i class="fa-solid fa-car-side mr-1 text-gray-400"></i>17:50 出発
+                        <div class="text-xs font-medium text-gray-600 mt-3 bg-gray-50 px-3 py-1.5 rounded border border-gray-200 block w-fit">
+                            <i class="fa-solid fa-car-side mr-1.5 text-gray-500"></i>17:50 出発
                         </div>
                     </div>
                 </div>
 
                 <!-- 18:10 -->
-                <div class="relative flex mb-8 timeline-item" data-time="2026-08-06T18:10:00">
+                <div class="relative flex mb-8 timeline-item" data-time="2026-08-06T18:10:00" data-end-time="2026-08-06T23:58:59">
                     <div class="timeline-line"></div>
-                    <div class="z-10 flex-shrink-0 w-10 h-10 bg-brand-orange rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-4 timeline-icon-wrap">
+                    <div class="z-10 flex-shrink-0 w-10 h-10 bg-brand-orange rounded-full border-4 border-white shadow-md flex items-center justify-center text-white mr-4 timeline-icon-wrap">
                         <i class="fa-solid fa-campground"></i>
                     </div>
                     <div class="bg-orange-50 rounded-2xl p-4 shadow-sm border border-orange-200 flex-grow relative overflow-hidden">
-                        <div class="flex items-baseline gap-2 mb-1">
-                            <span class="font-bold text-orange-600 text-lg">18:10</span>
-                            <h3 class="font-bold text-gray-800">PICA Fujiyama</h3>
+                        <div class="flex items-baseline gap-2 mb-2">
+                            <span class="font-bold text-brand-orange text-xl tracking-tight">18:10</span>
+                            <h3 class="font-bold text-gray-900 text-[15px]">PICA Fujiyama</h3>
                         </div>
-                        <a href="https://maps.google.com/?cid=10820891934985370865" target="_blank" class="inline-block mt-1 mb-1 text-[10px] text-orange-700 bg-white px-2 py-1 rounded-full border border-orange-200 hover:bg-orange-100 transition">
-                            <i class="fa-solid fa-map-location-dot mr-1"></i>Mapで見る
+                        <a href="https://maps.google.com/?cid=10820891934985370865" target="_blank" class="inline-flex items-center mt-1 mb-2 text-[11px] font-bold text-gray-700 bg-white px-3 py-1.5 rounded-full hover:bg-gray-100 transition border border-gray-300">
+                            <i class="fa-solid fa-map-location-dot mr-1.5 text-brand-orange"></i>Mapで見る
                         </a>
-                        <p class="text-sm text-orange-700 font-bold mt-1 mb-2">21:50 終了⛺️</p>
-                        <div class="text-xs text-gray-500 bg-white inline-block px-2 py-1 rounded border border-orange-100 block w-fit">
-                            <i class="fa-solid fa-car-side mr-1 text-gray-400"></i>22:15 出発 (2時間移動)
+                        <p class="text-[13px] text-orange-800 font-bold mt-2 mb-3 bg-white px-2 py-1 rounded inline-block border border-orange-200">21:50 終了⛺️</p>
+                        <div class="text-xs font-medium text-gray-600 bg-white inline-block px-3 py-1.5 rounded border border-gray-200 block w-fit">
+                            <i class="fa-solid fa-car-side mr-1.5 text-gray-400"></i>22:15 出発 (2時間移動)
                         </div>
                     </div>
                 </div>
 
                 <!-- 24:00 -->
-                <div class="relative flex timeline-item" data-time="2026-08-06T23:59:00">
+                <div class="relative flex timeline-item" data-time="2026-08-06T23:59:00" data-end-time="2026-08-07T07:59:59">
                     <div class="timeline-line"></div>
-                    <div class="z-10 flex-shrink-0 w-10 h-10 bg-brand-jtb rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-4 timeline-icon-wrap">
+                    <div class="z-10 flex-shrink-0 w-10 h-10 bg-gray-800 rounded-full border-4 border-white shadow-md flex items-center justify-center text-white mr-4 timeline-icon-wrap">
                         <i class="fa-solid fa-bed"></i>
                     </div>
-                    <div class="bg-rose-50 rounded-2xl p-4 shadow-sm border border-rose-200 flex-grow text-center">
-                        <div class="font-bold text-brand-jtb text-xl mb-1">24:00</div>
-                        <h3 class="font-bold text-gray-800">プリンス スマート イン熱海</h3>
-                        <a href="https://maps.google.com/?cid=18390690259723271170" target="_blank" class="inline-block mt-1 text-[10px] text-rose-600 bg-white px-2 py-1 rounded-full border border-rose-200 hover:bg-rose-100 transition">
-                            <i class="fa-solid fa-map-location-dot mr-1"></i>Mapで見る
+                    <div class="bg-gray-100 rounded-2xl p-4 shadow-sm border border-gray-300 flex-grow text-center">
+                        <div class="font-bold text-gray-800 text-xl mb-1 tracking-tight">24:00</div>
+                        <h3 class="font-bold text-gray-900 mb-2">プリンス スマート イン熱海</h3>
+                        <a href="https://maps.google.com/?cid=18390690259723271170" target="_blank" class="inline-flex items-center mt-1 text-[11px] font-bold text-gray-700 bg-white px-3 py-1.5 rounded-full hover:bg-gray-200 transition border border-gray-300">
+                            <i class="fa-solid fa-map-location-dot mr-1.5 text-gray-600"></i>Mapで見る
                         </a>
-                        <p class="text-xs text-gray-600 mt-2">宿泊・1日目お疲れ様でした！🌙</p>
+                        <p class="text-xs font-bold text-brand-jtb mt-3">宿泊・1日目お疲れ様でした！🌙</p>
                     </div>
                 </div>
             </div>
@@ -463,162 +400,162 @@
             <div id="schedule-day2" class="relative day-content hidden">
                 
                 <!-- 08:00 ホテル発 -->
-                <div class="relative flex mb-8 timeline-item" data-time="2026-08-07T08:00:00">
+                <div class="relative flex mb-8 timeline-item" data-time="2026-08-07T08:00:00" data-end-time="2026-08-07T08:29:59">
                     <div class="timeline-line"></div>
-                    <div class="z-10 flex-shrink-0 w-10 h-10 bg-rose-400 rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-4 timeline-icon-wrap">
+                    <div class="z-10 flex-shrink-0 w-10 h-10 bg-gray-800 rounded-full border-4 border-white shadow-md flex items-center justify-center text-white mr-4 timeline-icon-wrap">
                         <i class="fa-solid fa-hotel"></i>
                     </div>
-                    <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex-grow relative overflow-hidden">
-                        <div class="flex items-baseline gap-2 mb-1">
-                            <span class="font-bold text-rose-500 text-lg">08:00</span>
-                            <h3 class="font-bold text-gray-800">ホテル発</h3>
+                    <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-200 flex-grow relative overflow-hidden">
+                        <div class="flex items-baseline gap-2 mb-2">
+                            <span class="font-bold text-gray-800 text-xl tracking-tight">08:00</span>
+                            <h3 class="font-bold text-gray-900 text-[15px]">ホテル発</h3>
                         </div>
-                        <div class="text-xs text-gray-500 mt-1 bg-gray-50 inline-block px-2 py-1 rounded border border-gray-100 block w-fit">
-                            <i class="fa-solid fa-car-side mr-1 text-gray-400"></i>出発 (30分移動)
+                        <div class="text-xs font-medium text-gray-600 mt-2 bg-gray-50 px-3 py-1.5 rounded border border-gray-200 block w-fit">
+                            <i class="fa-solid fa-car-side mr-1.5 text-gray-500"></i>出発 (30分移動)
                         </div>
                     </div>
                 </div>
 
                 <!-- 08:30 酪農王国オラッチェ -->
-                <div class="relative flex mb-8 timeline-item" data-time="2026-08-07T08:30:00">
+                <div class="relative flex mb-8 timeline-item" data-time="2026-08-07T08:30:00" data-end-time="2026-08-07T10:59:59">
                     <div class="timeline-line"></div>
-                    <div class="z-10 flex-shrink-0 w-10 h-10 bg-orange-400 rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-4 timeline-icon-wrap">
+                    <div class="z-10 flex-shrink-0 w-10 h-10 bg-brand-orange rounded-full border-4 border-white shadow-md flex items-center justify-center text-white mr-4 timeline-icon-wrap">
                         <i class="fa-solid fa-cow"></i>
                     </div>
-                    <div class="bg-white rounded-2xl p-4 shadow-sm border-l-4 border-orange-400 flex-grow relative overflow-hidden">
-                        <div class="flex items-baseline gap-2 mb-1">
-                            <span class="font-bold text-orange-500 text-lg">08:30</span>
-                            <h3 class="font-bold text-gray-800">酪農王国オラッチェ</h3>
+                    <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-200 flex-grow relative overflow-hidden">
+                        <div class="flex items-baseline gap-2 mb-2">
+                            <span class="font-bold text-brand-orange text-xl tracking-tight">08:30</span>
+                            <h3 class="font-bold text-gray-900 text-[15px]">酪農王国オラッチェ</h3>
                         </div>
-                        <a href="https://maps.google.com/?cid=348274133899901533" target="_blank" class="inline-block mt-1 mb-1 text-[10px] text-orange-600 bg-orange-50 px-2 py-1 rounded-full border border-orange-100 hover:bg-orange-100 transition">
-                            <i class="fa-solid fa-map-location-dot mr-1"></i>Mapで見る
+                        <a href="https://maps.google.com/?cid=348274133899901533" target="_blank" class="inline-flex items-center mt-1 mb-2 text-[11px] font-bold text-gray-700 bg-gray-100 px-3 py-1.5 rounded-full hover:bg-gray-200 transition border border-gray-300">
+                            <i class="fa-solid fa-map-location-dot mr-1.5 text-brand-orange"></i>Mapで見る
                         </a>
-                        <p class="text-sm text-orange-700 font-bold mt-1 mb-2">09:00 撮影開始🎥</p>
-                        <div class="text-xs text-gray-500 bg-white inline-block px-2 py-1 rounded border border-orange-100 block w-fit">
-                            <i class="fa-solid fa-car-side mr-1 text-gray-400"></i>10:30 出発 (30分移動)
+                        <p class="text-[13px] text-orange-800 font-bold mt-2 mb-3 bg-orange-50 px-2 py-1 rounded inline-block border border-orange-200">09:00 撮影開始🎥</p>
+                        <div class="text-xs font-medium text-gray-600 bg-gray-50 inline-block px-3 py-1.5 rounded border border-gray-200 block w-fit">
+                            <i class="fa-solid fa-car-side mr-1.5 text-gray-500"></i>10:30 出発 (30分移動)
                         </div>
                     </div>
                 </div>
 
                 <!-- 11:00 お宮の松駐車場 -->
-                <div class="relative flex mb-8 timeline-item" data-time="2026-08-07T11:00:00">
+                <div class="relative flex mb-8 timeline-item" data-time="2026-08-07T11:00:00" data-end-time="2026-08-07T11:44:59">
                     <div class="timeline-line"></div>
-                    <div class="z-10 flex-shrink-0 w-10 h-10 bg-pink-500 rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-4 timeline-icon-wrap">
+                    <div class="z-10 flex-shrink-0 w-10 h-10 bg-brand-jtb rounded-full border-4 border-white shadow-md flex items-center justify-center text-white mr-4 timeline-icon-wrap">
                         <i class="fa-solid fa-shirt"></i>
                     </div>
-                    <div class="bg-pink-50 rounded-2xl p-4 shadow-sm border border-pink-200 flex-grow relative overflow-hidden">
-                        <div class="flex items-baseline gap-2 mb-1">
-                            <span class="font-bold text-pink-600 text-lg">11:00</span>
-                            <h3 class="font-bold text-gray-800">お宮の松駐車場</h3>
+                    <div class="bg-red-50 rounded-2xl p-4 shadow-sm border border-red-200 flex-grow relative overflow-hidden">
+                        <div class="flex items-baseline gap-2 mb-2">
+                            <span class="font-bold text-brand-jtb text-xl tracking-tight">11:00</span>
+                            <h3 class="font-bold text-gray-900 text-[15px]">お宮の松駐車場</h3>
                         </div>
-                        <a href="https://maps.google.com/?cid=5857265250497443601" target="_blank" class="inline-block mt-1 mb-1 text-[10px] text-pink-600 bg-white px-2 py-1 rounded-full border border-pink-200 hover:bg-pink-100 transition">
-                            <i class="fa-solid fa-map-location-dot mr-1"></i>Mapで見る
+                        <a href="https://maps.google.com/?cid=5857265250497443601" target="_blank" class="inline-flex items-center mt-1 mb-2 text-[11px] font-bold text-gray-700 bg-white px-3 py-1.5 rounded-full hover:bg-gray-100 transition border border-gray-300">
+                            <i class="fa-solid fa-map-location-dot mr-1.5 text-brand-jtb"></i>Mapで見る
                         </a>
-                        <p class="text-sm text-pink-700 font-bold mt-1">衣装チェンジ！！！👗✨</p>
+                        <p class="text-[13px] text-brand-jtb font-bold mt-2 bg-white px-2 py-1 rounded inline-block border border-red-200">衣装チェンジ！！！👗✨</p>
                     </div>
                 </div>
 
                 <!-- 11:45 熱海港 -->
-                <div class="relative flex mb-8 timeline-item" data-time="2026-08-07T11:45:00">
+                <div class="relative flex mb-8 timeline-item" data-time="2026-08-07T11:45:00" data-end-time="2026-08-07T12:29:59">
                     <div class="timeline-line"></div>
-                    <div class="z-10 flex-shrink-0 w-10 h-10 bg-cyan-500 rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-4 timeline-icon-wrap">
+                    <div class="z-10 flex-shrink-0 w-10 h-10 bg-brand-blue rounded-full border-4 border-white shadow-md flex items-center justify-center text-white mr-4 timeline-icon-wrap">
                         <i class="fa-solid fa-ferry"></i>
                     </div>
-                    <div class="bg-cyan-50 rounded-2xl p-4 shadow-sm border border-cyan-200 flex-grow relative overflow-hidden">
-                        <div class="flex items-baseline gap-2 mb-1">
-                            <span class="font-bold text-cyan-600 text-lg">11:45</span>
-                            <h3 class="font-bold text-gray-800">熱海港にてフェリー受付！！</h3>
+                    <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-200 flex-grow relative overflow-hidden">
+                        <div class="flex items-baseline gap-2 mb-2">
+                            <span class="font-bold text-brand-blue text-xl tracking-tight">11:45</span>
+                            <h3 class="font-bold text-gray-900 text-[15px]">熱海港にてフェリー受付</h3>
                         </div>
-                        <a href="https://maps.google.com/?cid=12961447389065528511" target="_blank" class="inline-block mt-1 mb-1 text-[10px] text-cyan-700 bg-white px-2 py-1 rounded-full border border-cyan-200 hover:bg-cyan-100 transition">
-                            <i class="fa-solid fa-map-location-dot mr-1"></i>Mapで見る
+                        <a href="https://maps.google.com/?cid=12961447389065528511" target="_blank" class="inline-flex items-center mt-1 mb-2 text-[11px] font-bold text-gray-700 bg-gray-100 px-3 py-1.5 rounded-full hover:bg-gray-200 transition border border-gray-300">
+                            <i class="fa-solid fa-map-location-dot mr-1.5 text-brand-blue"></i>Mapで見る
                         </a>
-                        <p class="text-sm text-cyan-700 font-bold mt-1 mb-2">12:00 フェリー出発！！🚢 (30分)</p>
+                        <p class="text-[13px] text-blue-800 font-bold mt-2 bg-blue-50 px-2 py-1 rounded inline-block border border-blue-200">12:00 フェリー出発🚢 (30分)</p>
                     </div>
                 </div>
                 
                 <!-- 12:30 初島着 -->
-                <div class="relative flex mb-8 timeline-item" data-time="2026-08-07T12:30:00">
+                <div class="relative flex mb-8 timeline-item" data-time="2026-08-07T12:30:00" data-end-time="2026-08-07T15:49:59">
                     <div class="timeline-line"></div>
-                    <div class="z-10 flex-shrink-0 w-10 h-10 bg-teal-500 rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-4 timeline-icon-wrap">
+                    <div class="z-10 flex-shrink-0 w-10 h-10 bg-brand-teal rounded-full border-4 border-white shadow-md flex items-center justify-center text-white mr-4 timeline-icon-wrap">
                         <i class="fa-solid fa-umbrella-beach"></i>
                     </div>
-                    <div class="bg-white rounded-2xl p-4 shadow-sm border-l-4 border-teal-500 flex-grow relative overflow-hidden">
-                        <div class="flex items-baseline gap-2 mb-1">
-                            <span class="font-bold text-teal-600 text-lg">12:30</span>
-                            <h3 class="font-bold text-gray-800">初島 着</h3>
+                    <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-200 flex-grow relative overflow-hidden">
+                        <div class="flex items-baseline gap-2 mb-2">
+                            <span class="font-bold text-brand-teal text-xl tracking-tight">12:30</span>
+                            <h3 class="font-bold text-gray-900 text-[15px]">初島 着</h3>
                         </div>
-                        <a href="https://maps.google.com/?cid=16569991911684459885" target="_blank" class="inline-block mt-1 text-[10px] text-teal-700 bg-teal-50 px-2 py-1 rounded-full border border-teal-100 hover:bg-teal-100 transition">
-                            <i class="fa-solid fa-map-location-dot mr-1"></i>Mapで見る
+                        <a href="https://maps.google.com/?cid=16569991911684459885" target="_blank" class="inline-flex items-center mt-1 text-[11px] font-bold text-gray-700 bg-gray-100 px-3 py-1.5 rounded-full hover:bg-gray-200 transition border border-gray-300">
+                            <i class="fa-solid fa-map-location-dot mr-1.5 text-brand-teal"></i>Mapで見る
                         </a>
-                        <div class="text-xs text-gray-500 mt-2 bg-gray-50 inline-block px-2 py-1 rounded border border-gray-100 block w-fit">
-                            <i class="fa-solid fa-ferry mr-1 text-gray-400"></i>15:30 フェリー発 (30分)
+                        <div class="text-xs font-medium text-gray-600 mt-3 bg-gray-50 px-3 py-1.5 rounded border border-gray-200 block w-fit">
+                            <i class="fa-solid fa-ferry mr-1.5 text-gray-500"></i>15:30 フェリー発 (30分)
                         </div>
                     </div>
                 </div>
 
                 <!-- 15:50 熱海港着 -->
-                <div class="relative flex mb-8 timeline-item" data-time="2026-08-07T15:50:00">
+                <div class="relative flex mb-8 timeline-item" data-time="2026-08-07T15:50:00" data-end-time="2026-08-07T16:29:59">
                     <div class="timeline-line"></div>
-                    <div class="z-10 flex-shrink-0 w-10 h-10 bg-gray-400 rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-4 timeline-icon-wrap">
+                    <div class="z-10 flex-shrink-0 w-10 h-10 bg-gray-800 rounded-full border-4 border-white shadow-md flex items-center justify-center text-white mr-4 timeline-icon-wrap">
                         <i class="fa-solid fa-anchor"></i>
                     </div>
-                    <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex-grow relative overflow-hidden">
-                        <div class="flex items-baseline gap-2 mb-1">
-                            <span class="font-bold text-gray-600 text-lg">15:50</span>
-                            <h3 class="font-bold text-gray-800">熱海港 着</h3>
+                    <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-200 flex-grow relative overflow-hidden">
+                        <div class="flex items-baseline gap-2 mb-2">
+                            <span class="font-bold text-gray-800 text-xl tracking-tight">15:50</span>
+                            <h3 class="font-bold text-gray-900 text-[15px]">熱海港 着</h3>
                         </div>
-                        <p class="text-sm text-gray-600 mt-1 mb-2">移動 (15分) & 休憩 (25分)</p>
+                        <p class="text-[13px] font-bold text-gray-700 mt-2 bg-gray-50 px-3 py-1.5 rounded border border-gray-200 inline-block">移動(15分) & 休憩(25分)</p>
                     </div>
                 </div>
 
                 <!-- 16:30 熱海陶芸工房doka -->
-                <div class="relative flex mb-8 timeline-item" data-time="2026-08-07T16:30:00">
+                <div class="relative flex mb-8 timeline-item" data-time="2026-08-07T16:30:00" data-end-time="2026-08-07T17:09:59">
                     <div class="timeline-line"></div>
-                    <div class="z-10 flex-shrink-0 w-10 h-10 bg-amber-600 rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-4 timeline-icon-wrap">
+                    <div class="z-10 flex-shrink-0 w-10 h-10 bg-brand-orange rounded-full border-4 border-white shadow-md flex items-center justify-center text-white mr-4 timeline-icon-wrap">
                         <i class="fa-solid fa-mug-saucer"></i>
                     </div>
-                    <div class="bg-white rounded-2xl p-4 shadow-sm border-l-4 border-amber-600 flex-grow relative overflow-hidden">
-                        <div class="flex items-baseline gap-2 mb-1">
-                            <span class="font-bold text-amber-700 text-lg">16:30</span>
-                            <h3 class="font-bold text-gray-800">熱海陶芸工房doka</h3>
+                    <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-200 flex-grow relative overflow-hidden">
+                        <div class="flex items-baseline gap-2 mb-2">
+                            <span class="font-bold text-brand-orange text-xl tracking-tight">16:30</span>
+                            <h3 class="font-bold text-gray-900 text-[15px]">熱海陶芸工房doka</h3>
                         </div>
-                        <a href="https://maps.google.com/?cid=1453960982950003513" target="_blank" class="inline-block mt-1 text-[10px] text-amber-700 bg-amber-50 px-2 py-1 rounded-full border border-amber-100 hover:bg-amber-100 transition">
-                            <i class="fa-solid fa-map-location-dot mr-1"></i>Mapで見る
+                        <a href="https://maps.google.com/?cid=1453960982950003513" target="_blank" class="inline-flex items-center mt-1 text-[11px] font-bold text-gray-700 bg-gray-100 px-3 py-1.5 rounded-full hover:bg-gray-200 transition border border-gray-300">
+                            <i class="fa-solid fa-map-location-dot mr-1.5 text-brand-orange"></i>Mapで見る
                         </a>
-                        <div class="text-xs text-gray-500 mt-2 bg-gray-50 inline-block px-2 py-1 rounded border border-gray-100 block w-fit">
-                            <i class="fa-solid fa-car-side mr-1 text-gray-400"></i>17:00 移動 (10分)
+                        <div class="text-xs font-medium text-gray-600 mt-3 bg-gray-50 px-3 py-1.5 rounded border border-gray-200 block w-fit">
+                            <i class="fa-solid fa-car-side mr-1.5 text-gray-500"></i>17:00 移動 (10分)
                         </div>
                     </div>
                 </div>
 
                 <!-- 17:10 ホテル貫一 -->
-                <div class="relative flex mb-8 timeline-item" data-time="2026-08-07T17:10:00">
+                <div class="relative flex mb-8 timeline-item" data-time="2026-08-07T17:10:00" data-end-time="2026-08-07T21:59:59">
                     <div class="timeline-line"></div>
-                    <div class="z-10 flex-shrink-0 w-10 h-10 bg-rose-500 rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-4 timeline-icon-wrap">
+                    <div class="z-10 flex-shrink-0 w-10 h-10 bg-brand-jtb rounded-full border-4 border-white shadow-md flex items-center justify-center text-white mr-4 timeline-icon-wrap">
                         <i class="fa-solid fa-video"></i>
                     </div>
-                    <div class="bg-rose-50 rounded-2xl p-4 shadow-sm border border-rose-200 flex-grow relative overflow-hidden">
-                        <div class="flex items-baseline gap-2 mb-1">
-                            <span class="font-bold text-rose-600 text-lg">17:10</span>
-                            <h3 class="font-bold text-gray-800">ホテル貫一 着</h3>
+                    <div class="bg-red-50 rounded-2xl p-4 shadow-sm border border-red-200 flex-grow relative overflow-hidden">
+                        <div class="flex items-baseline gap-2 mb-2">
+                            <span class="font-bold text-brand-jtb text-xl tracking-tight">17:10</span>
+                            <h3 class="font-bold text-gray-900 text-[15px]">ホテル貫一 着</h3>
                         </div>
-                        <a href="https://maps.google.com/?cid=16673786503182305211" target="_blank" class="inline-block mt-1 mb-1 text-[10px] text-rose-700 bg-white px-2 py-1 rounded-full border border-rose-200 hover:bg-rose-100 transition">
-                            <i class="fa-solid fa-map-location-dot mr-1"></i>Mapで見る
+                        <a href="https://maps.google.com/?cid=16673786503182305211" target="_blank" class="inline-flex items-center mt-1 mb-2 text-[11px] font-bold text-gray-700 bg-white px-3 py-1.5 rounded-full hover:bg-gray-100 transition border border-gray-300">
+                            <i class="fa-solid fa-map-location-dot mr-1.5 text-brand-jtb"></i>Mapで見る
                         </a>
-                        <p class="text-sm text-rose-700 font-bold mt-1">20:00 撮影終了🎬</p>
+                        <p class="text-[13px] text-brand-jtb font-bold mt-2 bg-white px-2 py-1 rounded inline-block border border-red-200">20:00 撮影終了🎬</p>
                     </div>
                 </div>
 
                 <!-- 22:00 都内戻り -->
-                <div class="relative flex timeline-item" data-time="2026-08-07T22:00:00">
+                <div class="relative flex timeline-item" data-time="2026-08-07T22:00:00" data-end-time="2026-08-08T23:59:59">
                     <div class="timeline-line"></div>
-                    <div class="z-10 flex-shrink-0 w-10 h-10 bg-gray-500 rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-4 timeline-icon-wrap">
+                    <div class="z-10 flex-shrink-0 w-10 h-10 bg-gray-800 rounded-full border-4 border-white shadow-md flex items-center justify-center text-white mr-4 timeline-icon-wrap">
                         <i class="fa-solid fa-house"></i>
                     </div>
-                    <div class="bg-gray-100 rounded-2xl p-4 shadow-inner border border-gray-200 flex-grow text-center">
-                        <div class="font-bold text-gray-600 text-lg mb-1">22:00</div>
-                        <h3 class="font-bold text-gray-700">都内戻り予定</h3>
-                        <p class="text-xs text-gray-500 mt-1">2日間お疲れ様でした！🚗</p>
+                    <div class="bg-gray-100 rounded-2xl p-4 shadow-sm border border-gray-300 flex-grow text-center">
+                        <div class="font-bold text-gray-800 text-xl mb-1 tracking-tight">22:00</div>
+                        <h3 class="font-bold text-gray-900 mb-2">都内戻り予定</h3>
+                        <p class="text-xs font-bold text-brand-jtb mt-3">2日間お疲れ様でした！🚗</p>
                     </div>
                 </div>
 
@@ -626,77 +563,150 @@
         </section>
 
         <section id="map" class="pt-4">
-            <div class="flex items-center mb-4">
-                <i class="fa-solid fa-map-location-dot text-brand-orange text-xl mr-2"></i>
-                <h2 class="text-xl font-bold border-b-2 border-brand-orange pb-1 text-gray-800">ルートマップ</h2>
+            <div class="flex items-center mb-6">
+                <i class="fa-solid fa-map-location-dot text-brand-jtb text-2xl mr-3"></i>
+                <h2 class="text-xl font-bold border-b-2 border-brand-jtb pb-1 text-gray-900 tracking-wide">ルートマップ</h2>
             </div>
             
             <!-- Day 1 マップ -->
-            <div id="map-day1" class="bg-white p-3 rounded-2xl shadow-md border border-gray-100 day-content">
-                <a href="https://maps.app.goo.gl/RVsaocAX3VcDBN7k9" target="_blank" class="block w-full h-48 sm:h-64 bg-orange-50 rounded-xl overflow-hidden relative group cursor-pointer border border-orange-200 hover:border-orange-400 transition-colors">
-                    <div class="absolute inset-0 flex flex-col items-center justify-center">
-                        <i class="fa-solid fa-map-location-dot text-5xl text-brand-orange mb-3 group-hover:scale-110 transition-transform drop-shadow-sm"></i>
-                        <span class="bg-brand-orange text-white font-bold py-2 px-6 rounded-full shadow-sm">Day1のルートをMapで開く</span>
-                        <span class="text-xs text-orange-600/70 mt-2 font-medium">（Google Mapsアプリが起動します）</span>
+            <div id="map-day1" class="bg-white p-4 rounded-2xl shadow-sm border border-gray-200 day-content">
+                <a href="https://maps.app.goo.gl/RVsaocAX3VcDBN7k9" target="_blank" class="block w-full h-48 sm:h-56 bg-gradient-to-br from-red-50 to-orange-50 rounded-xl overflow-hidden relative group cursor-pointer border border-red-200 hover:border-red-400 transition-all shadow-inner">
+                    <div class="absolute inset-0 flex flex-col items-center justify-center p-4 text-center">
+                        <div class="bg-white p-4 rounded-full shadow-md mb-4 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-map-location-dot text-4xl text-brand-jtb"></i>
+                        </div>
+                        <span class="bg-brand-jtb text-white font-bold py-2.5 px-6 rounded-full shadow-md text-[13px] w-full max-w-[240px]">Day1のルートをMapで開く</span>
+                        <span class="text-[10px] text-gray-600 mt-2 font-medium">（Google Mapsが起動します）</span>
                     </div>
                 </a>
-                <div class="mt-3 text-sm text-gray-600 font-medium">
-                    <p><i class="fa-solid fa-location-dot text-red-500 mr-1"></i>Day1 山梨スポット</p>
-                    <div class="flex flex-wrap gap-2 mt-2">
-                        <span class="bg-gray-100 text-xs px-2 py-1 rounded-full border border-gray-200">1. Fujiyama ツインテラス</span>
-                        <span class="bg-gray-100 text-xs px-2 py-1 rounded-full border border-gray-200">2. 河口湖周辺</span>
-                        <span class="bg-gray-100 text-xs px-2 py-1 rounded-full border border-gray-200">3. 忍野八海</span>
-                        <span class="bg-gray-100 text-xs px-2 py-1 rounded-full border border-gray-200">4. 森の中水族館</span>
-                        <span class="bg-gray-100 text-xs px-2 py-1 rounded-full border border-gray-200">5. PICA Fujiyama</span>
+                <div class="mt-4 text-[13px] text-gray-800 font-bold">
+                    <p class="mb-2"><i class="fa-solid fa-location-dot text-brand-jtb mr-1.5"></i>Day1 山梨スポット</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-gray-50 text-gray-800 px-3 py-1.5 rounded-full border border-gray-200 shadow-sm">1. Fujiyama ツインテラス</span>
+                        <span class="bg-gray-50 text-gray-800 px-3 py-1.5 rounded-full border border-gray-200 shadow-sm">2. 河口湖周辺</span>
+                        <span class="bg-gray-50 text-gray-800 px-3 py-1.5 rounded-full border border-gray-200 shadow-sm">3. 忍野八海</span>
+                        <span class="bg-gray-50 text-gray-800 px-3 py-1.5 rounded-full border border-gray-200 shadow-sm">4. 森の中水族館</span>
+                        <span class="bg-gray-50 text-gray-800 px-3 py-1.5 rounded-full border border-gray-200 shadow-sm">5. PICA Fujiyama</span>
                     </div>
                 </div>
             </div>
 
             <!-- Day 2 マップ -->
-            <div id="map-day2" class="bg-white p-3 rounded-2xl shadow-md border border-gray-100 day-content hidden">
-                <a href="https://maps.app.goo.gl/GeZPXgSn4ALdqzv9A" target="_blank" class="block w-full h-48 sm:h-64 bg-blue-50 rounded-xl overflow-hidden relative group cursor-pointer border border-blue-200 hover:border-blue-400 transition-colors">
-                    <div class="absolute inset-0 flex flex-col items-center justify-center">
-                        <i class="fa-solid fa-map-location-dot text-5xl text-blue-500 mb-3 group-hover:scale-110 transition-transform drop-shadow-sm"></i>
-                        <span class="bg-blue-500 text-white font-bold py-2 px-6 rounded-full shadow-sm">Day2のルートをMapで開く</span>
-                        <span class="text-xs text-blue-600/70 mt-2 font-medium">（Google Mapsアプリが起動します）</span>
+            <div id="map-day2" class="bg-white p-4 rounded-2xl shadow-sm border border-gray-200 day-content hidden">
+                <a href="https://maps.app.goo.gl/GeZPXgSn4ALdqzv9A" target="_blank" class="block w-full h-48 sm:h-56 bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl overflow-hidden relative group cursor-pointer border border-blue-200 hover:border-blue-400 transition-all shadow-inner">
+                    <div class="absolute inset-0 flex flex-col items-center justify-center p-4 text-center">
+                        <div class="bg-white p-4 rounded-full shadow-md mb-4 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-map-location-dot text-4xl text-brand-blue"></i>
+                        </div>
+                        <span class="bg-brand-blue text-white font-bold py-2.5 px-6 rounded-full shadow-md text-[13px] w-full max-w-[240px]">Day2のルートをMapで開く</span>
+                        <span class="text-[10px] text-gray-600 mt-2 font-medium">（Google Mapsが起動します）</span>
                     </div>
                 </a>
-                <div class="mt-3 text-sm text-gray-600 font-medium">
-                    <p><i class="fa-solid fa-location-dot text-blue-500 mr-1"></i>Day2 熱海スポット</p>
-                    <div class="flex flex-wrap gap-2 mt-2">
-                        <span class="bg-gray-100 text-xs px-2 py-1 rounded-full border border-gray-200">1. 酪農王国オラッチェ</span>
-                        <span class="bg-gray-100 text-xs px-2 py-1 rounded-full border border-gray-200">2. お宮の松</span>
-                        <span class="bg-gray-100 text-xs px-2 py-1 rounded-full border border-gray-200">3. 熱海港・初島</span>
-                        <span class="bg-gray-100 text-xs px-2 py-1 rounded-full border border-gray-200">4. 熱海陶芸工房doka</span>
-                        <span class="bg-gray-100 text-xs px-2 py-1 rounded-full border border-gray-200">5. ホテル貫一</span>
+                <div class="mt-4 text-[13px] text-gray-800 font-bold">
+                    <p class="mb-2"><i class="fa-solid fa-location-dot text-brand-blue mr-1.5"></i>Day2 熱海スポット</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-gray-50 text-gray-800 px-3 py-1.5 rounded-full border border-gray-200 shadow-sm">1. 酪農王国オラッチェ</span>
+                        <span class="bg-gray-50 text-gray-800 px-3 py-1.5 rounded-full border border-gray-200 shadow-sm">2. お宮の松</span>
+                        <span class="bg-gray-50 text-gray-800 px-3 py-1.5 rounded-full border border-gray-200 shadow-sm">3. 熱海港・初島</span>
+                        <span class="bg-gray-50 text-gray-800 px-3 py-1.5 rounded-full border border-gray-200 shadow-sm">4. 熱海陶芸工房doka</span>
+                        <span class="bg-gray-50 text-gray-800 px-3 py-1.5 rounded-full border border-gray-200 shadow-sm">5. ホテル貫一</span>
                     </div>
                 </div>
             </div>
         </section>
 
-        
-        <div class="text-center pt-8 pb-4 text-xs text-rose-400 cute-title-font tracking-wider">
+        <section id="items" class="pt-4">
+            <div class="flex items-center mb-6">
+                <i class="fa-solid fa-suitcase-rolling text-brand-jtb text-2xl mr-3"></i>
+                <h2 class="text-xl font-bold border-b-2 border-brand-jtb pb-1 text-gray-900 tracking-wide">持ち物リスト</h2>
+            </div>
+
+            <!-- 支給リスト -->
+            <details class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden mb-4 group" open>
+                <summary class="bg-gray-50 hover:bg-gray-100 p-4 font-bold text-gray-900 cursor-pointer flex justify-between items-center group-open:border-b border-gray-200 select-none transition-colors">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-box-open text-brand-jtb text-lg"></i>
+                        <span class="text-[15px]">支給リスト</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-down text-gray-400 transition-transform group-open:rotate-180"></i>
+                </summary>
+                <div class="p-5 space-y-4 bg-white">
+                    <label class="flex items-center gap-3 cursor-pointer">
+                        <input type="checkbox" class="w-5 h-5 text-brand-jtb rounded border-gray-300 focus:ring-brand-jtb accent-brand-jtb cursor-pointer">
+                        <span class="text-gray-900 font-bold">ハンディファン</span>
+                    </label>
+                    <label class="flex items-center gap-3 cursor-pointer">
+                        <input type="checkbox" class="w-5 h-5 text-brand-jtb rounded border-gray-300 focus:ring-brand-jtb accent-brand-jtb cursor-pointer">
+                        <span class="text-gray-900 font-bold">汗拭きシート</span>
+                    </label>
+                    <label class="flex items-center gap-3 cursor-pointer">
+                        <input type="checkbox" class="w-5 h-5 text-brand-jtb rounded border-gray-300 focus:ring-brand-jtb accent-brand-jtb cursor-pointer">
+                        <span class="text-gray-900 font-bold">ウェットシート</span>
+                    </label>
+                    <label class="flex items-center gap-3 cursor-pointer">
+                        <input type="checkbox" class="w-5 h-5 text-brand-jtb rounded border-gray-300 focus:ring-brand-jtb accent-brand-jtb cursor-pointer">
+                        <span class="text-gray-900 font-bold">塩分チャージ</span>
+                    </label>
+                    <label class="flex items-center gap-3 cursor-pointer">
+                        <input type="checkbox" class="w-5 h-5 text-brand-jtb rounded border-gray-300 focus:ring-brand-jtb accent-brand-jtb cursor-pointer">
+                        <span class="text-gray-900 font-bold">カッパ</span>
+                    </label>
+                    <label class="flex items-center gap-3 cursor-pointer">
+                        <input type="checkbox" class="w-5 h-5 text-brand-jtb rounded border-gray-300 focus:ring-brand-jtb accent-brand-jtb cursor-pointer">
+                        <span class="text-gray-900 font-bold">酔い止め</span>
+                    </label>
+                </div>
+            </details>
+
+            <!-- 夏備品 -->
+            <details class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden group" open>
+                <summary class="bg-gray-50 hover:bg-gray-100 p-4 font-bold text-gray-900 cursor-pointer flex justify-between items-center group-open:border-b border-gray-200 select-none transition-colors">
+                    <div class="flex items-center gap-3 flex-wrap">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-sun text-brand-orange text-lg"></i>
+                            <span class="text-[15px]">夏備品</span>
+                        </div>
+                        <span class="bg-white border border-gray-300 text-[10px] text-gray-800 font-bold px-2 py-1 rounded inline-flex items-center shadow-sm">
+                            <i class="fa-solid fa-bullhorn mr-1 text-brand-jtb"></i>必要な方は制作部にお声がけください！
+                        </span>
+                    </div>
+                    <i class="fa-solid fa-chevron-down text-gray-400 transition-transform group-open:rotate-180 ml-2"></i>
+                </summary>
+                <div class="p-5 space-y-4 bg-white">
+                    <label class="flex items-center gap-3 cursor-pointer">
+                        <input type="checkbox" class="w-5 h-5 text-brand-orange rounded border-gray-300 focus:ring-brand-orange accent-brand-orange cursor-pointer">
+                        <span class="text-gray-900 font-bold">ドリンク</span>
+                    </label>
+                    <label class="flex items-center gap-3 cursor-pointer">
+                        <input type="checkbox" class="w-5 h-5 text-brand-orange rounded border-gray-300 focus:ring-brand-orange accent-brand-orange cursor-pointer">
+                        <span class="text-gray-900 font-bold">日焼け止め</span>
+                    </label>
+                    <label class="flex items-center gap-3 cursor-pointer">
+                        <input type="checkbox" class="w-5 h-5 text-brand-orange rounded border-gray-300 focus:ring-brand-orange accent-brand-orange cursor-pointer">
+                        <span class="text-gray-900 font-bold">虫除けスプレー</span>
+                    </label>
+                </div>
+            </details>
+        </section>
+
+        <div class="text-center pt-10 pb-6 text-sm text-brand-jtb font-bold cute-title-font tracking-widest">
             Have a nice 2days trip! 🚗🌴
         </div>
     </div>
 </div>
 
 <script>
-    // Day1 / Day2 タブの切り替え処理
+    // タブ切り替えロジック
     function switchTab(day) {
-        // ボタンのスタイルリセット
-        document.getElementById('btn-day1').className = "w-1/2 py-2 bg-transparent text-gray-500 rounded-full text-sm font-bold transition-all";
-        document.getElementById('btn-day2').className = "w-1/2 py-2 bg-transparent text-gray-500 rounded-full text-sm font-bold transition-all";
+        document.getElementById('btn-day1').className = "w-1/2 py-2.5 bg-transparent text-gray-600 hover:bg-gray-200 rounded-full text-sm font-bold transition-all";
+        document.getElementById('btn-day2').className = "w-1/2 py-2.5 bg-transparent text-gray-600 hover:bg-gray-200 rounded-full text-sm font-bold transition-all";
         
-        // アクティブなボタンのスタイル適用
-        document.getElementById(`btn-${day}`).className = "w-1/2 py-2 bg-brand-blue text-white rounded-full text-sm font-bold shadow-sm transition-all";
+        document.getElementById(`btn-${day}`).className = "w-1/2 py-2.5 bg-brand-jtb text-white rounded-full text-sm font-bold shadow-md transition-all";
 
-        // コンテンツの表示/非表示の切り替え
         const contents = document.querySelectorAll('.day-content');
         contents.forEach(content => {
             if (content.id.includes(day)) {
                 content.classList.remove('hidden');
-                // ふわっと表示するアニメーション（簡易）
                 content.style.opacity = 0;
                 setTimeout(() => content.style.opacity = 1, 50);
             } else {
@@ -705,14 +715,59 @@
         });
     }
 
-    // ナビゲーションのアンカースムーススクロール（タブの高さも考慮）
+    // 現在地にバスを表示するロジック
+    function updateCurrentLocation() {
+        const now = new Date();
+        const items = document.querySelectorAll('.timeline-item');
+        
+        // 既存のバスアイコンを削除し、過ぎた予定をリセット
+        document.querySelectorAll('.bus-marker').forEach(el => el.remove());
+        items.forEach(item => item.classList.remove('passed'));
+
+        items.forEach(item => {
+            const startTimeStr = item.getAttribute('data-time');
+            const endTimeStr = item.getAttribute('data-end-time');
+            
+            if (!startTimeStr || !endTimeStr) return;
+
+            const startTime = new Date(startTimeStr);
+            const endTime = new Date(endTimeStr);
+
+            // 過去の予定はグレーアウト
+            if (now > endTime) {
+                item.classList.add('passed');
+            }
+            
+            // 現在の予定にバスアイコンを追加
+            if (now >= startTime && now <= endTime) {
+                const targetBox = item.querySelector('.bg-white, .bg-gray-100, .bg-red-50, .bg-orange-50');
+                if (targetBox && !item.querySelector('.bus-marker')) {
+                    const busEl = document.createElement('div');
+                    busEl.className = 'bus-marker absolute -left-5 top-4 bg-brand-jtb text-white w-8 h-8 rounded-full flex items-center justify-center text-xs shadow-lg current-location-bus border-2 border-white z-20';
+                    busEl.innerHTML = '<i class="fa-solid fa-bus"></i>';
+                    targetBox.appendChild(busEl);
+                    
+                    // タブも現在地の曜日に自動切り替え
+                    if (startTimeStr.includes('08-07') && document.getElementById('schedule-day2').classList.contains('hidden')) {
+                        switchTab('day2');
+                    }
+                }
+            }
+        });
+    }
+
+    // ナビゲーションのスクロール設定
     document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
             const targetId = this.getAttribute('href');
             const targetElement = document.querySelector(targetId);
             
-            // ナビゲーションの高さ分オフセットしてスクロール
+            if (targetId === '#schedule' || targetId === '#map') {
+                const day = document.getElementById('schedule-day2').classList.contains('hidden') ? 'day1' : 'day2';
+                switchTab(day);
+            }
+
             const navHeight = document.querySelector('nav').offsetHeight;
             const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navHeight - 20;
             
@@ -723,59 +778,9 @@
         });
     });
 
-    // --- 現在地（バスマーカー）の自動更新処理 ---
-    function updateCurrentBusLocation() {
-        const now = new Date();
-        const timelineItems = document.querySelectorAll('.timeline-item');
-        
-        // 既存のマーカーをすべて削除
-        document.querySelectorAll('.current-bus-marker').forEach(marker => marker.remove());
-        
-        // 過ぎた予定のスタイルをリセット
-        timelineItems.forEach(item => {
-            item.classList.remove('passed');
-            const line = item.querySelector('.timeline-line');
-            if (line) line.classList.remove('passed');
-        });
-
-        let currentActiveItem = null;
-
-        for (let i = 0; i < timelineItems.length; i++) {
-            const item = timelineItems[i];
-            const itemTimeStr = item.getAttribute('data-time');
-            if (!itemTimeStr) continue;
-
-            const itemTime = new Date(itemTimeStr);
-            const nextItemTimeStr = (i + 1 < timelineItems.length) ? timelineItems[i+1].getAttribute('data-time') : null;
-            const nextItemTime = nextItemTimeStr ? new Date(nextItemTimeStr) : null;
-
-            // 現在時刻がこの予定より後なら「passed (完了)」にする
-            if (now >= itemTime) {
-                item.classList.add('passed');
-                const line = item.querySelector('.timeline-line');
-                if (line) line.classList.add('passed');
-            }
-
-            // 現在地（バス）を置くべき場所の判定
-            // 「この予定の時間を過ぎていて、かつ次の予定の時間より前」 または 「最後の予定を過ぎた」
-            if (now >= itemTime && (!nextItemTime || now < nextItemTime)) {
-                currentActiveItem = item;
-            }
-        }
-
-        // 現在地のアイテムが見つかった場合、バスマーカーを生成して追加
-        if (currentActiveItem) {
-            const busMarker = document.createElement('div');
-            busMarker.className = 'current-bus-marker';
-            busMarker.innerHTML = '<i class="fa-solid fa-bus"></i>';
-            currentActiveItem.appendChild(busMarker);
-        }
-    }
-
-    // 初回実行と1分ごとの更新
-    updateCurrentBusLocation();
-    setInterval(updateCurrentBusLocation, 60000);
-
+    // 初期化
+    setInterval(updateCurrentLocation, 60000); // 1分ごとに更新
+    updateCurrentLocation();
 </script>
 </body>
 </html>
