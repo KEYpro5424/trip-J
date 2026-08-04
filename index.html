@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>山梨・熱海 1泊2日のしおり</title>
+    <!-- Tailwind CSSの読み込み -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fontsの読み込み（ポップなフォントを使用） -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@400;500&family=M+PLUS+Rounded+1c:wght@400;700&display=swap" rel="stylesheet">
+    <!-- FontAwesomeの読み込み（アイコン用） -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-yellow': '#FBBF24',
+                        'brand-blue': '#60A5FA',
+                        'brand-green': '#34D399',
+                        'brand-pink': '#F472B6',
+                        'brand-bg': '#FEF3C7',
+                    },
+                    fontFamily: {
+                        'kiwi': ['"Kiwi Maru"', 'serif'],
+                        'rounded': ['"M PLUS Rounded 1c"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* 全体のベーススタイル */
+        body {
+            font-family: 'rounded', sans-serif;
+            background-color: #FEF3C7;
+            background-image: 
+                radial-gradient(#FDE68A 2px, transparent 2px),
+                radial-gradient(#FDE68A 2px, transparent 2px);
+            background-size: 30px 30px;
+            background-position: 0 0, 15px 15px;
+            color: #374151;
+            scroll-behavior: smooth; /* スムーススクロール */
+        }
+
+        h1, h2, h3, .kiwi-font {
+            font-family: 'kiwi', serif;
+        }
+
+        /* アコーディオンのスタイル */
+        details > summary { list-style: none; }
+        details > summary::-webkit-details-marker { display: none; }
+        
+        /* スケジュールの線 */
+        .timeline-line {
+            position: absolute;
+            left: 1.25rem;
+            top: 2rem;
+            bottom: -1rem;
+            width: 2px;
+            background-color: #93C5FD;
+            z-index: 0;
+        }
+        .timeline-item:last-child .timeline-line { display: none; }
+        
+        /* フワフワ動くアニメーション */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .animate-float { animation: float 4s ease-in-out infinite; }
+    </style>
+</head>
+<body class="pb-20 antialiased">
+
+<div class="w-full max-w-md mx-auto bg-white min-h-[100dvh] shadow-xl overflow-x-hidden relative">
+    
+    <header class="relative h-64 sm:h-72 bg-brand-blue overflow-hidden rounded-b-[2rem] shadow-md z-10 flex flex-col justify-center">
+        <div class="absolute top-[10%] left-[10%] text-white opacity-60 text-4xl animate-float" style="animation-delay: 0s;"><i class="fa-solid fa-cloud"></i></div>
+        <div class="absolute top-[20%] right-[10%] text-white opacity-80 text-5xl animate-float" style="animation-delay: 1s;"><i class="fa-solid fa-cloud"></i></div>
+        <div class="absolute bottom-[30%] left-[15%] text-white opacity-40 text-3xl animate-float" style="animation-delay: 2s;"><i class="fa-solid fa-cloud"></i></div>
+        
+        <div class="absolute inset-0 flex flex-col items-center justify-center text-white z-10 p-4">
+            <span class="bg-brand-pink text-white text-xs font-bold px-3 py-1 rounded-full mb-3 shadow-sm transform -rotate-2">Summer Trip 2026</span>
+            <h1 class="text-4xl font-bold mb-2 tracking-wider text-center drop-shadow-md">山梨・熱海<br>1泊2日ツアー</h1>
+            <p class="text-base font-medium opacity-90 tracking-widest mt-2"><i class="fa-regular fa-calendar-days mr-2"></i>2026.08.06 - 08.07</p>
+        </div>
+        
+        <svg class="absolute bottom-0 w-full h-auto" viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+            <path fill="#ffffff" fill-opacity="1" d="M0,288L48,272C96,256,192,224,288,197.3C384,171,480,149,576,165.3C672,181,768,235,864,250.7C960,267,1056,245,1152,224C1248,203,1344,181,1392,170.7L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+        </svg>
+    </header>
+
+    <nav class="sticky top-0 bg-white/95 backdrop-blur-sm shadow-sm z-30 px-4 py-3 flex justify-between rounded-b-xl mb-6 border-b border-gray-100">
+        <a href="#schedule" class="flex flex-col items-center text-gray-500 hover:text-brand-blue transition w-1/3 py-1">
+            <i class="fa-regular fa-clock text-xl mb-1"></i>
+            <span class="text-xs font-bold">日程</span>
+        </a>
+        <a href="#map" class="flex flex-col items-center text-gray-500 hover:text-brand-green transition w-1/3 border-l border-r border-gray-100 py-1">
+            <i class="fa-solid fa-map-location-dot text-xl mb-1"></i>
+            <span class="text-xs font-bold">マップ</span>
+        </a>
+        <a href="#items" class="flex flex-col items-center text-gray-500 hover:text-brand-yellow transition w-1/3 py-1">
+            <i class="fa-solid fa-suitcase-rolling text-xl mb-1"></i>
+            <span class="text-xs font-bold">持ち物</span>
+        </a>
+    </nav>
+
+    <div class="px-4 sm:px-6 mb-6">
+        <div class="flex justify-center space-x-3 bg-gray-100 p-1.5 rounded-full">
+            <button id="btn-day1" onclick="switchTab('day1')" class="w-1/2 py-2 bg-brand-blue text-white rounded-full text-sm font-bold shadow-sm transition-all">Day 1: 山梨 (8/6)</button>
+            <button id="btn-day2" onclick="switchTab('day2')" class="w-1/2 py-2 bg-transparent text-gray-500 rounded-full text-sm font-bold transition-all">Day 2: 熱海 (8/7)</button>
+        </div>
+    </div>
+
+    <div class="px-6 space-y-10 pb-10">
+
+        <section>
+            <div class="flex items-center mb-4">
+                <i class="fa-solid fa-users text-brand-pink text-xl mr-2"></i>
+                <h2 class="text-xl font-bold border-b-2 border-brand-pink pb-1">メンバー</h2>
+            </div>
+            <div class="flex gap-4 justify-center">
+                <div class="flex flex-col items-center">
+                    <div class="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center text-2xl mb-1 shadow-inner border-2 border-blue-200">👨</div>
+                    <span class="text-sm font-bold">たろう</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="w-14 h-14 bg-pink-100 rounded-full flex items-center justify-center text-2xl mb-1 shadow-inner border-2 border-pink-200">👩</div>
+                    <span class="text-sm font-bold">はなこ</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="schedule">
+            <div class="flex items-center mb-6">
+                <i class="fa-regular fa-calendar-check text-brand-blue text-xl mr-2"></i>
+                <h2 class="text-xl font-bold border-b-2 border-brand-blue pb-1">スケジュール</h2>
+            </div>
+            
+            <!-- ====== DAY 1 (山梨) ====== -->
+            <div id="schedule-day1" class="relative day-content">
+                <div class="relative flex mb-8 timeline-item">
+                    <div class="timeline-line"></div>
+                    <div class="z-10 flex-shrink-0 w-10 h-10 bg-brand-blue rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-4">
+                        <i class="fa-solid fa-car-side"></i>
+                    </div>
+                    <div class="bg-gray-50 rounded-2xl p-4 shadow-sm border border-gray-100 flex-grow relative overflow-hidden">
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="font-bold text-brand-blue text-lg">07:30</span>
+                            <h3 class="font-bold text-gray-800">新宿駅 出発</h3>
+                        </div>
+                        <p class="text-sm text-gray-600 mb-2">レンタカーで出発！中央道で山梨方面へ。</p>
+                    </div>
+                </div>
+
+                <div class="relative flex mb-8 timeline-item">
+                    <div class="timeline-line"></div>
+                    <div class="z-10 flex-shrink-0 w-10 h-10 bg-cyan-400 rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-4">
+                        <i class="fa-solid fa-snowflake"></i>
+                    </div>
+                    <div class="bg-white rounded-2xl p-4 shadow-md border-l-4 border-cyan-400 flex-grow">
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="font-bold text-cyan-500 text-lg">09:30</span>
+                            <h3 class="font-bold text-gray-800">鳴沢氷穴</h3>
+                        </div>
+                        <p class="text-sm text-gray-600 mb-2">真夏でも0度！天然の冷蔵庫でひんやり涼む洞窟探検🧊</p>
+                    </div>
+                </div>
+
+                <div class="relative flex mb-8 timeline-item">
+                    <div class="timeline-line"></div>
+                    <div class="z-10 flex-shrink-0 w-10 h-10 bg-brand-yellow rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-4">
+                        <i class="fa-solid fa-camera"></i>
+                    </div>
+                    <div class="bg-white rounded-2xl p-4 shadow-md border border-gray-100 flex-grow">
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="font-bold text-brand-yellow text-lg">11:30</span>
+                            <h3 class="font-bold text-gray-800">忍野八海で食べ歩き</h3>
+                        </div>
+                        <p class="text-sm text-gray-600">透明度抜群の池を散策。お昼ご飯は周辺の屋台や湧水蕎麦！</p>
+                    </div>
+                </div>
+
+                <div class="relative flex mb-8 timeline-item">
+                    <div class="timeline-line"></div>
+                    <div class="z-10 flex-shrink-0 w-10 h-10 bg-brand-green rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-4">
+                        <i class="fa-solid fa-mountain-sun"></i>
+                    </div>
+                    <div class="bg-white rounded-2xl p-4 shadow-md border border-gray-100 flex-grow">
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="font-bold text-brand-green text-lg">14:00</span>
+                            <h3 class="font-bold text-gray-800">河口湖・大石公園</h3>
+                        </div>
+                        <p class="text-sm text-gray-600">夏の花々と富士山の絶景スポット。カフェで休憩☕️</p>
+                    </div>
+                </div>
+
+                <div class="relative flex timeline-item">
+                    <div class="timeline-line"></div>
+                    <div class="z-10 flex-shrink-0 w-10 h-10 bg-indigo-500 rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-4">
+                        <i class="fa-solid fa-bed"></i>
+                    </div>
+                    <div class="bg-indigo-50 rounded-2xl p-4 shadow-md border border-indigo-100 flex-grow">
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="font-bold text-indigo-500 text-lg">17:30</span>
+                            <h3 class="font-bold text-gray-800">熱海の宿へ到着</h3>
+                        </div>
+                        <p class="text-sm text-gray-600">山梨から熱海へ移動（約1.5時間）。チェックイン後は温泉＆夕食！♨️</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ====== DAY 2 (熱海) ====== -->
+            <div id="schedule-day2" class="relative day-content hidden">
+                <div class="relative flex mb-8 timeline-item">
+                    <div class="timeline-line"></div>
+                    <div class="z-10 flex-shrink-0 w-10 h-10 bg-orange-400 rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-4">
+                        <i class="fa-solid fa-mug-hot"></i>
+                    </div>
+                    <div class="bg-white rounded-2xl p-4 shadow-md border border-gray-100 flex-grow">
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="font-bold text-orange-500 text-lg">09:30</span>
+                            <h3 class="font-bold text-gray-800">宿をチェックアウト</h3>
+                        </div>
+                        <p class="text-sm text-gray-600">朝食を食べてゆっくり出発！</p>
+                    </div>
+                </div>
+
+                <div class="relative flex mb-8 timeline-item">
+                    <div class="timeline-line"></div>
+                    <div class="z-10 flex-shrink-0 w-10 h-10 bg-green-600 rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-4">
+                        <i class="fa-brands fa-envira"></i>
+                    </div>
+                    <div class="bg-white rounded-2xl p-4 shadow-md border-l-4 border-green-600 flex-grow">
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="font-bold text-green-600 text-lg">10:00</span>
+                            <h3 class="font-bold text-gray-800">來宮神社 (きのみや)</h3>
+                        </div>
+                        <p class="text-sm text-gray-600">樹齢2000年の大楠でパワーチャージ🌿 おしゃれな境内カフェも。</p>
+                    </div>
+                </div>
+
+                <div class="relative flex mb-8 timeline-item">
+                    <div class="timeline-line"></div>
+                    <div class="z-10 flex-shrink-0 w-10 h-10 bg-red-400 rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-4">
+                        <i class="fa-solid fa-fish"></i>
+                    </div>
+                    <div class="bg-white rounded-2xl p-4 shadow-md border border-gray-100 flex-grow">
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="font-bold text-red-400 text-lg">12:00</span>
+                            <h3 class="font-bold text-gray-800">熱海駅前・平和通り</h3>
+                        </div>
+                        <p class="text-sm text-gray-600">商店街で海鮮ランチ＆熱海プリンなどのスイーツ食べ歩き！</p>
+                    </div>
+                </div>
+
+                <div class="relative flex mb-8 timeline-item">
+                    <div class="timeline-line"></div>
+                    <div class="z-10 flex-shrink-0 w-10 h-10 bg-blue-400 rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-4">
+                        <i class="fa-solid fa-umbrella-beach"></i>
+                    </div>
+                    <div class="bg-white rounded-2xl p-4 shadow-md border border-gray-100 flex-grow">
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="font-bold text-blue-400 text-lg">14:00</span>
+                            <h3 class="font-bold text-gray-800">熱海サンビーチ</h3>
+                        </div>
+                        <p class="text-sm text-gray-600">ヤシの木並木を散歩してリゾート気分🌴 記念撮影！</p>
+                    </div>
+                </div>
+
+                <div class="relative flex timeline-item">
+                    <div class="timeline-line"></div>
+                    <div class="z-10 flex-shrink-0 w-10 h-10 bg-gray-500 rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-4">
+                        <i class="fa-solid fa-house"></i>
+                    </div>
+                    <div class="bg-gray-100 rounded-2xl p-4 shadow-inner border border-gray-200 flex-grow text-center">
+                        <div class="font-bold text-gray-600 text-lg mb-1">18:00頃</div>
+                        <h3 class="font-bold text-gray-700">東京・新宿 到着</h3>
+                        <p class="text-xs text-gray-500 mt-1">2日間お疲れ様でした！🚗</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="map" class="pt-4">
+            <div class="flex items-center mb-4">
+                <i class="fa-solid fa-map-location-dot text-brand-green text-xl mr-2"></i>
+                <h2 class="text-xl font-bold border-b-2 border-brand-green pb-1">ルートマップ</h2>
+            </div>
+            
+            <!-- Day 1 マップ -->
+            <div id="map-day1" class="bg-white p-3 rounded-2xl shadow-md border border-gray-100 day-content">
+                <div class="w-full h-48 sm:h-64 bg-gray-200 rounded-xl overflow-hidden relative">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d103847.66288824247!2d138.80489600000003!3d35.47466820000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sja!2sjp!4v1700000000000!5m2!1sja!2sjp" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                <div class="mt-3 text-sm text-gray-600 font-medium">
+                    <p><i class="fa-solid fa-location-dot text-red-500 mr-1"></i>Day1 山梨スポット</p>
+                    <div class="flex flex-wrap gap-2 mt-2">
+                        <span class="bg-gray-100 text-xs px-2 py-1 rounded-full border border-gray-200">1. 鳴沢氷穴</span>
+                        <span class="bg-gray-100 text-xs px-2 py-1 rounded-full border border-gray-200">2. 忍野八海</span>
+                        <span class="bg-gray-100 text-xs px-2 py-1 rounded-full border border-gray-200">3. 大石公園</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Day 2 マップ -->
+            <div id="map-day2" class="bg-white p-3 rounded-2xl shadow-md border border-gray-100 day-content hidden">
+                <div class="w-full h-48 sm:h-64 bg-gray-200 rounded-xl overflow-hidden relative">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d25983.332355523097!2d139.066752!3d35.101736!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sja!2sjp!4v1700000000001!5m2!1sja!2sjp" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                <div class="mt-3 text-sm text-gray-600 font-medium">
+                    <p><i class="fa-solid fa-location-dot text-blue-500 mr-1"></i>Day2 熱海スポット</p>
+                    <div class="flex flex-wrap gap-2 mt-2">
+                        <span class="bg-gray-100 text-xs px-2 py-1 rounded-full border border-gray-200">1. 來宮神社</span>
+                        <span class="bg-gray-100 text-xs px-2 py-1 rounded-full border border-gray-200">2. 平和通り商店街</span>
+                        <span class="bg-gray-100 text-xs px-2 py-1 rounded-full border border-gray-200">3. サンビーチ</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="items" class="pt-4">
+            <div class="flex items-center mb-4">
+                <i class="fa-solid fa-suitcase-rolling text-brand-yellow text-xl mr-2"></i>
+                <h2 class="text-xl font-bold border-b-2 border-brand-yellow pb-1">持ち物リスト(1泊分)</h2>
+            </div>
+
+            <details class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden mb-3 group" open>
+                <summary class="bg-yellow-50 p-4 font-bold text-gray-800 cursor-pointer flex justify-between items-center group-open:border-b border-yellow-100 select-none">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-circle-check text-brand-yellow"></i>
+                        <span>必須アイテム</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-down text-gray-400 transition-transform group-open:rotate-180"></i>
+                </summary>
+                <div class="p-4 space-y-3">
+                    <label class="flex items-center gap-3 cursor-pointer"><input type="checkbox" class="w-5 h-5 text-brand-yellow rounded"><span class="text-gray-700">お財布・現金（屋台用）</span></label>
+                    <label class="flex items-center gap-3 cursor-pointer"><input type="checkbox" class="w-5 h-5 text-brand-yellow rounded"><span class="text-gray-700">スマホ・モバイルバッテリー</span></label>
+                    <label class="flex items-center gap-3 cursor-pointer"><input type="checkbox" class="w-5 h-5 text-brand-yellow rounded"><span class="text-gray-700">ETCカード・免許証（運転手）</span></label>
+                </div>
+            </details>
+
+            <details class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden mb-3 group">
+                <summary class="bg-indigo-50 p-4 font-bold text-gray-800 cursor-pointer flex justify-between items-center group-open:border-b border-indigo-100 select-none">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-shirt text-indigo-400"></i>
+                        <span>お泊まりセット</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-down text-gray-400 transition-transform group-open:rotate-180"></i>
+                </summary>
+                <div class="p-4 space-y-3">
+                    <label class="flex items-center gap-3 cursor-pointer"><input type="checkbox" class="w-5 h-5 text-indigo-400 rounded"><span class="text-gray-700">2日目の着替え</span></label>
+                    <label class="flex items-center gap-3 cursor-pointer"><input type="checkbox" class="w-5 h-5 text-indigo-400 rounded"><span class="text-gray-700">スキンケア・化粧品</span></label>
+                    <label class="flex items-center gap-3 cursor-pointer"><input type="checkbox" class="w-5 h-5 text-indigo-400 rounded"><span class="text-gray-700">コンタクト・メガネ</span></label>
+                </div>
+            </details>
+
+            <details class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden group">
+                <summary class="bg-blue-50 p-4 font-bold text-gray-800 cursor-pointer flex justify-between items-center group-open:border-b border-blue-100 select-none">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-sun text-brand-blue"></i>
+                        <span>夏旅・便利グッズ</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-down text-gray-400 transition-transform group-open:rotate-180"></i>
+                </summary>
+                <div class="p-4 space-y-3">
+                    <label class="flex items-center gap-3 cursor-pointer"><input type="checkbox" class="w-5 h-5 text-brand-blue rounded"><span class="text-gray-700">日焼け止め・サングラス</span></label>
+                    <label class="flex items-center gap-3 cursor-pointer"><input type="checkbox" class="w-5 h-5 text-brand-blue rounded"><span class="text-gray-700">羽織るもの（氷穴・冷房対策）</span></label>
+                    <label class="flex items-center gap-3 cursor-pointer"><input type="checkbox" class="w-5 h-5 text-brand-blue rounded"><span class="text-gray-700">ウェットティッシュ</span></label>
+                </div>
+            </details>
+        </section>
+        
+        <section class="mt-8">
+            <div class="bg-[#FFF8E7] p-5 rounded-2xl border-2 border-dashed border-yellow-300 relative">
+                <div class="absolute -top-3 left-4 bg-yellow-300 text-yellow-800 px-3 py-1 rounded font-bold text-xs transform -rotate-2">
+                    <i class="fa-solid fa-thumbtack mr-1"></i>MEMO
+                </div>
+                <textarea 
+                    class="w-full bg-transparent border-none focus:ring-0 resize-none h-24 mt-2 text-sm text-gray-700"
+                    placeholder="お土産の希望や、宿の情報など自由にメモしてね！"
+                ></textarea>
+            </div>
+        </section>
+        
+        <div class="text-center pt-8 pb-4 text-xs text-gray-400 kiwi-font">
+            Have a nice 2days trip! 🚗🌴
+        </div>
+    </div>
+</div>
+
+<script>
+    // Day1 / Day2 タブの切り替え処理
+    function switchTab(day) {
+        // ボタンのスタイルリセット
+        document.getElementById('btn-day1').className = "w-1/2 py-2 bg-transparent text-gray-500 rounded-full text-sm font-bold transition-all";
+        document.getElementById('btn-day2').className = "w-1/2 py-2 bg-transparent text-gray-500 rounded-full text-sm font-bold transition-all";
+        
+        // アクティブなボタンのスタイル適用
+        document.getElementById(`btn-${day}`).className = "w-1/2 py-2 bg-brand-blue text-white rounded-full text-sm font-bold shadow-sm transition-all";
+
+        // コンテンツの表示/非表示の切り替え
+        const contents = document.querySelectorAll('.day-content');
+        contents.forEach(content => {
+            if (content.id.includes(day)) {
+                content.classList.remove('hidden');
+                // ふわっと表示するアニメーション（簡易）
+                content.style.opacity = 0;
+                setTimeout(() => content.style.opacity = 1, 50);
+            } else {
+                content.classList.add('hidden');
+            }
+        });
+    }
+
+    // ナビゲーションのアンカースムーススクロール（タブの高さも考慮）
+    document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            
+            // ナビゲーションの高さ分オフセットしてスクロール
+            const navHeight = document.querySelector('nav').offsetHeight;
+            const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navHeight - 20;
+            
+            window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
+            });
+        });
+    });
+</script>
+</body>
+</html>
