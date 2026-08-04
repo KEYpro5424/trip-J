@@ -48,31 +48,72 @@
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+        .slider-bg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            /* 1枚あたり4秒表示 × 5枚 = 20秒ループ */
+            animation: kenburns 20s infinite;
+        }
+
+        .slide-1 {
+            background-image: url('ホテル写真/26055_1636974569_2.png'); /* 外観 */
+            animation-delay: 0s;
+        }
+        .slide-2 {
+            background-image: url('ホテル写真/img_room_universal_01_2.jpg'); /* 客室 */
+            animation-delay: 4s;
+        }
+        .slide-3 {
+            background-image: url('ホテル写真/img_amenity_03_2.jpg'); /* アメニティ・ロビー */
+            animation-delay: 8s;
+        }
+        .slide-4 {
+            background-image: url('ホテル写真/img_facility_02_2.jpg'); /* 施設・チェックイン機 */
+            animation-delay: 12s;
+        }
+        .slide-5 {
+            background-image: url('ホテル写真/top_restaurant_detail08_2.jpg'); /* 朝食イメージ */
+            animation-delay: 16s;
+        }
+
+        /* フェードイン＆ゆっくりズーム（ケンプバーンズ効果） */
+        @keyframes kenburns {
+            0% { opacity: 0; transform: scale(1); }
+            5% { opacity: 1; }
+            20% { opacity: 1; }
+            25% { opacity: 0; transform: scale(1.05); } /* ズームしながら消える */
+            100% { opacity: 0; transform: scale(1.05); }
+        }
     </style>
 </head>
 <body class="pb-24">
 
 <div class="max-w-md mx-auto bg-white min-h-screen shadow-xl overflow-hidden relative">
     
-    <header class="relative h-64 bg-gray-200">
-        <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=80" 
-             onerror="this.src='https://placehold.co/800x500/C92434/FFFFFF?text=Prince+Smart+Inn'" 
-             alt="ホテル客室イメージ" 
-             class="w-full h-full object-cover">
+    <header class="relative h-64 bg-gray-900 overflow-hidden">
+        <div class="slider-bg slide-1"></div>
+        <div class="slider-bg slide-2"></div>
+        <div class="slider-bg slide-3"></div>
+        <div class="slider-bg slide-4"></div>
+        <div class="slider-bg slide-5"></div>
         
         <!-- グラデーションオーバーレイ -->
-        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent z-10 pointer-events-none"></div>
         
-        <div class="absolute bottom-4 left-4 right-4 text-white">
-            <div class="flex items-center gap-1 mb-1 text-yellow-300 text-xs">
-                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-            </div>
-            <h1 class="text-xl sm:text-2xl font-bold title-font leading-tight">プリンス スマート イン 熱海</h1>
-            <p class="text-xs mt-1 opacity-90"><i class="fa-solid fa-location-dot mr-1 text-brand-jtb"></i>熱海駅から徒歩3分</p>
+        <!-- タイトルテキスト（ここを修正しました！） -->
+        <div class="absolute bottom-5 left-5 z-20 text-white">
+            <h1 class="text-xl sm:text-2xl font-bold title-font leading-tight drop-shadow-md">プリンス スマート イン 熱海</h1>
+            <p class="text-xs mt-1 opacity-90 drop-shadow-md"><i class="fa-solid fa-location-dot mr-1 text-red-400"></i>熱海駅から徒歩3分</p>
         </div>
         
         <!-- 戻るボタン（左上） -->
-        <a href="index.html" class="absolute top-4 left-4 w-8 h-8 bg-white/30 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-white/50 transition">
+        <a href="index.html" class="absolute top-4 left-4 w-8 h-8 bg-white/30 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-white/50 transition z-20">
             <i class="fa-solid fa-chevron-left"></i>
         </a>
     </header>
