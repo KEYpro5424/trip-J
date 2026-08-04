@@ -2,7 +2,8 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- スマホでの意図しないズームやサイズ変更を防ぐ設定を追加 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>山梨・熱海 1泊2日のしおり</title>
     <!-- Tailwind CSSの読み込み -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -75,7 +76,8 @@
         .animate-float { animation: float 4s ease-in-out infinite; }
     </style>
 </head>
-<body class="pb-20 antialiased">
+<!-- body全体に overflow-x-hidden と w-full を追加し、横揺れを完全に防止 -->
+<body class="pb-20 antialiased overflow-x-hidden w-full">
 
 <div class="w-full max-w-md mx-auto bg-white min-h-[100dvh] shadow-xl overflow-x-hidden relative">
     
