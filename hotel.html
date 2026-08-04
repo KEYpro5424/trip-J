@@ -151,12 +151,16 @@
         <section class="animate-fade-in" style="animation-delay: 0.3s;">
             <h2 class="text-base font-bold title-font border-b-2 border-brand-jtb inline-block pb-0.5 mb-3">MAP</h2>
             <div class="bg-white p-2 rounded-xl border border-gray-100 shadow-sm">
-                <div class="w-full h-40 bg-gray-100 rounded-lg overflow-hidden relative mb-2">
+                <div class="w-full h-40 bg-gray-100 rounded-lg overflow-hidden relative mb-2 group cursor-pointer">
+                    <!-- マップアプリを開くための透明なボタン -->
+                    <a href="https://maps.google.com/?q=プリンススマートイン熱海" target="_blank" rel="noopener noreferrer" class="absolute inset-0 z-10 flex items-center justify-center bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <span class="bg-white/90 text-brand-jtb text-xs font-bold px-3 py-1.5 rounded-full shadow-sm"><i class="fa-solid fa-arrow-up-right-from-square mr-1"></i>マップアプリで開く</span>
+                    </a>
                     <iframe 
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3257.0754877395047!2d139.07722421524792!3d35.104768380331086!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6019eaacbc4d7459%3A0x63ff865a77cd5c87!2z44OX44Oq44Oz44K5IOOCueODnuODvOODiCDggqTjg7Mg54ax5rW3!5e0!3m2!1sja!2sjp!4v1690000000000!5m2!1sja!2sjp" 
                         width="100%" 
                         height="100%" 
-                        style="border:0;" 
+                        style="border:0; pointer-events: none;" 
                         allowfullscreen="" 
                         loading="lazy">
                     </iframe>
