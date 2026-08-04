@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <!-- 視認性向上のためのビューポート設定 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>山梨・熱海 1泊2日ツアー</title>
+    <title>山梨・熱海1泊2日 撮影ツアー</title>
     
     <!-- エラー修正: Tailwind CSS本体を一番最初に読み込む -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -86,6 +86,24 @@
             animation: bounce-horizontal 1s infinite;
             filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
         }
+
+        /* フワフワ動くアニメーション追加 */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0px); }
+        }
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float-slow {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(3deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+        .animate-float-slow {
+            animation: float-slow 5s ease-in-out infinite;
+        }
     </style>
 </head>
 <body class="pb-20 antialiased overflow-x-hidden w-full">
@@ -93,16 +111,36 @@
 <div class="w-full max-w-md mx-auto bg-white min-h-[100dvh] shadow-xl overflow-x-hidden relative">
     
     <!-- 表紙（ヘッダー） -->
-    <header class="relative h-64 sm:h-72 bg-gradient-to-br from-[#8B1A25] via-brand-jtb to-[#F43F5E] overflow-hidden rounded-b-[2rem] shadow-md z-10 flex flex-col justify-center">
-        <!-- 背景の装飾（薄いアイコン） -->
-        <div class="absolute top-4 left-4 text-white opacity-20 text-4xl"><i class="fa-solid fa-mountain-sun"></i></div>
-        <div class="absolute bottom-10 right-8 text-white opacity-20 text-5xl"><i class="fa-solid fa-water"></i></div>
+    <header class="relative h-72 sm:h-80 bg-gradient-to-br from-[#E13B4D] via-brand-jtb to-[#FF758C] overflow-hidden rounded-b-[2rem] shadow-md z-10 flex flex-col justify-center">
+        <!-- 動く雲の装飾 -->
+        <div class="absolute top-6 left-4 text-white/40 text-5xl animate-float" style="animation-delay: 0s;"><i class="fa-solid fa-cloud"></i></div>
+        <div class="absolute top-12 right-4 text-white/30 text-6xl animate-float-slow" style="animation-delay: 1.5s;"><i class="fa-solid fa-cloud"></i></div>
+        <div class="absolute bottom-20 left-12 text-white/20 text-4xl animate-float" style="animation-delay: 2.5s;"><i class="fa-solid fa-cloud"></i></div>
         
-        <div class="absolute inset-0 flex flex-col items-center justify-center text-white z-10 p-4">
-            <span class="bg-white text-brand-jtb text-xs font-extrabold px-3 py-1 rounded-full mb-3 shadow-md transform -rotate-2">Summer Trip 2026</span>
-            <h1 class="text-4xl font-bold mb-2 tracking-wider text-center drop-shadow-lg text-white">山梨・熱海<br>1泊2日ツアー</h1>
-            <p class="text-base font-bold opacity-100 tracking-widest mt-2 drop-shadow-md"><i class="fa-regular fa-calendar-days mr-2"></i>2026.08.06 - 08.07</p>
+        <!-- キラキラ装飾 -->
+        <div class="absolute top-24 left-20 text-yellow-300 text-lg animate-pulse"><i class="fa-solid fa-star"></i></div>
+        <div class="absolute bottom-24 right-16 text-yellow-200 text-xl animate-pulse" style="animation-delay: 1s;"><i class="fa-solid fa-sparkles"></i></div>
+
+        <div class="absolute inset-0 flex flex-col items-center justify-center text-white z-10 p-4 mt-[-10px]">
+            <div class="flex items-center gap-2 mb-3">
+                <i class="fa-solid fa-camera-retro text-yellow-200 text-xl transform -rotate-12 animate-float"></i>
+                <span class="bg-white text-brand-jtb text-[13px] font-extrabold px-4 py-1.5 rounded-full shadow-md transform rotate-2 border-2 border-red-100">Summer Trip 2026</span>
+                <i class="fa-solid fa-clapperboard text-yellow-200 text-xl transform rotate-12 animate-float" style="animation-delay: 1s;"></i>
+            </div>
+            
+            <h1 class="text-4xl sm:text-5xl font-extrabold mb-3 text-center drop-shadow-lg text-white leading-tight cute-title-font w-full">
+                <span class="block text-xl mb-1 opacity-90 font-bold tracking-widest">〜 山梨・熱海 〜</span>
+                1泊2日<br>撮影ツアー
+            </h1>
+            <p class="text-[13px] font-bold opacity-100 tracking-widest mt-1 drop-shadow-md bg-white/20 px-4 py-1.5 rounded-full backdrop-blur-sm border border-white/30">
+                <i class="fa-regular fa-calendar-days mr-2"></i>2026.08.06 - 08.07
+            </p>
         </div>
+        
+        <!-- 下部のもこもこデコレーション（雲） -->
+        <svg class="absolute bottom-0 w-full text-white drop-shadow-sm" viewBox="0 0 1440 320" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-opacity="1" d="M0,288L48,272C96,256,192,224,288,213.3C384,203,480,213,576,229.3C672,245,768,267,864,256C960,245,1056,203,1152,197.3C1248,192,1344,224,1392,240L1440,256L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+        </svg>
     </header>
 
     <!-- ナビゲーション -->
@@ -121,13 +159,28 @@
         </a>
     </nav>
 
-    <!-- お天気ウィジェット -->
-    <div class="px-4 sm:px-6 mb-6">
-        <div class="bg-white p-1 rounded-2xl border border-gray-200 shadow-sm overflow-hidden min-h-[90px] flex items-center justify-center w-full">
-            <a class="weatherwidget-io" href="https://forecast7.com/ja/35d50138d76/yamanashi/" data-label_1="山梨 / 熱海" data-label_2="天気予報" data-font="Zen Maru Gothic" data-icons="Climacons Animated" data-mode="Current" data-days="3" data-theme="pure" data-basecolor="transparent" data-accent="rgba(255, 255, 255, 0)" data-textcolor="#1F2937" data-highcolor="#C92434" data-lowcolor="#0284C7" style="display: block; width: 100%;">山梨 / 熱海 天気予報</a>
-            <script>
-            !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
-            </script>
+    <!-- お天気ウィジェット (Open-Meteo APIを利用した安定版) -->
+    <div class="px-5 sm:px-6 mb-6">
+        <div class="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
+            <div class="bg-gray-50 px-4 py-2.5 border-b border-gray-200 flex justify-between items-center">
+                <span class="text-[12px] font-bold text-gray-700"><i class="fa-solid fa-cloud-sun text-brand-jtb mr-1.5"></i>現地の天気予報</span>
+            </div>
+            <div class="flex divide-x divide-gray-100">
+                <!-- 河口湖 -->
+                <div class="flex-1 p-3 text-center">
+                    <div class="text-[10px] font-bold text-gray-500 mb-1">山梨・河口湖</div>
+                    <div id="w-1-icon" class="text-3xl my-1.5"><i class="fa-solid fa-spinner fa-spin text-gray-300"></i></div>
+                    <div id="w-1-desc" class="text-[11px] font-bold text-gray-800 mb-1">読込中</div>
+                    <div class="text-[12px] font-bold"><span id="w-1-max" class="text-red-500">--</span><span class="text-gray-400 text-[9px] mx-0.5">℃</span> / <span id="w-1-min" class="text-blue-500">--</span><span class="text-gray-400 text-[9px] ml-0.5">℃</span></div>
+                </div>
+                <!-- 熱海 -->
+                <div class="flex-1 p-3 text-center">
+                    <div class="text-[10px] font-bold text-gray-500 mb-1">静岡・熱海</div>
+                    <div id="w-2-icon" class="text-3xl my-1.5"><i class="fa-solid fa-spinner fa-spin text-gray-300"></i></div>
+                    <div id="w-2-desc" class="text-[11px] font-bold text-gray-800 mb-1">読込中</div>
+                    <div class="text-[12px] font-bold"><span id="w-2-max" class="text-red-500">--</span><span class="text-gray-400 text-[9px] mx-0.5">℃</span> / <span id="w-2-min" class="text-blue-500">--</span><span class="text-gray-400 text-[9px] ml-0.5">℃</span></div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -226,9 +279,19 @@
                                 <span class="text-[10px] font-bold text-gray-800 text-center leading-tight">山城 俊介</span>
                             </div>
                             <div class="flex flex-col items-center w-[55px]">
+                                <img src="https://placehold.co/100x100/E0F2FE/0284C7?text=2nd" alt="伊藤" class="w-10 h-10 rounded-full object-cover mb-1 border border-gray-200 shadow-sm">
+                                <span class="text-[9px] text-gray-500 block">セカンド</span>
+                                <span class="text-[10px] font-bold text-gray-800 text-center leading-tight">伊藤 隼幹</span>
+                            </div>
+                            <div class="flex flex-col items-center w-[55px]">
                                 <img src="https://placehold.co/100x100/E0F2FE/0284C7?text=Snd" alt="池本" class="w-10 h-10 rounded-full object-cover mb-1 border border-gray-200 shadow-sm">
                                 <span class="text-[9px] text-gray-500 block">録音</span>
                                 <span class="text-[10px] font-bold text-gray-800 text-center leading-tight">池本あずさ</span>
+                            </div>
+                            <div class="flex flex-col items-center w-[55px]">
+                                <img src="https://placehold.co/100x100/E0F2FE/0284C7?text=Ast" alt="魚野" class="w-10 h-10 rounded-full object-cover mb-1 border border-gray-200 shadow-sm">
+                                <span class="text-[9px] text-gray-500 block">録音助手</span>
+                                <span class="text-[10px] font-bold text-gray-800 text-center leading-tight">魚野 陽多</span>
                             </div>
                             <div class="flex flex-col items-center w-[55px]">
                                 <img src="https://placehold.co/100x100/E0F2FE/0284C7?text=STY" alt="小澤" class="w-10 h-10 rounded-full object-cover mb-1 border border-gray-200 shadow-sm">
@@ -685,6 +748,10 @@
                         <input type="checkbox" class="w-5 h-5 text-brand-orange rounded border-gray-300 focus:ring-brand-orange accent-brand-orange cursor-pointer">
                         <span class="text-gray-900 font-bold">虫除けスプレー</span>
                     </label>
+                    <label class="flex items-center gap-3 cursor-pointer">
+                        <input type="checkbox" class="w-5 h-5 text-brand-orange rounded border-gray-300 focus:ring-brand-orange accent-brand-orange cursor-pointer">
+                        <span class="text-gray-900 font-bold">ムヒ</span>
+                    </label>
                 </div>
             </details>
         </section>
@@ -778,9 +845,53 @@
         });
     });
 
+    // お天気APIの取得ロジック (Open-Meteo)
+    async function loadWeather() {
+        try {
+            // 河口湖 (緯度35.50, 経度138.76)
+            const res1 = await fetch('https://api.open-meteo.com/v1/forecast?latitude=35.50&longitude=138.76&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo');
+            const data1 = await res1.json();
+            
+            // 熱海 (緯度35.10, 経度139.07)
+            const res2 = await fetch('https://api.open-meteo.com/v1/forecast?latitude=35.10&longitude=139.07&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo');
+            const data2 = await res2.json();
+
+            function parseWeather(data, prefix) {
+                // 配列の0番目（今日）のデータを取得
+                const code = data.daily.weathercode[0]; 
+                const max = Math.round(data.daily.temperature_2m_max[0]);
+                const min = Math.round(data.daily.temperature_2m_min[0]);
+                
+                let icon = '<i class="fa-solid fa-cloud text-gray-400"></i>';
+                let text = '曇り';
+                
+                if (code === 0) { icon = '<i class="fa-solid fa-sun text-orange-500"></i>'; text = '快晴'; }
+                else if (code === 1 || code === 2) { icon = '<i class="fa-solid fa-cloud-sun text-orange-400"></i>'; text = '晴れ/曇'; }
+                else if (code === 3) { icon = '<i class="fa-solid fa-cloud text-gray-400"></i>'; text = '曇り'; }
+                else if (code >= 45 && code <= 48) { icon = '<i class="fa-solid fa-smog text-gray-400"></i>'; text = '霧'; }
+                else if (code >= 51 && code <= 67) { icon = '<i class="fa-solid fa-umbrella text-blue-500"></i>'; text = '雨'; }
+                else if (code >= 71 && code <= 77) { icon = '<i class="fa-solid fa-snowflake text-blue-300"></i>'; text = '雪'; }
+                else if (code >= 95) { icon = '<i class="fa-solid fa-cloud-bolt text-yellow-500"></i>'; text = '雷雨'; }
+
+                document.getElementById(prefix + 'icon').innerHTML = icon;
+                document.getElementById(prefix + 'desc').innerText = text;
+                document.getElementById(prefix + 'max').innerText = max;
+                document.getElementById(prefix + 'min').innerText = min;
+            }
+
+            parseWeather(data1, 'w-1-');
+            parseWeather(data2, 'w-2-');
+        } catch (e) {
+            console.error('Weather fetch error:', e);
+            document.getElementById('w-1-desc').innerText = '取得失敗';
+            document.getElementById('w-2-desc').innerText = '取得失敗';
+        }
+    }
+
     // 初期化
     setInterval(updateCurrentLocation, 60000); // 1分ごとに更新
     updateCurrentLocation();
+    loadWeather(); // お天気データの読み込み
 </script>
 </body>
 </html>
