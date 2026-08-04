@@ -318,154 +318,423 @@
 
             <!-- 日程切り替えタブ -->
             <div class="flex bg-gray-100 p-1 rounded-full mb-6 border border-gray-200">
-                <button id="btn-day1" onclick="switchTab('day1')" class="w-1/2 py-2 bg-brand-jtb text-white rounded-full text-xs font-bold shadow-sm transition-all">
+                <button id="btn-day1" onclick="switchTab('day1')" class="w-1/2 py-2.5 bg-brand-jtb text-white rounded-full text-sm font-bold shadow-sm transition-all">
                     1日目 (8/6 山梨)
                 </button>
-                <button id="btn-day2" onclick="switchTab('day2')" class="w-1/2 py-2 bg-transparent text-gray-600 hover:bg-gray-200 rounded-full text-xs font-bold transition-all">
+                <button id="btn-day2" onclick="switchTab('day2')" class="w-1/2 py-2.5 bg-transparent text-gray-600 hover:bg-red-100 rounded-full text-sm font-bold transition-all">
                     2日目 (8/7 熱海)
                 </button>
             </div>
             
             <div id="schedule-day1" class="day-content relative space-y-6">
-                <!-- Item 1 -->
-                <div class="relative flex timeline-item" data-time="2026-08-06T07:30:00" data-end-time="2026-08-06T09:30:00">
-                    <div class="timeline-line"></div>
-                    <div class="z-10 flex-shrink-0 w-9 h-9 bg-brand-jtb rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-3 text-xs">
-                        <i class="fa-solid fa-car"></i>
-                    </div>
-                    <div class="bg-white rounded-2xl p-4 shadow-sm border border-red-50 flex-grow relative overflow-hidden">
-                        <div class="flex items-baseline gap-2 mb-1">
-                            <span class="font-bold text-brand-jtb text-base">07:30</span>
-                            <h3 class="font-bold text-gray-800 text-base">集合・出発</h3>
-                        </div>
-                        <p class="text-xs text-gray-600">都内集合、ロケ車で山梨へ出発！</p>
-                    </div>
-                </div>
-
-                <!-- Item 2 -->
-                <div class="relative flex timeline-item" data-time="2026-08-06T09:30:00" data-end-time="2026-08-06T12:30:00">
+                
+                <div class="relative flex timeline-item" data-time="2026-08-06T08:15:00" data-end-time="2026-08-06T09:35:00">
                     <div class="timeline-line"></div>
                     <div class="z-10 flex-shrink-0 w-9 h-9 bg-brand-orange rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-3 text-xs">
-                        <i class="fa-solid fa-mountain-sun"></i>
+                        <i class="fa-solid fa-mountain"></i>
                     </div>
                     <div class="bg-white rounded-2xl p-4 shadow-sm border border-orange-50 flex-grow relative overflow-hidden">
                         <div class="flex items-baseline gap-2 mb-1">
-                            <span class="font-bold text-brand-orange text-base">09:30</span>
-                            <h3 class="font-bold text-gray-800 text-base">山梨ロケ（河口湖周辺）</h3>
+                            <span class="font-bold text-brand-orange text-base">08:15</span>
+                            <h3 class="font-bold text-gray-800 text-base">Fujiyama ツインテラス</h3>
                         </div>
-                        <p class="text-xs text-gray-600">湖畔での景観撮影およびメインシーンの収録。</p>
                     </div>
                 </div>
 
-                <!-- Item 3 -->
-                <div class="relative flex timeline-item" data-time="2026-08-06T12:30:00" data-end-time="2026-08-06T14:00:00">
+                <div class="relative flex timeline-item" data-time="2026-08-06T09:35:00" data-end-time="2026-08-06T10:05:00">
                     <div class="timeline-line"></div>
-                    <div class="z-10 flex-shrink-0 w-9 h-9 bg-brand-yellow rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-3 text-xs">
-                        <i class="fa-solid fa-utensils"></i>
-                    </div>
-                    <div class="bg-white rounded-2xl p-4 shadow-sm border border-yellow-50 flex-grow relative overflow-hidden">
-                        <div class="flex items-baseline gap-2 mb-1">
-                            <span class="font-bold text-yellow-600 text-base">12:30</span>
-                            <h3 class="font-bold text-gray-800 text-base">昼食休憩</h3>
-                        </div>
-                        <p class="text-xs text-gray-600">地元名物のほうとう等を堪能！</p>
-                    </div>
-                </div>
-
-                <!-- Item 4 -->
-                <div class="relative flex timeline-item" data-time="2026-08-06T14:00:00" data-end-time="2026-08-06T17:30:00">
-                    <div class="timeline-line"></div>
-                    <div class="z-10 flex-shrink-0 w-9 h-9 bg-brand-jtb rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-3 text-xs">
-                        <i class="fa-solid fa-camera"></i>
-                    </div>
-                    <div class="bg-white rounded-2xl p-4 shadow-sm border border-red-50 flex-grow relative overflow-hidden">
-                        <div class="flex items-baseline gap-2 mb-1">
-                            <span class="font-bold text-brand-jtb text-base">14:00</span>
-                            <h3 class="font-bold text-gray-800 text-base">午後ロケ（忍野村周辺）</h3>
-                        </div>
-                        <p class="text-xs text-gray-600">美しい自然スポットでの追加撮影。</p>
-                    </div>
-                </div>
-
-                <!-- Item 5 -->
-                <div class="relative flex timeline-item" data-time="2026-08-06T17:30:00" data-end-time="2026-08-06T20:30:00">
-                    <div class="timeline-line"></div>
-                    <div class="z-10 flex-shrink-0 w-9 h-9 bg-gray-500 rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-3 text-xs">
-                        <i class="fa-solid fa-hotel"></i>
+                    <div class="z-10 flex-shrink-0 w-9 h-9 bg-gray-400 rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-3 text-xs">
+                        <i class="fa-solid fa-car"></i>
                     </div>
                     <div class="bg-gray-50 rounded-2xl p-4 shadow-sm border border-gray-200 flex-grow relative overflow-hidden">
                         <div class="flex items-baseline gap-2 mb-1">
-                            <span class="font-bold text-gray-600 text-base">17:30</span>
-                            <h3 class="font-bold text-gray-800 text-base">移動・熱海ホテル着</h3>
+                            <span class="font-bold text-gray-600 text-base">09:35</span>
+                            <h3 class="font-bold text-gray-800 text-base">出発（30分移動）</h3>
                         </div>
-                        <p class="text-xs text-gray-600 mb-2">熱海の宿泊先へ移動、夕食＆ミーティング。</p>
-                        
-                        <!-- 宿泊ページへのリンクボタンを追加 -->
-                        <a href="hotel.html" class="inline-flex items-center justify-center bg-white border border-brand-jtb text-brand-jtb text-[10px] font-bold px-3 py-1.5 rounded-full shadow-sm hover:bg-red-50 transition w-full sm:w-auto">
-                            <i class="fa-solid fa-bed mr-1.5"></i>ホテルの詳細・アメニティを見る
-                        </a>
                     </div>
                 </div>
-            </div>
 
-            <div id="schedule-day2" class="day-content relative space-y-6 hidden">
-                <!-- Item 1 -->
-                <div class="relative flex timeline-item" data-time="2026-08-07T08:30:00" data-end-time="2026-08-07T12:00:00">
+                <div class="relative flex timeline-item" data-time="2026-08-06T10:05:00" data-end-time="2026-08-06T11:35:00">
                     <div class="timeline-line"></div>
                     <div class="z-10 flex-shrink-0 w-9 h-9 bg-brand-jtb rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-3 text-xs">
-                        <i class="fa-solid fa-water"></i>
+                        <i class="fa-solid fa-tree"></i>
                     </div>
                     <div class="bg-white rounded-2xl p-4 shadow-sm border border-red-50 flex-grow relative overflow-hidden">
                         <div class="flex items-baseline gap-2 mb-1">
-                            <span class="font-bold text-brand-jtb text-base">08:30</span>
-                            <h3 class="font-bold text-gray-800 text-base">熱海港・海岸ロケ</h3>
+                            <span class="font-bold text-brand-jtb text-base">10:05</span>
+                            <h3 class="font-bold text-gray-800 text-base">河口湖周辺散策</h3>
                         </div>
-                        <p class="text-xs text-gray-600">海をバックにした爽快なカットの撮影。</p>
                     </div>
                 </div>
 
-                <!-- Item 2 -->
-                <div class="relative flex timeline-item" data-time="2026-08-07T12:00:00" data-end-time="2026-08-07T13:30:00">
+                <div class="relative flex timeline-item" data-time="2026-08-06T11:35:00" data-end-time="2026-08-06T12:50:00">
                     <div class="timeline-line"></div>
-                    <div class="z-10 flex-shrink-0 w-9 h-9 bg-brand-orange rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-3 text-xs">
-                        <i class="fa-solid fa-fish"></i>
+                    <div class="z-10 flex-shrink-0 w-9 h-9 bg-gray-400 rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-3 text-xs">
+                        <i class="fa-solid fa-car"></i>
                     </div>
-                    <div class="bg-white rounded-2xl p-4 shadow-sm border border-orange-50 flex-grow relative overflow-hidden">
+                    <div class="bg-gray-50 rounded-2xl p-4 shadow-sm border border-gray-200 flex-grow relative overflow-hidden">
                         <div class="flex items-baseline gap-2 mb-1">
-                            <span class="font-bold text-brand-orange text-base">12:00</span>
-                            <h3 class="font-bold text-gray-800 text-base">熱海駅前で海鮮ランチ</h3>
+                            <span class="font-bold text-gray-600 text-base">11:35</span>
+                            <h3 class="font-bold text-gray-800 text-base">出発</h3>
                         </div>
-                        <p class="text-xs text-gray-600">新鮮な海の幸でランチ休憩！お土産も購入。</p>
+                        <p class="text-xs text-gray-600">30分移動・セッティング45分</p>
                     </div>
                 </div>
 
-                <!-- Item 3 -->
-                <div class="relative flex timeline-item" data-time="2026-08-07T13:30:00" data-end-time="2026-08-07T16:00:00">
+                <div class="relative flex timeline-item" data-time="2026-08-06T12:50:00" data-end-time="2026-08-06T13:50:00">
                     <div class="timeline-line"></div>
                     <div class="z-10 flex-shrink-0 w-9 h-9 bg-brand-yellow rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-3 text-xs">
-                        <i class="fa-solid fa-camera-rotate"></i>
+                        <i class="fa-solid fa-video"></i>
                     </div>
                     <div class="bg-white rounded-2xl p-4 shadow-sm border border-yellow-50 flex-grow relative overflow-hidden">
                         <div class="flex items-baseline gap-2 mb-1">
-                            <span class="font-bold text-yellow-600 text-base">13:30</span>
-                            <h3 class="font-bold text-gray-800 text-base">市街地・商店街ロケ</h3>
+                            <span class="font-bold text-yellow-600 text-base">12:50</span>
+                            <h3 class="font-bold text-gray-800 text-base">車内カット撮影</h3>
                         </div>
-                        <p class="text-xs text-gray-600">レトロな商店街での街歩きショット撮影。</p>
                     </div>
                 </div>
 
-                <!-- Item 4 -->
-                <div class="relative flex timeline-item" data-time="2026-08-07T16:00:00" data-end-time="2026-08-07T19:00:00">
+                <div class="relative flex timeline-item" data-time="2026-08-06T13:50:00" data-end-time="2026-08-06T14:30:00">
+                    <div class="timeline-line"></div>
+                    <div class="z-10 flex-shrink-0 w-9 h-9 bg-brand-orange rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-3 text-xs">
+                        <i class="fa-solid fa-shirt"></i>
+                    </div>
+                    <div class="bg-white rounded-2xl p-4 shadow-sm border border-orange-50 flex-grow relative overflow-hidden">
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="font-bold text-brand-orange text-base">13:50</span>
+                            <h3 class="font-bold text-gray-800 text-base">終了・衣装チェンジ！！</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative flex timeline-item" data-time="2026-08-06T14:30:00" data-end-time="2026-08-06T15:30:00">
+                    <div class="timeline-line"></div>
+                    <div class="z-10 flex-shrink-0 w-9 h-9 bg-gray-400 rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-3 text-xs">
+                        <i class="fa-solid fa-car"></i>
+                    </div>
+                    <div class="bg-gray-50 rounded-2xl p-4 shadow-sm border border-gray-200 flex-grow relative overflow-hidden">
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="font-bold text-gray-600 text-base">14:30</span>
+                            <h3 class="font-bold text-gray-800 text-base">出発（1時間）</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative flex timeline-item" data-time="2026-08-06T15:30:00" data-end-time="2026-08-06T16:30:00">
+                    <div class="timeline-line"></div>
+                    <div class="z-10 flex-shrink-0 w-9 h-9 bg-blue-400 rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-3 text-xs">
+                        <i class="fa-solid fa-water"></i>
+                    </div>
+                    <div class="bg-white rounded-2xl p-4 shadow-sm border border-blue-50 flex-grow relative overflow-hidden">
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="font-bold text-blue-500 text-base">15:30</span>
+                            <h3 class="font-bold text-gray-800 text-base">忍野八海</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative flex timeline-item" data-time="2026-08-06T16:30:00" data-end-time="2026-08-06T16:50:00">
+                    <div class="timeline-line"></div>
+                    <div class="z-10 flex-shrink-0 w-9 h-9 bg-gray-400 rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-3 text-xs">
+                        <i class="fa-solid fa-car"></i>
+                    </div>
+                    <div class="bg-gray-50 rounded-2xl p-4 shadow-sm border border-gray-200 flex-grow relative overflow-hidden">
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="font-bold text-gray-600 text-base">16:30</span>
+                            <h3 class="font-bold text-gray-800 text-base">出発（20分）</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative flex timeline-item" data-time="2026-08-06T16:50:00" data-end-time="2026-08-06T17:50:00">
+                    <div class="timeline-line"></div>
+                    <div class="z-10 flex-shrink-0 w-9 h-9 bg-teal-500 rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-3 text-xs">
+                        <i class="fa-solid fa-fish"></i>
+                    </div>
+                    <div class="bg-white rounded-2xl p-4 shadow-sm border border-teal-50 flex-grow relative overflow-hidden">
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="font-bold text-teal-600 text-base">16:50</span>
+                            <h3 class="font-bold text-gray-800 text-base">森の中水族館</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative flex timeline-item" data-time="2026-08-06T17:50:00" data-end-time="2026-08-06T18:10:00">
+                    <div class="timeline-line"></div>
+                    <div class="z-10 flex-shrink-0 w-9 h-9 bg-gray-400 rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-3 text-xs">
+                        <i class="fa-solid fa-car"></i>
+                    </div>
+                    <div class="bg-gray-50 rounded-2xl p-4 shadow-sm border border-gray-200 flex-grow relative overflow-hidden">
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="font-bold text-gray-600 text-base">17:50</span>
+                            <h3 class="font-bold text-gray-800 text-base">出発</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative flex timeline-item" data-time="2026-08-06T18:10:00" data-end-time="2026-08-06T21:50:00">
+                    <div class="timeline-line"></div>
+                    <div class="z-10 flex-shrink-0 w-9 h-9 bg-green-600 rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-3 text-xs">
+                        <i class="fa-solid fa-campground"></i>
+                    </div>
+                    <div class="bg-white rounded-2xl p-4 shadow-sm border border-green-50 flex-grow relative overflow-hidden">
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="font-bold text-green-600 text-base">18:10</span>
+                            <h3 class="font-bold text-gray-800 text-base">PICA Fujiyama</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative flex timeline-item" data-time="2026-08-06T21:50:00" data-end-time="2026-08-06T22:15:00">
                     <div class="timeline-line"></div>
                     <div class="z-10 flex-shrink-0 w-9 h-9 bg-gray-500 rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-3 text-xs">
                         <i class="fa-solid fa-flag-checkered"></i>
                     </div>
                     <div class="bg-gray-50 rounded-2xl p-4 shadow-sm border border-gray-200 flex-grow relative overflow-hidden">
                         <div class="flex items-baseline gap-2 mb-1">
-                            <span class="font-bold text-gray-600 text-base">16:00</span>
-                            <h3 class="font-bold text-gray-800 text-base">帰京・解散</h3>
+                            <span class="font-bold text-gray-600 text-base">21:50</span>
+                            <h3 class="font-bold text-gray-800 text-base">終了</h3>
                         </div>
-                        <p class="text-xs text-gray-600">機材搬入後、お疲れ様でした！</p>
+                    </div>
+                </div>
+
+                <div class="relative flex timeline-item" data-time="2026-08-06T22:15:00" data-end-time="2026-08-07T00:00:00">
+                    <div class="timeline-line"></div>
+                    <div class="z-10 flex-shrink-0 w-9 h-9 bg-gray-400 rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-3 text-xs">
+                        <i class="fa-solid fa-car"></i>
+                    </div>
+                    <div class="bg-gray-50 rounded-2xl p-4 shadow-sm border border-gray-200 flex-grow relative overflow-hidden">
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="font-bold text-gray-600 text-base">22:15</span>
+                            <h3 class="font-bold text-gray-800 text-base">出発（2時間）</h3>
+                        </div>
+                        <p class="text-xs text-gray-600">熱海へ大移動！</p>
+                    </div>
+                </div>
+
+                <div class="relative flex timeline-item" data-time="2026-08-07T00:00:00" data-end-time="2026-08-07T08:00:00">
+                    <div class="timeline-line"></div>
+                    <div class="z-10 flex-shrink-0 w-9 h-9 bg-brand-jtb rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-3 text-xs">
+                        <i class="fa-solid fa-hotel"></i>
+                    </div>
+                    <div class="bg-white rounded-2xl p-4 shadow-sm border border-red-50 flex-grow relative overflow-hidden">
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="font-bold text-brand-jtb text-base">24:00</span>
+                            <h3 class="font-bold text-gray-800 text-base">プリンス スマート イン熱海 宿泊</h3>
+                        </div>
+                        <p class="text-xs text-gray-600 mb-2">お疲れ様でした！明日に備えてゆっくり休みましょう。</p>
+                        
+                        <!-- 宿泊ページへのリンクボタン -->
+                        <a href="hotel.html" class="inline-flex items-center justify-center bg-white border border-brand-jtb text-brand-jtb text-[10px] font-bold px-3 py-1.5 rounded-full shadow-sm hover:bg-red-50 transition w-full sm:w-auto">
+                            <i class="fa-solid fa-bed mr-1.5"></i>ホテルの詳細・アメニティを見る
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Day 2 Schedule -->
+            <div id="schedule-day2" class="day-content relative space-y-6 hidden">
+                <div class="relative flex timeline-item" data-time="2026-08-07T08:00:00" data-end-time="2026-08-07T08:30:00">
+                    <div class="timeline-line"></div>
+                    <div class="z-10 flex-shrink-0 w-9 h-9 bg-brand-jtb rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-3 text-xs">
+                        <i class="fa-solid fa-hotel"></i>
+                    </div>
+                    <div class="bg-white rounded-2xl p-4 shadow-sm border border-red-50 flex-grow relative overflow-hidden">
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="font-bold text-brand-jtb text-base">08:00</span>
+                            <h3 class="font-bold text-gray-800 text-base">ホテル発</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative flex timeline-item" data-time="2026-08-07T08:30:00" data-end-time="2026-08-07T09:00:00">
+                    <div class="timeline-line"></div>
+                    <div class="z-10 flex-shrink-0 w-9 h-9 bg-brand-orange rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-3 text-xs">
+                        <i class="fa-solid fa-cow"></i>
+                    </div>
+                    <div class="bg-white rounded-2xl p-4 shadow-sm border border-orange-50 flex-grow relative overflow-hidden">
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="font-bold text-brand-orange text-base">08:30</span>
+                            <h3 class="font-bold text-gray-800 text-base">酪農王国オラッチェ</h3>
+                        </div>
+                        <p class="text-xs text-gray-600">到着＆準備。</p>
+                    </div>
+                </div>
+
+                <div class="relative flex timeline-item" data-time="2026-08-07T09:00:00" data-end-time="2026-08-07T10:30:00">
+                    <div class="timeline-line"></div>
+                    <div class="z-10 flex-shrink-0 w-9 h-9 bg-brand-jtb rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-3 text-xs">
+                        <i class="fa-solid fa-camera"></i>
+                    </div>
+                    <div class="bg-white rounded-2xl p-4 shadow-sm border border-red-50 flex-grow relative overflow-hidden">
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="font-bold text-brand-jtb text-base">09:00</span>
+                            <h3 class="font-bold text-gray-800 text-base">撮影開始</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative flex timeline-item" data-time="2026-08-07T10:30:00" data-end-time="2026-08-07T11:00:00">
+                    <div class="timeline-line"></div>
+                    <div class="z-10 flex-shrink-0 w-9 h-9 bg-gray-400 rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-3 text-xs">
+                        <i class="fa-solid fa-car"></i>
+                    </div>
+                    <div class="bg-gray-50 rounded-2xl p-4 shadow-sm border border-gray-200 flex-grow relative overflow-hidden">
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="font-bold text-gray-600 text-base">10:30</span>
+                            <h3 class="font-bold text-gray-800 text-base">移動（30分）</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative flex timeline-item" data-time="2026-08-07T11:00:00" data-end-time="2026-08-07T11:45:00">
+                    <div class="timeline-line"></div>
+                    <div class="z-10 flex-shrink-0 w-9 h-9 bg-brand-yellow rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-3 text-xs">
+                        <i class="fa-solid fa-shirt"></i>
+                    </div>
+                    <div class="bg-white rounded-2xl p-4 shadow-sm border border-yellow-50 flex-grow relative overflow-hidden">
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="font-bold text-yellow-600 text-base">11:00</span>
+                            <h3 class="font-bold text-gray-800 text-base">お宮の松駐車場</h3>
+                        </div>
+                        <p class="text-xs font-bold text-brand-jtb">衣装チェンジ！！！</p>
+                    </div>
+                </div>
+
+                <div class="relative flex timeline-item" data-time="2026-08-07T11:45:00" data-end-time="2026-08-07T12:00:00">
+                    <div class="timeline-line"></div>
+                    <div class="z-10 flex-shrink-0 w-9 h-9 bg-blue-500 rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-3 text-xs">
+                        <i class="fa-solid fa-anchor"></i>
+                    </div>
+                    <div class="bg-white rounded-2xl p-4 shadow-sm border border-blue-50 flex-grow relative overflow-hidden">
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="font-bold text-blue-500 text-base">11:45</span>
+                            <h3 class="font-bold text-gray-800 text-base">熱海港</h3>
+                        </div>
+                        <p class="text-xs text-gray-600">フェリー受付！！</p>
+                    </div>
+                </div>
+
+                <div class="relative flex timeline-item" data-time="2026-08-07T12:00:00" data-end-time="2026-08-07T12:30:00">
+                    <div class="timeline-line"></div>
+                    <div class="z-10 flex-shrink-0 w-9 h-9 bg-blue-400 rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-3 text-xs">
+                        <i class="fa-solid fa-ship"></i>
+                    </div>
+                    <div class="bg-white rounded-2xl p-4 shadow-sm border border-blue-50 flex-grow relative overflow-hidden">
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="font-bold text-blue-500 text-base">12:00</span>
+                            <h3 class="font-bold text-gray-800 text-base">フェリー出発！！</h3>
+                        </div>
+                        <p class="text-xs text-gray-600">移動（30分）</p>
+                    </div>
+                </div>
+
+                <div class="relative flex timeline-item" data-time="2026-08-07T12:30:00" data-end-time="2026-08-07T15:30:00">
+                    <div class="timeline-line"></div>
+                    <div class="z-10 flex-shrink-0 w-9 h-9 bg-teal-500 rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-3 text-xs">
+                        <i class="fa-solid fa-umbrella-beach"></i>
+                    </div>
+                    <div class="bg-white rounded-2xl p-4 shadow-sm border border-teal-50 flex-grow relative overflow-hidden">
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="font-bold text-teal-600 text-base">12:30</span>
+                            <h3 class="font-bold text-gray-800 text-base">初島着</h3>
+                        </div>
+                        <p class="text-xs text-gray-600">初島にてロケ。</p>
+                    </div>
+                </div>
+
+                <div class="relative flex timeline-item" data-time="2026-08-07T15:30:00" data-end-time="2026-08-07T15:50:00">
+                    <div class="timeline-line"></div>
+                    <div class="z-10 flex-shrink-0 w-9 h-9 bg-blue-400 rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-3 text-xs">
+                        <i class="fa-solid fa-ship"></i>
+                    </div>
+                    <div class="bg-white rounded-2xl p-4 shadow-sm border border-blue-50 flex-grow relative overflow-hidden">
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="font-bold text-blue-500 text-base">15:30</span>
+                            <h3 class="font-bold text-gray-800 text-base">フェリー発</h3>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="relative flex timeline-item" data-time="2026-08-07T15:50:00" data-end-time="2026-08-07T16:30:00">
+                    <div class="timeline-line"></div>
+                    <div class="z-10 flex-shrink-0 w-9 h-9 bg-blue-500 rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-3 text-xs">
+                        <i class="fa-solid fa-anchor"></i>
+                    </div>
+                    <div class="bg-white rounded-2xl p-4 shadow-sm border border-blue-50 flex-grow relative overflow-hidden">
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="font-bold text-blue-500 text-base">15:50</span>
+                            <h3 class="font-bold text-gray-800 text-base">熱海港 着</h3>
+                        </div>
+                        <p class="text-xs text-gray-600">移動（15分）& 休憩（25分）</p>
+                    </div>
+                </div>
+
+                <div class="relative flex timeline-item" data-time="2026-08-07T16:30:00" data-end-time="2026-08-07T17:00:00">
+                    <div class="timeline-line"></div>
+                    <div class="z-10 flex-shrink-0 w-9 h-9 bg-brand-orange rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-3 text-xs">
+                        <i class="fa-solid fa-palette"></i>
+                    </div>
+                    <div class="bg-white rounded-2xl p-4 shadow-sm border border-orange-50 flex-grow relative overflow-hidden">
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="font-bold text-brand-orange text-base">16:30</span>
+                            <h3 class="font-bold text-gray-800 text-base">熱海陶芸工房doka</h3>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="relative flex timeline-item" data-time="2026-08-07T17:00:00" data-end-time="2026-08-07T17:10:00">
+                    <div class="timeline-line"></div>
+                    <div class="z-10 flex-shrink-0 w-9 h-9 bg-gray-400 rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-3 text-xs">
+                        <i class="fa-solid fa-car"></i>
+                    </div>
+                    <div class="bg-gray-50 rounded-2xl p-4 shadow-sm border border-gray-200 flex-grow relative overflow-hidden">
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="font-bold text-gray-600 text-base">17:00</span>
+                            <h3 class="font-bold text-gray-800 text-base">移動（10分）</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative flex timeline-item" data-time="2026-08-07T17:10:00" data-end-time="2026-08-07T20:00:00">
+                    <div class="timeline-line"></div>
+                    <div class="z-10 flex-shrink-0 w-9 h-9 bg-brand-jtb rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-3 text-xs">
+                        <i class="fa-solid fa-hotel"></i>
+                    </div>
+                    <div class="bg-white rounded-2xl p-4 shadow-sm border border-red-50 flex-grow relative overflow-hidden">
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="font-bold text-brand-jtb text-base">17:10</span>
+                            <h3 class="font-bold text-gray-800 text-base">ホテル貫一着</h3>
+                        </div>
+                        <p class="text-xs text-gray-600">ホテルでの撮影など。</p>
+                    </div>
+                </div>
+                
+                <div class="relative flex timeline-item" data-time="2026-08-07T20:00:00" data-end-time="2026-08-07T22:00:00">
+                    <div class="timeline-line"></div>
+                    <div class="z-10 flex-shrink-0 w-9 h-9 bg-gray-500 rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-3 text-xs">
+                        <i class="fa-solid fa-flag-checkered"></i>
+                    </div>
+                    <div class="bg-gray-50 rounded-2xl p-4 shadow-sm border border-gray-200 flex-grow relative overflow-hidden">
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="font-bold text-gray-600 text-base">20:00</span>
+                            <h3 class="font-bold text-gray-800 text-base">撮影終了</h3>
+                        </div>
+                        <p class="text-xs text-gray-600">お疲れ様でした！撤収・出発。</p>
+                    </div>
+                </div>
+
+                <div class="relative flex timeline-item" data-time="2026-08-07T22:00:00" data-end-time="2026-08-07T23:00:00">
+                    <div class="timeline-line"></div>
+                    <div class="z-10 flex-shrink-0 w-9 h-9 bg-gray-500 rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-3 text-xs">
+                        <i class="fa-solid fa-building"></i>
+                    </div>
+                    <div class="bg-gray-50 rounded-2xl p-4 shadow-sm border border-gray-200 flex-grow relative overflow-hidden">
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="font-bold text-gray-600 text-base">22:00</span>
+                            <h3 class="font-bold text-gray-800 text-base">都内戻り予定</h3>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -482,7 +751,6 @@
                 <div id="map-day1" class="day-content relative bg-white p-3 rounded-2xl shadow-sm border border-red-100">
                     <h3 class="text-xs font-bold text-brand-jtb mb-2"><i class="fa-solid fa-location-dot mr-1"></i>1日目：山梨ルート</h3>
                     <div class="w-full h-48 bg-gray-100 rounded-xl overflow-hidden relative group cursor-pointer">
-                        <!-- マップアプリを開くための透明なボタン -->
                         <a href="https://maps.app.goo.gl/z1LRvCdDDYC7HzeV7" target="_blank" rel="noopener noreferrer" class="absolute inset-0 z-10 flex items-center justify-center bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity">
                             <span class="bg-white/90 text-brand-jtb text-xs font-bold px-3 py-1.5 rounded-full shadow-sm"><i class="fa-solid fa-arrow-up-right-from-square mr-1"></i>マップアプリで開く</span>
                         </a>
@@ -501,12 +769,11 @@
                 <div id="map-day2" class="day-content relative hidden bg-white p-3 rounded-2xl shadow-sm border border-blue-100">
                     <h3 class="text-xs font-bold text-blue-500 mb-2"><i class="fa-solid fa-location-dot mr-1"></i>2日目：熱海ルート</h3>
                     <div class="w-full h-48 bg-gray-100 rounded-xl overflow-hidden relative group cursor-pointer">
-                        <!-- マップアプリを開くための透明なボタン -->
-                        <a href="https://maps.app.goo.gl/cc8GqLiMahwkQnHK9" target="_blank" rel="noopener noreferrer" class="absolute inset-0 z-10 flex items-center justify-center bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <a href="https://maps.app.goo.gl/kX31s3jH9v1m1j75A" target="_blank" rel="noopener noreferrer" class="absolute inset-0 z-10 flex items-center justify-center bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity">
                             <span class="bg-white/90 text-blue-500 text-xs font-bold px-3 py-1.5 rounded-full shadow-sm"><i class="fa-solid fa-arrow-up-right-from-square mr-1"></i>マップアプリで開く</span>
                         </a>
                         <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d13029.071720815147!2d139.0659850165036!3d35.09918712399998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e0!4m5!1s0x6019ebdcb86b7201%3A0x501bbda3eb20dc9!2z54ax5rW36aeF!3m2!1d35.103233899999995!2d139.0776766!4m5!1s0x6019eb9e7f45afb1%3A0x6b4fb6c185bb81d!2z54ax5rW35riv!3m2!1d35.091398899999996!2d139.077227!5e0!3m2!1sja!2sjp!4v1716281200000!5m2!1sja!2sjp" 
+                            src="https://www.google.com/maps/embed?pb=!1m58!1m12!1m3!1d52119.82173167123!2d138.99551105940562!3d35.09706306509939!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m43!3e0!4m5!1s0x6019eaacbc4d7459%3A0x63ff865a77cd5c87!2z44OX44Oq44Oz44K5IOOCueODnuODvOODiCDggqTjg7Mg54ax5rW3!3m2!1d35.1047684!2d139.0772242!4m5!1s0x60199e6912f29d47%3A0x304d9cf6c3c3327a!2z6YWq6L6y546L5Zu944Kq44Op44OD44OB44Kn!3m2!1d35.1186715!2d138.9928503!4m5!1s0x6019ebbe61e73da9%3A0x5144b6c37ab08f65!2z44GK5a6u44Gu5p2-!3m2!1d35.0984852!2d139.0754868!4m5!1s0x6019eb9e7f45afb1%3A0x6b4fb6c185bb81d!2z54ax5rW35riv!3m2!1d35.091398899999996!2d139.077227!4m5!1s0x6019cbafb7dc98cf%3A0x133ec6ef63d30bd!2z5Yid5bO2!3m2!1d35.0396556!2d139.1724227!4m5!1s0x6019eb641fd5d0e5%3A0x14101e40820cc039!2z54ax5rW36Zm26Iq45bel5oi_ZG9rYQ!3m2!1d35.1009134!2d139.0771501!4m5!1s0x6019ebbe8a62e0eb%3A0xe765677baee27eb!2z44Ob44OG44Or6LKr5LiA!3m2!1d35.1004128!2d139.0763529!5e0!3m2!1sja!2sjp!4v1716281200000!5m2!1sja!2sjp" 
                             width="100%" 
                             height="100%" 
                             style="border:0; pointer-events: none;" 
