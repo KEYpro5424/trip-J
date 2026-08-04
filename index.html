@@ -3,12 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>宿泊先 - プリンス スマート イン 熱海</title>
+    <title>山梨・熱海1泊2日 撮影ツアー</title>
     
+    <!-- Tailwind CSSの読み込み -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fontsの読み込み -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesomeの読み込み -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <script>
@@ -17,9 +22,10 @@
             extend: {
                 colors: {
                     'brand-jtb': '#C92434',
+                    'brand-jtb-dark': '#A01B28',
+                    'brand-accent': '#FF6B6B',
                     'brand-orange': '#FF8C42',
-                    'brand-blue': '#4299E1',
-                    'brand-green': '#48BB78',
+                    'brand-yellow': '#FFD166',
                     'brand-bg': '#FFF5F5',
                 },
                 fontFamily: {
@@ -37,188 +43,987 @@
             background-color: #FFF5F5;
             color: #2D3748;
         }
+
         h1, h2, h3, .title-font {
             font-family: 'Zen Maru Gothic', sans-serif;
             font-weight: 700;
         }
-        .animate-fade-in {
-            animation: fadeIn 0.8s ease-out forwards;
+
+        /* フワフワ動くアニメーション */
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(3deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
         }
 
-        .slider-bg {
+        /* キラキラアニメーション */
+        @keyframes sparkle {
+            0%, 100% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+        .animate-sparkle {
+            animation: sparkle 2s ease-in-out infinite;
+        }
+
+        /* タイムラインの線 */
+        .timeline-line {
             position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            opacity: 0;
-            /* 1枚あたり4秒表示 × 5枚 = 20秒ループ */
-            animation: kenburns 20s infinite;
+            left: 1.25rem;
+            top: 2rem;
+            bottom: -1rem;
+            width: 2px;
+            background-color: #FEB2B2;
+            z-index: 0;
+        }
+        .timeline-item:last-child .timeline-line {
+            display: none;
         }
 
-        .slide-1 {
-            background-image: url('https://prcdn.freetls.fastly.net/release_image/24668/882/24668-882-629237-0.jpg'); /* 外観 */
-            animation-delay: 0s;
-        }
-        .slide-2 {
-            background-image: url('https://prcdn.freetls.fastly.net/release_image/24668/882/24668-882-730107-1.jpg'); /* 客室 */
-            animation-delay: 4s;
-        }
-        .slide-3 {
-            background-image: url('https://prcdn.freetls.fastly.net/release_image/24668/882/24668-882-736270-2.jpg'); /* アメニティ・ロビー */
-            animation-delay: 8s;
-        }
-        .slide-4 {
-            background-image: url('https://prcdn.freetls.fastly.net/release_image/24668/882/24668-882-353272-5.jpg'); /* 施設・チェックイン機 */
-            animation-delay: 12s;
-        }
-        .slide-5 {
-            background-image: url('https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&w=800&q=80'); /* 朝食イメージ */
-            animation-delay: 16s;
-        }
-
-        /* フェードイン＆ゆっくりズーム（ケンプバーンズ効果） */
-        @keyframes kenburns {
-            0% { opacity: 0; transform: scale(1); }
-            5% { opacity: 1; }
-            20% { opacity: 1; }
-            25% { opacity: 0; transform: scale(1.05); } /* ズームしながら消える */
-            100% { opacity: 0; transform: scale(1.05); }
+        /* 過去の項目のグレーアウト */
+        .timeline-item.passed {
+            opacity: 0.6;
         }
     </style>
 </head>
-<body class="pb-24">
+<body class="pb-20">
 
 <div class="max-w-md mx-auto bg-white min-h-screen shadow-xl overflow-hidden relative">
     
-    <header class="relative h-64 bg-gray-900 overflow-hidden">
-        <div class="slider-bg slide-1"></div>
-        <div class="slider-bg slide-2"></div>
-        <div class="slider-bg slide-3"></div>
-        <div class="slider-bg slide-4"></div>
-        <div class="slider-bg slide-5"></div>
+    <header class="relative h-72 bg-gradient-to-br from-[#C92434] via-[#E53E3E] to-[#DD6B20] overflow-hidden rounded-b-[3rem] shadow-lg z-10 text-white">
+        <!-- 背景のフワフワ雲やアイコン -->
+        <div class="absolute top-4 left-6 text-white opacity-40 text-4xl animate-float" style="animation-delay: 0s;"><i class="fa-solid fa-cloud"></i></div>
+        <div class="absolute top-12 right-8 text-white opacity-50 text-5xl animate-float" style="animation-delay: 1.5s;"><i class="fa-solid fa-cloud"></i></div>
+        <div class="absolute top-20 left-16 text-yellow-200 opacity-80 text-xl animate-sparkle" style="animation-delay: 0.5s;"><i class="fa-solid fa-star"></i></div>
+        <div class="absolute top-8 right-24 text-yellow-200 opacity-80 text-lg animate-sparkle" style="animation-delay: 1s;"><i class="fa-solid fa-star"></i></div>
         
-        <!-- グラデーションオーバーレイ -->
-        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent z-10 pointer-events-none"></div>
-        
-        <!-- タイトルテキスト（ここを修正しました！） -->
-        <div class="absolute bottom-5 left-5 z-20 text-white">
-            <h1 class="text-xl sm:text-2xl font-bold title-font leading-tight drop-shadow-md">プリンス スマート イン 熱海</h1>
-            <p class="text-xs mt-1 opacity-90 drop-shadow-md"><i class="fa-solid fa-location-dot mr-1 text-red-400"></i>熱海駅から徒歩3分</p>
+        <!-- 中央コンテンツ -->
+        <div class="absolute inset-0 flex flex-col items-center justify-center text-white z-10 pt-2 px-4 text-center">
+            <div class="flex items-center gap-2 mb-2">
+                <span class="animate-float"><i class="fa-solid fa-camera-retro text-2xl text-yellow-200"></i></span>
+                <span class="bg-white/20 backdrop-blur-md text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm tracking-widest border border-white/30">
+                    〜 山梨・熱海 〜
+                </span>
+                <span class="animate-float" style="animation-delay: 1s;"><i class="fa-solid fa-clapperboard text-2xl text-yellow-200"></i></span>
+            </div>
+            
+            <h1 class="text-3xl sm:text-4xl font-bold mb-1 tracking-wider drop-shadow-md">
+                山梨・熱海<br>1泊2日 撮影ツアー
+            </h1>
+            <p class="text-sm font-medium opacity-95 tracking-widest mt-2 bg-black/10 px-4 py-1 rounded-full backdrop-blur-sm">
+                <i class="fa-regular fa-calendar-days mr-2"></i>2026.08.06 (Thu) 〜 08.07 (Fri)
+            </p>
         </div>
         
-        <!-- 戻るボタン（左上） -->
-        <a href="index.html" class="absolute top-4 left-4 w-8 h-8 bg-white/30 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-white/50 transition z-20">
-            <i class="fa-solid fa-chevron-left"></i>
-        </a>
+        <!-- もこもこの下部ウェーブ -->
+        <svg class="absolute bottom-0 w-full text-[#FFF5F5]" viewBox="0 0 1440 120" preserveAspectRatio="none" fill="currentColor">
+            <path d="M0,32L48,42.7C96,53,192,75,288,80C384,85,480,75,576,58.7C672,43,768,21,864,21.3C960,21,1056,43,1152,53.3C1248,64,1344,64,1392,64L1440,64L1440,120L1392,120C1344,120,1248,120,1152,120C1056,120,960,120,864,120C768,120,672,120,576,120C480,120,384,120,288,120C192,120,96,120,48,120L0,120Z"></path>
+        </svg>
     </header>
 
-    <div class="px-5 py-6 space-y-6">
-        
-        <div class="flex flex-wrap gap-2 animate-fade-in" style="animation-delay: 0.1s;">
-            <div class="bg-red-50 text-brand-jtb border border-red-100 px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 shadow-sm">
-                <i class="fa-solid fa-right-to-bracket"></i> IN 15:00
-            </div>
-            <div class="bg-red-50 text-brand-jtb border border-red-100 px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 shadow-sm">
-                <i class="fa-solid fa-right-from-bracket"></i> OUT 10:00
-            </div>
-            <div class="bg-gray-50 text-gray-600 border border-gray-200 px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 shadow-sm">
-                <i class="fa-solid fa-wifi"></i> 全室Wi-Fi無料
-            </div>
-            <div class="bg-gray-50 text-gray-600 border border-gray-200 px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 shadow-sm">
-                <i class="fa-solid fa-ban-smoking"></i> 全室禁煙
-            </div>
-        </div>
+    <nav class="sticky top-0 bg-white/90 backdrop-blur-md shadow-sm z-30 px-2 py-3 flex justify-between rounded-2xl mx-4 -mt-4 mb-6 border border-red-100">
+        <a href="#schedule" class="flex flex-col items-center justify-center text-gray-600 hover:text-brand-jtb transition w-1/4">
+            <i class="fa-regular fa-clock text-lg mb-0.5 text-brand-jtb"></i>
+            <span class="text-[10px] font-bold">日程</span>
+        </a>
+        <a href="#map" class="flex flex-col items-center justify-center text-gray-600 hover:text-brand-jtb transition w-1/4 border-l border-gray-100">
+            <i class="fa-solid fa-map-location-dot text-lg mb-0.5 text-brand-jtb"></i>
+            <span class="text-[10px] font-bold">マップ</span>
+        </a>
+        <a href="#items" class="flex flex-col items-center justify-center text-gray-600 hover:text-brand-jtb transition w-1/4 border-l border-gray-100">
+            <i class="fa-solid fa-suitcase-rolling text-lg mb-0.5 text-brand-jtb"></i>
+            <span class="text-[10px] font-bold">持ち物</span>
+        </a>
+        <a href="hotel.html" class="flex flex-col items-center justify-center text-gray-600 hover:text-brand-jtb transition w-1/4 border-l border-gray-100">
+            <i class="fa-solid fa-hotel text-lg mb-0.5 text-brand-jtb"></i>
+            <span class="text-[10px] font-bold">ホテル</span>
+        </a>
+    </nav>
 
-        <section class="space-y-4 animate-fade-in" style="animation-delay: 0.2s;">
-            <h2 class="text-base font-bold title-font border-b-2 border-brand-jtb inline-block pb-0.5">ここがポイント！✨</h2>
+    <div class="px-5 space-y-8 pb-10">
+
+        <section class="mt-2">
+            <div class="flex items-center mb-3">
+                <i class="fa-solid fa-cloud-sun text-brand-jtb text-lg mr-2"></i>
+                <h2 class="text-lg font-bold border-b-2 border-brand-jtb pb-0.5">現地の天気予報</h2>
+            </div>
             
-            <!-- ポイント1: アメニティ -->
-            <div class="bg-white border-2 border-blue-50 rounded-xl p-4 shadow-sm relative overflow-hidden">
-                <div class="absolute -right-3 -top-3 text-5xl text-blue-50 opacity-50"><i class="fa-solid fa-pump-soap"></i></div>
-                <div class="flex items-start gap-3 relative z-10">
-                    <div class="w-10 h-10 rounded-full bg-blue-100 text-brand-blue flex items-center justify-center flex-shrink-0 text-lg">
+            <!-- 山梨 (河口湖) -->
+            <div id="weather-day1" class="day-content relative bg-white p-4 rounded-2xl shadow-sm border border-red-100 flex flex-col items-center text-center">
+                <span class="text-sm font-bold text-gray-600 mb-1"><i class="fa-solid fa-mountain mr-1 text-gray-400"></i>山梨 (河口湖)</span>
+                <div id="w-1-icon" class="text-4xl my-2"><i class="fa-solid fa-spinner animate-spin text-gray-400"></i></div>
+                <span id="w-1-desc" class="text-sm font-bold text-gray-700">読み込み中...</span>
+                <div class="text-xs text-gray-500 mt-2 font-medium">
+                    最高 <span id="w-1-max" class="text-red-500">--</span>°C / 最低 <span id="w-1-min" class="text-blue-500">--</span>°C
+                </div>
+            </div>
+
+            <!-- 静岡 (熱海) -->
+            <div id="weather-day2" class="day-content relative hidden bg-white p-4 rounded-2xl shadow-sm border border-blue-100 flex flex-col items-center text-center">
+                <span class="text-sm font-bold text-gray-600 mb-1"><i class="fa-solid fa-water mr-1 text-blue-400"></i>静岡 (熱海)</span>
+                <div id="w-2-icon" class="text-4xl my-2"><i class="fa-solid fa-spinner animate-spin text-gray-400"></i></div>
+                <span id="w-2-desc" class="text-sm font-bold text-gray-700">読み込み中...</span>
+                <div class="text-xs text-gray-500 mt-2 font-medium">
+                    最高 <span id="w-2-max" class="text-red-500">--</span>°C / 最低 <span id="w-2-min" class="text-blue-500">--</span>°C
+                </div>
+            </div>
+        </section>
+
+        <!-- 共有Wi-Fi情報 -->
+        <section class="mt-2 mb-2">
+            <div class="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-2xl shadow-sm border border-blue-100 p-4 relative overflow-hidden">
+                <!-- 背景アイコン -->
+                <div class="absolute -right-3 -top-3 text-5xl text-blue-200 opacity-40"><i class="fa-solid fa-wifi"></i></div>
+                
+                <div class="flex items-center gap-2 mb-3 border-b-2 border-blue-200 pb-1 inline-flex relative z-10">
+                    <i class="fa-solid fa-wifi text-blue-500"></i>
+                    <span class="font-bold text-gray-800 text-sm">ロケバス / 共有 Wi-Fi</span>
+                </div>
+                
+                <div class="space-y-2 text-sm text-gray-700 relative z-10">
+                    <div class="flex justify-between items-center bg-white p-2.5 rounded-xl border border-blue-50 shadow-sm">
+                        <span class="text-[10px] text-white bg-blue-400 px-2 py-0.5 rounded-full font-bold w-10 text-center">ID</span>
+                        <span class="font-bold tracking-wider flex-grow text-gray-800 ml-3 text-sm">TOUR_WIFI_2026</span>
+                    </div>
+                    <div class="flex justify-between items-center bg-white p-2.5 rounded-xl border border-blue-50 shadow-sm">
+                        <span class="text-[10px] text-white bg-blue-400 px-2 py-0.5 rounded-full font-bold w-10 text-center">PASS</span>
+                        <span id="wifi-pass" class="font-bold tracking-wider flex-grow text-gray-800 ml-3 text-sm">shooting0806</span>
+                        <button onclick="copyWifiPass(this)" class="bg-blue-100 hover:bg-blue-200 text-blue-600 text-[10px] font-bold py-1.5 px-3 rounded-lg transition active:scale-95 flex items-center shadow-sm">
+                            <i class="fa-regular fa-copy mr-1"></i>コピー
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <details class="bg-white rounded-2xl shadow-sm border border-red-100 overflow-hidden group">
+                <summary class="bg-gradient-to-r from-red-50 to-orange-50 p-4 font-bold text-gray-800 cursor-pointer flex justify-between items-center group-open:border-b border-red-100 select-none">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-users text-brand-jtb"></i>
+                        <span class="text-base">メンバー・スタッフ紹介</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-down text-gray-400 transition-transform group-open:rotate-180"></i>
+                </summary>
+                <div class="p-4 space-y-6 text-sm bg-[#FFFDFD]">
+                    
+                    <!-- JTB -->
+                    <div>
+                        <h4 class="font-bold text-brand-jtb mb-2.5 text-xs flex items-center gap-1.5 border-b-2 border-red-100 pb-1">
+                            <i class="fa-solid fa-paper-plane text-red-300"></i> JTB
+                        </h4>
+                        <div class="grid grid-cols-2 gap-3 text-gray-700">
+                            <div class="bg-white p-2.5 rounded-2xl border-2 border-red-100 shadow-sm flex flex-col items-center text-center relative overflow-hidden">
+                                <div class="absolute -right-2 -top-2 text-2xl opacity-20">🌸</div>
+                                <div class="text-[10px] text-red-400 font-bold mb-0.5 bg-red-50 px-2 py-0.5 rounded-full inline-block">JTB</div>
+                                <div class="text-xs font-bold mt-1">青山 瑚子</div>
+                            </div>
+                            <div class="bg-white p-2.5 rounded-2xl border-2 border-red-100 shadow-sm flex flex-col items-center text-center relative overflow-hidden">
+                                <div class="absolute -right-2 -top-2 text-2xl opacity-20">🌸</div>
+                                <div class="text-[10px] text-red-400 font-bold mb-0.5 bg-red-50 px-2 py-0.5 rounded-full inline-block">JTB</div>
+                                <div class="text-xs font-bold mt-1">宮坂 希</div>
+                            </div>
+                            <div class="bg-white p-2.5 rounded-2xl border-2 border-red-100 shadow-sm flex flex-col items-center text-center relative overflow-hidden">
+                                <div class="absolute -right-2 -top-2 text-2xl opacity-20">🌸</div>
+                                <div class="text-[10px] text-red-400 font-bold mb-0.5 bg-red-50 px-2 py-0.5 rounded-full inline-block">JTB</div>
+                                <div class="text-xs font-bold mt-1">佐藤 怜美</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- セプテーニ -->
+                    <div>
+                        <h4 class="font-bold text-brand-orange mb-2.5 text-xs flex items-center gap-1.5 border-b-2 border-orange-100 pb-1">
+                            <i class="fa-solid fa-lightbulb text-orange-300"></i> セプテーニ
+                        </h4>
+                        <div class="grid grid-cols-2 gap-3 text-gray-700">
+                            <div class="bg-white p-2.5 rounded-2xl border-2 border-orange-100 shadow-sm flex flex-col items-center text-center relative overflow-hidden">
+                                <div class="absolute -right-2 -top-2 text-2xl opacity-20">🌟</div>
+                                <div class="text-[10px] text-orange-400 font-bold mb-0.5 bg-orange-50 px-2 py-0.5 rounded-full inline-block">セプテーニ</div>
+                                <div class="text-xs font-bold mt-1">福井 沙也果</div>
+                            </div>
+                            <div class="bg-white p-2.5 rounded-2xl border-2 border-orange-100 shadow-sm flex flex-col items-center text-center relative overflow-hidden">
+                                <div class="absolute -right-2 -top-2 text-2xl opacity-20">🌟</div>
+                                <div class="text-[10px] text-orange-400 font-bold mb-0.5 bg-orange-50 px-2 py-0.5 rounded-full inline-block">セプテーニ</div>
+                                <div class="text-xs font-bold mt-1">加藤 凜乃</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 演出・制作 -->
+                    <div>
+                        <h4 class="font-bold text-blue-500 mb-2.5 text-xs flex items-center gap-1.5 border-b-2 border-blue-100 pb-1">
+                            <i class="fa-solid fa-clapperboard text-blue-300"></i> 演出・制作
+                        </h4>
+                        <div class="grid grid-cols-2 gap-3 text-gray-700">
+                            <div class="bg-white p-2.5 rounded-2xl border-2 border-blue-50 shadow-sm flex flex-col items-center text-center">
+                                <div class="text-[10px] text-blue-500 font-bold mb-0.5 bg-blue-50 px-2 py-0.5 rounded-full inline-block">監督</div>
+                                <div class="text-xs font-bold mt-1">佐藤 恵美</div>
+                            </div>
+                            <div class="bg-white p-2.5 rounded-2xl border-2 border-blue-50 shadow-sm flex flex-col items-center text-center">
+                                <div class="text-[10px] text-blue-500 font-bold mb-0.5 bg-blue-50 px-2 py-0.5 rounded-full inline-block">監督補佐</div>
+                                <div class="text-xs font-bold mt-1">金澤 善風</div>
+                            </div>
+                            <div class="bg-white p-2.5 rounded-2xl border-2 border-blue-50 shadow-sm flex flex-col items-center text-center">
+                                <div class="text-[10px] text-blue-500 font-bold mb-0.5 bg-blue-50 px-2 py-0.5 rounded-full inline-block">制作</div>
+                                <div class="text-xs font-bold mt-1">市川 拓弥</div>
+                            </div>
+                            <div class="bg-white p-2.5 rounded-2xl border-2 border-blue-50 shadow-sm flex flex-col items-center text-center">
+                                <div class="text-[10px] text-blue-500 font-bold mb-0.5 bg-blue-50 px-2 py-0.5 rounded-full inline-block">制作</div>
+                                <div class="text-xs font-bold mt-1">加藤 芳崇</div>
+                            </div>
+                            <div class="bg-white p-2.5 rounded-2xl border-2 border-blue-50 shadow-sm flex flex-col items-center text-center">
+                                <div class="text-[10px] text-blue-500 font-bold mb-0.5 bg-blue-50 px-2 py-0.5 rounded-full inline-block">制作</div>
+                                <div class="text-xs font-bold mt-1">佐藤 汐</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 技術 -->
+                    <div>
+                        <h4 class="font-bold text-green-500 mb-2.5 text-xs flex items-center gap-1.5 border-b-2 border-green-100 pb-1">
+                            <i class="fa-solid fa-video text-green-300"></i> 技術 (撮影・照明・録音)
+                        </h4>
+                        <div class="grid grid-cols-2 gap-3 text-gray-700">
+                            <div class="bg-white p-2.5 rounded-2xl border-2 border-green-50 shadow-sm flex flex-col items-center text-center">
+                                <div class="text-[10px] text-green-600 font-bold mb-0.5 bg-green-50 px-2 py-0.5 rounded-full inline-block">撮影</div>
+                                <div class="text-xs font-bold mt-1">時光 佑輔</div>
+                            </div>
+                            <div class="bg-white p-2.5 rounded-2xl border-2 border-green-50 shadow-sm flex flex-col items-center text-center">
+                                <div class="text-[10px] text-green-600 font-bold mb-0.5 bg-green-50 px-2 py-0.5 rounded-full inline-block">撮影 チーフ</div>
+                                <div class="text-xs font-bold mt-1">山城 俊介</div>
+                            </div>
+                            <div class="bg-white p-2.5 rounded-2xl border-2 border-green-50 shadow-sm flex flex-col items-center text-center">
+                                <div class="text-[10px] text-green-600 font-bold mb-0.5 bg-green-50 px-2 py-0.5 rounded-full inline-block">撮影 セカンド</div>
+                                <div class="text-xs font-bold mt-1">伊藤 隼幹</div>
+                            </div>
+                            <div class="bg-white p-2.5 rounded-2xl border-2 border-green-50 shadow-sm flex flex-col items-center text-center">
+                                <div class="text-[10px] text-green-600 font-bold mb-0.5 bg-green-50 px-2 py-0.5 rounded-full inline-block">照明</div>
+                                <div class="text-xs font-bold mt-1">ふじまたゆうと</div>
+                            </div>
+                            <div class="bg-white p-2.5 rounded-2xl border-2 border-green-50 shadow-sm flex flex-col items-center text-center">
+                                <div class="text-[10px] text-green-600 font-bold mb-0.5 bg-green-50 px-2 py-0.5 rounded-full inline-block">録音</div>
+                                <div class="text-xs font-bold mt-1">池本あずさ</div>
+                            </div>
+                            <div class="bg-white p-2.5 rounded-2xl border-2 border-green-50 shadow-sm flex flex-col items-center text-center">
+                                <div class="text-[10px] text-green-600 font-bold mb-0.5 bg-green-50 px-2 py-0.5 rounded-full inline-block">録音 助手</div>
+                                <div class="text-xs font-bold mt-1">魚野 陽多</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- STY・HM -->
+                    <div>
+                        <h4 class="font-bold text-purple-500 mb-2.5 text-xs flex items-center gap-1.5 border-b-2 border-purple-100 pb-1">
+                            <i class="fa-solid fa-wand-magic-sparkles text-purple-300"></i> STY・HM
+                        </h4>
+                        <div class="grid grid-cols-2 gap-3 text-gray-700">
+                            <div class="bg-white p-2.5 rounded-2xl border-2 border-purple-50 shadow-sm flex flex-col items-center text-center">
+                                <div class="text-[10px] text-purple-600 font-bold mb-0.5 bg-purple-50 px-2 py-0.5 rounded-full inline-block">STY</div>
+                                <div class="text-xs font-bold mt-1">小澤 奈月</div>
+                            </div>
+                            <div class="bg-white p-2.5 rounded-2xl border-2 border-purple-50 shadow-sm flex flex-col items-center text-center">
+                                <div class="text-[10px] text-purple-600 font-bold mb-0.5 bg-purple-50 px-2 py-0.5 rounded-full inline-block">HM</div>
+                                <div class="text-xs font-bold mt-1">木附沢 美耶</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+        </section>
+
+        <section id="schedule">
+            <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center">
+                    <i class="fa-regular fa-calendar-check text-brand-jtb text-lg mr-2"></i>
+                    <h2 class="text-lg font-bold border-b-2 border-brand-jtb pb-0.5">スケジュール＆現在地</h2>
+                </div>
+            </div>
+
+            <!-- 日程切り替えタブ -->
+            <div class="flex bg-gray-100 p-1 rounded-full mb-6 border border-gray-200">
+                <button id="btn-day1" onclick="switchTab('day1')" class="w-1/2 py-2.5 bg-brand-jtb text-white rounded-full text-sm font-bold shadow-sm transition-all">
+                    1日目 (8/6 山梨)
+                </button>
+                <button id="btn-day2" onclick="switchTab('day2')" class="w-1/2 py-2.5 bg-transparent text-gray-600 hover:bg-red-100 rounded-full text-sm font-bold transition-all">
+                    2日目 (8/7 熱海)
+                </button>
+            </div>
+            
+            <div id="schedule-day1" class="day-content relative space-y-6">
+                
+                <div class="relative flex timeline-item" data-time="2026-08-06T08:15:00" data-end-time="2026-08-06T09:35:00">
+                    <div class="timeline-line"></div>
+                    <div class="z-10 flex-shrink-0 w-9 h-9 bg-brand-orange rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-3 text-xs">
+                        <i class="fa-solid fa-mountain"></i>
+                    </div>
+                    <div class="bg-white rounded-2xl p-4 shadow-sm border border-orange-50 flex-grow relative overflow-hidden">
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="font-bold text-brand-orange text-base">08:15</span>
+                            <h3 class="font-bold text-gray-800 text-base">Fujiyama ツインテラス</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative flex timeline-item" data-time="2026-08-06T09:35:00" data-end-time="2026-08-06T10:05:00">
+                    <div class="timeline-line"></div>
+                    <div class="z-10 flex-shrink-0 w-9 h-9 bg-gray-400 rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-3 text-xs">
+                        <i class="fa-solid fa-car"></i>
+                    </div>
+                    <div class="bg-gray-50 rounded-2xl p-4 shadow-sm border border-gray-200 flex-grow relative overflow-hidden">
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="font-bold text-gray-600 text-base">09:35</span>
+                            <h3 class="font-bold text-gray-800 text-base">出発（30分移動）</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative flex timeline-item" data-time="2026-08-06T10:05:00" data-end-time="2026-08-06T11:35:00">
+                    <div class="timeline-line"></div>
+                    <div class="z-10 flex-shrink-0 w-9 h-9 bg-brand-jtb rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-3 text-xs">
+                        <i class="fa-solid fa-tree"></i>
+                    </div>
+                    <div class="bg-white rounded-2xl p-4 shadow-sm border border-red-50 flex-grow relative overflow-hidden">
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="font-bold text-brand-jtb text-base">10:05</span>
+                            <h3 class="font-bold text-gray-800 text-base">河口湖周辺散策</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative flex timeline-item" data-time="2026-08-06T11:35:00" data-end-time="2026-08-06T12:50:00">
+                    <div class="timeline-line"></div>
+                    <div class="z-10 flex-shrink-0 w-9 h-9 bg-gray-400 rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-3 text-xs">
+                        <i class="fa-solid fa-car"></i>
+                    </div>
+                    <div class="bg-gray-50 rounded-2xl p-4 shadow-sm border border-gray-200 flex-grow relative overflow-hidden">
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="font-bold text-gray-600 text-base">11:35</span>
+                            <h3 class="font-bold text-gray-800 text-base">出発</h3>
+                        </div>
+                        <p class="text-xs text-gray-600">30分移動・セッティング45分</p>
+                    </div>
+                </div>
+
+                <div class="relative flex timeline-item" data-time="2026-08-06T12:50:00" data-end-time="2026-08-06T13:50:00">
+                    <div class="timeline-line"></div>
+                    <div class="z-10 flex-shrink-0 w-9 h-9 bg-brand-yellow rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-3 text-xs">
+                        <i class="fa-solid fa-video"></i>
+                    </div>
+                    <div class="bg-white rounded-2xl p-4 shadow-sm border border-yellow-50 flex-grow relative overflow-hidden">
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="font-bold text-yellow-600 text-base">12:50</span>
+                            <h3 class="font-bold text-gray-800 text-base">車内カット撮影</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative flex timeline-item" data-time="2026-08-06T13:50:00" data-end-time="2026-08-06T14:30:00">
+                    <div class="timeline-line"></div>
+                    <div class="z-10 flex-shrink-0 w-9 h-9 bg-brand-orange rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-3 text-xs">
                         <i class="fa-solid fa-shirt"></i>
                     </div>
-                    <div>
-                        <h3 class="font-bold text-gray-800 text-sm mb-1 title-font">アメニティはロビーで！</h3>
-                        <p class="text-xs text-gray-600 leading-relaxed">
-                            お部屋にはタオルとソープ類のみご用意。<br>
-                            <span class="font-bold text-brand-jtb">ナイトウェア</span>、歯ブラシ等は、1階エレベーター前のアメニティコーナーから必要な分を持っていきましょう！
-                        </p>
+                    <div class="bg-white rounded-2xl p-4 shadow-sm border border-orange-50 flex-grow relative overflow-hidden">
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="font-bold text-brand-orange text-base">13:50</span>
+                            <h3 class="font-bold text-gray-800 text-base">終了・衣装チェンジ！！</h3>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- ポイント2: 朝食 -->
-            <div class="bg-white border-2 border-orange-50 rounded-xl p-4 shadow-sm relative overflow-hidden">
-                <div class="absolute -right-3 -top-3 text-5xl text-orange-50 opacity-50"><i class="fa-solid fa-mug-hot"></i></div>
-                <div class="flex items-start gap-3 relative z-10">
-                    <div class="w-10 h-10 rounded-full bg-orange-100 text-brand-orange flex items-center justify-center flex-shrink-0 text-lg">
-                        <i class="fa-solid fa-croissant"></i>
+                <div class="relative flex timeline-item" data-time="2026-08-06T14:30:00" data-end-time="2026-08-06T15:30:00">
+                    <div class="timeline-line"></div>
+                    <div class="z-10 flex-shrink-0 w-9 h-9 bg-gray-400 rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-3 text-xs">
+                        <i class="fa-solid fa-car"></i>
                     </div>
-                    <div>
-                        <h3 class="font-bold text-gray-800 text-sm mb-1 title-font">1階 タリーズコーヒーで朝食☕️</h3>
-                        <p class="text-xs text-gray-600 leading-relaxed">
-                            宿泊者はもれなく朝食（6:30〜11:30）が無料！<br>
-                            サンドイッチやホットドッグなど6種類から選べます。<span class="font-bold text-brand-jtb">※チェックイン時に発券されるレシートを必ずお持ちください。</span>
-                        </p>
+                    <div class="bg-gray-50 rounded-2xl p-4 shadow-sm border border-gray-200 flex-grow relative overflow-hidden">
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="font-bold text-gray-600 text-base">14:30</span>
+                            <h3 class="font-bold text-gray-800 text-base">出発（1時間）</h3>
+                        </div>
                     </div>
                 </div>
+
+                <div class="relative flex timeline-item" data-time="2026-08-06T15:30:00" data-end-time="2026-08-06T16:30:00">
+                    <div class="timeline-line"></div>
+                    <div class="z-10 flex-shrink-0 w-9 h-9 bg-blue-400 rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-3 text-xs">
+                        <i class="fa-solid fa-water"></i>
+                    </div>
+                    <div class="bg-white rounded-2xl p-4 shadow-sm border border-blue-50 flex-grow relative overflow-hidden">
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="font-bold text-blue-500 text-base">15:30</span>
+                            <h3 class="font-bold text-gray-800 text-base">忍野八海</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative flex timeline-item" data-time="2026-08-06T16:30:00" data-end-time="2026-08-06T16:50:00">
+                    <div class="timeline-line"></div>
+                    <div class="z-10 flex-shrink-0 w-9 h-9 bg-gray-400 rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-3 text-xs">
+                        <i class="fa-solid fa-car"></i>
+                    </div>
+                    <div class="bg-gray-50 rounded-2xl p-4 shadow-sm border border-gray-200 flex-grow relative overflow-hidden">
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="font-bold text-gray-600 text-base">16:30</span>
+                            <h3 class="font-bold text-gray-800 text-base">出発（20分）</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative flex timeline-item" data-time="2026-08-06T16:50:00" data-end-time="2026-08-06T17:50:00">
+                    <div class="timeline-line"></div>
+                    <div class="z-10 flex-shrink-0 w-9 h-9 bg-teal-500 rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-3 text-xs">
+                        <i class="fa-solid fa-fish"></i>
+                    </div>
+                    <div class="bg-white rounded-2xl p-4 shadow-sm border border-teal-50 flex-grow relative overflow-hidden">
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="font-bold text-teal-600 text-base">16:50</span>
+                            <h3 class="font-bold text-gray-800 text-base">森の中水族館</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative flex timeline-item" data-time="2026-08-06T17:50:00" data-end-time="2026-08-06T18:10:00">
+                    <div class="timeline-line"></div>
+                    <div class="z-10 flex-shrink-0 w-9 h-9 bg-gray-400 rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-3 text-xs">
+                        <i class="fa-solid fa-car"></i>
+                    </div>
+                    <div class="bg-gray-50 rounded-2xl p-4 shadow-sm border border-gray-200 flex-grow relative overflow-hidden">
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="font-bold text-gray-600 text-base">17:50</span>
+                            <h3 class="font-bold text-gray-800 text-base">出発</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative flex timeline-item" data-time="2026-08-06T18:10:00" data-end-time="2026-08-06T21:50:00">
+                    <div class="timeline-line"></div>
+                    <div class="z-10 flex-shrink-0 w-9 h-9 bg-green-600 rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-3 text-xs">
+                        <i class="fa-solid fa-campground"></i>
+                    </div>
+                    <div class="bg-white rounded-2xl p-4 shadow-sm border border-green-50 flex-grow relative overflow-hidden">
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="font-bold text-green-600 text-base">18:10</span>
+                            <h3 class="font-bold text-gray-800 text-base">PICA Fujiyama</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative flex timeline-item" data-time="2026-08-06T21:50:00" data-end-time="2026-08-06T22:15:00">
+                    <div class="timeline-line"></div>
+                    <div class="z-10 flex-shrink-0 w-9 h-9 bg-gray-500 rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-3 text-xs">
+                        <i class="fa-solid fa-flag-checkered"></i>
+                    </div>
+                    <div class="bg-gray-50 rounded-2xl p-4 shadow-sm border border-gray-200 flex-grow relative overflow-hidden">
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="font-bold text-gray-600 text-base">21:50</span>
+                            <h3 class="font-bold text-gray-800 text-base">終了</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative flex timeline-item" data-time="2026-08-06T22:15:00" data-end-time="2026-08-07T00:00:00">
+                    <div class="timeline-line"></div>
+                    <div class="z-10 flex-shrink-0 w-9 h-9 bg-gray-400 rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-3 text-xs">
+                        <i class="fa-solid fa-car"></i>
+                    </div>
+                    <div class="bg-gray-50 rounded-2xl p-4 shadow-sm border border-gray-200 flex-grow relative overflow-hidden">
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="font-bold text-gray-600 text-base">22:15</span>
+                            <h3 class="font-bold text-gray-800 text-base">出発（2時間）</h3>
+                        </div>
+                        <p class="text-xs text-gray-600">熱海へ大移動！</p>
+                    </div>
+                </div>
+
+                <div class="relative flex timeline-item" data-time="2026-08-07T00:00:00" data-end-time="2026-08-07T08:00:00">
+                    <div class="timeline-line"></div>
+                    <div class="z-10 flex-shrink-0 w-9 h-9 bg-brand-jtb rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-3 text-xs">
+                        <i class="fa-solid fa-hotel"></i>
+                    </div>
+                    <div class="bg-white rounded-2xl p-4 shadow-sm border border-red-50 flex-grow relative overflow-hidden">
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="font-bold text-brand-jtb text-base">24:00</span>
+                            <h3 class="font-bold text-gray-800 text-base">プリンス スマート イン熱海 宿泊</h3>
+                        </div>
+                        <p class="text-xs text-gray-600 mb-2">お疲れ様でした！明日に備えてゆっくり休みましょう。</p>
+                        
+                        <!-- 宿泊ページへのリンクボタン -->
+                        <a href="hotel.html" class="inline-flex items-center justify-center bg-white border border-brand-jtb text-brand-jtb text-[10px] font-bold px-3 py-1.5 rounded-full shadow-sm hover:bg-red-50 transition w-full sm:w-auto">
+                            <i class="fa-solid fa-bed mr-1.5"></i>ホテルの詳細・アメニティを見る
+                        </a>
+                    </div>
+                </div>
+
             </div>
 
-            <!-- ポイント3: スマートチェックイン -->
-            <div class="bg-white border-2 border-green-50 rounded-xl p-4 shadow-sm relative overflow-hidden">
-                <div class="absolute -right-3 -top-3 text-5xl text-green-50 opacity-50"><i class="fa-solid fa-mobile-screen"></i></div>
-                <div class="flex items-start gap-3 relative z-10">
-                    <div class="w-10 h-10 rounded-full bg-green-100 text-brand-green flex items-center justify-center flex-shrink-0 text-lg">
-                        <i class="fa-solid fa-qrcode"></i>
+            <!-- Day 2 Schedule -->
+            <div id="schedule-day2" class="day-content relative space-y-6 hidden">
+                <div class="relative flex timeline-item" data-time="2026-08-07T08:00:00" data-end-time="2026-08-07T08:30:00">
+                    <div class="timeline-line"></div>
+                    <div class="z-10 flex-shrink-0 w-9 h-9 bg-brand-jtb rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-3 text-xs">
+                        <i class="fa-solid fa-hotel"></i>
                     </div>
-                    <div>
-                        <h3 class="font-bold text-gray-800 text-sm mb-1 title-font">無料ロッカー完備</h3>
-                        <p class="text-xs text-gray-600 leading-relaxed">
-                            当日チェックイン前に限り、ロビーの専用ロッカーに無料で荷物を預けられます！手ぶらで熱海観光へ出かけましょう。（※チェックアウト後の利用は不可）
-                        </p>
+                    <div class="bg-white rounded-2xl p-4 shadow-sm border border-red-50 flex-grow relative overflow-hidden">
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="font-bold text-brand-jtb text-base">08:00</span>
+                            <h3 class="font-bold text-gray-800 text-base">ホテル発</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative flex timeline-item" data-time="2026-08-07T08:30:00" data-end-time="2026-08-07T09:00:00">
+                    <div class="timeline-line"></div>
+                    <div class="z-10 flex-shrink-0 w-9 h-9 bg-brand-orange rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-3 text-xs">
+                        <i class="fa-solid fa-cow"></i>
+                    </div>
+                    <div class="bg-white rounded-2xl p-4 shadow-sm border border-orange-50 flex-grow relative overflow-hidden">
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="font-bold text-brand-orange text-base">08:30</span>
+                            <h3 class="font-bold text-gray-800 text-base">酪農王国オラッチェ</h3>
+                        </div>
+                        <p class="text-xs text-gray-600">到着＆準備。</p>
+                    </div>
+                </div>
+
+                <div class="relative flex timeline-item" data-time="2026-08-07T09:00:00" data-end-time="2026-08-07T10:30:00">
+                    <div class="timeline-line"></div>
+                    <div class="z-10 flex-shrink-0 w-9 h-9 bg-brand-jtb rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-3 text-xs">
+                        <i class="fa-solid fa-camera"></i>
+                    </div>
+                    <div class="bg-white rounded-2xl p-4 shadow-sm border border-red-50 flex-grow relative overflow-hidden">
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="font-bold text-brand-jtb text-base">09:00</span>
+                            <h3 class="font-bold text-gray-800 text-base">撮影開始</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative flex timeline-item" data-time="2026-08-07T10:30:00" data-end-time="2026-08-07T11:00:00">
+                    <div class="timeline-line"></div>
+                    <div class="z-10 flex-shrink-0 w-9 h-9 bg-gray-400 rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-3 text-xs">
+                        <i class="fa-solid fa-car"></i>
+                    </div>
+                    <div class="bg-gray-50 rounded-2xl p-4 shadow-sm border border-gray-200 flex-grow relative overflow-hidden">
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="font-bold text-gray-600 text-base">10:30</span>
+                            <h3 class="font-bold text-gray-800 text-base">移動（30分）</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative flex timeline-item" data-time="2026-08-07T11:00:00" data-end-time="2026-08-07T11:45:00">
+                    <div class="timeline-line"></div>
+                    <div class="z-10 flex-shrink-0 w-9 h-9 bg-brand-yellow rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-3 text-xs">
+                        <i class="fa-solid fa-shirt"></i>
+                    </div>
+                    <div class="bg-white rounded-2xl p-4 shadow-sm border border-yellow-50 flex-grow relative overflow-hidden">
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="font-bold text-yellow-600 text-base">11:00</span>
+                            <h3 class="font-bold text-gray-800 text-base">お宮の松駐車場</h3>
+                        </div>
+                        <p class="text-xs font-bold text-brand-jtb">衣装チェンジ！！！</p>
+                    </div>
+                </div>
+
+                <div class="relative flex timeline-item" data-time="2026-08-07T11:45:00" data-end-time="2026-08-07T12:00:00">
+                    <div class="timeline-line"></div>
+                    <div class="z-10 flex-shrink-0 w-9 h-9 bg-blue-500 rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-3 text-xs">
+                        <i class="fa-solid fa-anchor"></i>
+                    </div>
+                    <div class="bg-white rounded-2xl p-4 shadow-sm border border-blue-50 flex-grow relative overflow-hidden">
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="font-bold text-blue-500 text-base">11:45</span>
+                            <h3 class="font-bold text-gray-800 text-base">熱海港</h3>
+                        </div>
+                        <p class="text-xs text-gray-600">フェリー受付！！</p>
+                    </div>
+                </div>
+
+                <div class="relative flex timeline-item" data-time="2026-08-07T12:00:00" data-end-time="2026-08-07T12:30:00">
+                    <div class="timeline-line"></div>
+                    <div class="z-10 flex-shrink-0 w-9 h-9 bg-blue-400 rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-3 text-xs">
+                        <i class="fa-solid fa-ship"></i>
+                    </div>
+                    <div class="bg-white rounded-2xl p-4 shadow-sm border border-blue-50 flex-grow relative overflow-hidden">
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="font-bold text-blue-500 text-base">12:00</span>
+                            <h3 class="font-bold text-gray-800 text-base">フェリー出発！！</h3>
+                        </div>
+                        <p class="text-xs text-gray-600">移動（30分）</p>
+                    </div>
+                </div>
+
+                <div class="relative flex timeline-item" data-time="2026-08-07T12:30:00" data-end-time="2026-08-07T15:30:00">
+                    <div class="timeline-line"></div>
+                    <div class="z-10 flex-shrink-0 w-9 h-9 bg-teal-500 rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-3 text-xs">
+                        <i class="fa-solid fa-umbrella-beach"></i>
+                    </div>
+                    <div class="bg-white rounded-2xl p-4 shadow-sm border border-teal-50 flex-grow relative overflow-hidden">
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="font-bold text-teal-600 text-base">12:30</span>
+                            <h3 class="font-bold text-gray-800 text-base">初島着</h3>
+                        </div>
+                        <p class="text-xs text-gray-600">初島にてロケ。</p>
+                    </div>
+                </div>
+
+                <div class="relative flex timeline-item" data-time="2026-08-07T15:30:00" data-end-time="2026-08-07T15:50:00">
+                    <div class="timeline-line"></div>
+                    <div class="z-10 flex-shrink-0 w-9 h-9 bg-blue-400 rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-3 text-xs">
+                        <i class="fa-solid fa-ship"></i>
+                    </div>
+                    <div class="bg-white rounded-2xl p-4 shadow-sm border border-blue-50 flex-grow relative overflow-hidden">
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="font-bold text-blue-500 text-base">15:30</span>
+                            <h3 class="font-bold text-gray-800 text-base">フェリー発</h3>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="relative flex timeline-item" data-time="2026-08-07T15:50:00" data-end-time="2026-08-07T16:30:00">
+                    <div class="timeline-line"></div>
+                    <div class="z-10 flex-shrink-0 w-9 h-9 bg-blue-500 rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-3 text-xs">
+                        <i class="fa-solid fa-anchor"></i>
+                    </div>
+                    <div class="bg-white rounded-2xl p-4 shadow-sm border border-blue-50 flex-grow relative overflow-hidden">
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="font-bold text-blue-500 text-base">15:50</span>
+                            <h3 class="font-bold text-gray-800 text-base">熱海港 着</h3>
+                        </div>
+                        <p class="text-xs text-gray-600">移動（15分）& 休憩（25分）</p>
+                    </div>
+                </div>
+
+                <div class="relative flex timeline-item" data-time="2026-08-07T16:30:00" data-end-time="2026-08-07T17:00:00">
+                    <div class="timeline-line"></div>
+                    <div class="z-10 flex-shrink-0 w-9 h-9 bg-brand-orange rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-3 text-xs">
+                        <i class="fa-solid fa-palette"></i>
+                    </div>
+                    <div class="bg-white rounded-2xl p-4 shadow-sm border border-orange-50 flex-grow relative overflow-hidden">
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="font-bold text-brand-orange text-base">16:30</span>
+                            <h3 class="font-bold text-gray-800 text-base">熱海陶芸工房doka</h3>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="relative flex timeline-item" data-time="2026-08-07T17:00:00" data-end-time="2026-08-07T17:10:00">
+                    <div class="timeline-line"></div>
+                    <div class="z-10 flex-shrink-0 w-9 h-9 bg-gray-400 rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-3 text-xs">
+                        <i class="fa-solid fa-car"></i>
+                    </div>
+                    <div class="bg-gray-50 rounded-2xl p-4 shadow-sm border border-gray-200 flex-grow relative overflow-hidden">
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="font-bold text-gray-600 text-base">17:00</span>
+                            <h3 class="font-bold text-gray-800 text-base">移動（10分）</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative flex timeline-item" data-time="2026-08-07T17:10:00" data-end-time="2026-08-07T20:00:00">
+                    <div class="timeline-line"></div>
+                    <div class="z-10 flex-shrink-0 w-9 h-9 bg-brand-jtb rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-3 text-xs">
+                        <i class="fa-solid fa-hotel"></i>
+                    </div>
+                    <div class="bg-white rounded-2xl p-4 shadow-sm border border-red-50 flex-grow relative overflow-hidden">
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="font-bold text-brand-jtb text-base">17:10</span>
+                            <h3 class="font-bold text-gray-800 text-base">ホテル貫一着</h3>
+                        </div>
+                        <p class="text-xs text-gray-600">ホテルでの撮影など。</p>
+                    </div>
+                </div>
+                
+                <div class="relative flex timeline-item" data-time="2026-08-07T20:00:00" data-end-time="2026-08-07T22:00:00">
+                    <div class="timeline-line"></div>
+                    <div class="z-10 flex-shrink-0 w-9 h-9 bg-gray-500 rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-3 text-xs">
+                        <i class="fa-solid fa-flag-checkered"></i>
+                    </div>
+                    <div class="bg-gray-50 rounded-2xl p-4 shadow-sm border border-gray-200 flex-grow relative overflow-hidden">
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="font-bold text-gray-600 text-base">20:00</span>
+                            <h3 class="font-bold text-gray-800 text-base">撮影終了</h3>
+                        </div>
+                        <p class="text-xs text-gray-600">お疲れ様でした！撤収・出発。</p>
+                    </div>
+                </div>
+
+                <div class="relative flex timeline-item" data-time="2026-08-07T22:00:00" data-end-time="2026-08-07T23:00:00">
+                    <div class="timeline-line"></div>
+                    <div class="z-10 flex-shrink-0 w-9 h-9 bg-gray-500 rounded-full border-4 border-white shadow flex items-center justify-center text-white mr-3 text-xs">
+                        <i class="fa-solid fa-building"></i>
+                    </div>
+                    <div class="bg-gray-50 rounded-2xl p-4 shadow-sm border border-gray-200 flex-grow relative overflow-hidden">
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="font-bold text-gray-600 text-base">22:00</span>
+                            <h3 class="font-bold text-gray-800 text-base">都内戻り予定</h3>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="animate-fade-in" style="animation-delay: 0.3s;">
-            <h2 class="text-base font-bold title-font border-b-2 border-brand-jtb inline-block pb-0.5 mb-3">MAP</h2>
-            <div class="bg-white p-2 rounded-xl border border-gray-100 shadow-sm">
-                <div class="w-full h-40 bg-gray-100 rounded-lg overflow-hidden relative mb-2 group cursor-pointer">
-                    <!-- マップアプリを開くための透明なボタン -->
-                    <a href="https://maps.google.com/?q=プリンススマートイン熱海" target="_blank" rel="noopener noreferrer" class="absolute inset-0 z-10 flex items-center justify-center bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <span class="bg-white/90 text-brand-jtb text-xs font-bold px-3 py-1.5 rounded-full shadow-sm"><i class="fa-solid fa-arrow-up-right-from-square mr-1"></i>マップアプリで開く</span>
-                    </a>
-                    <iframe 
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3257.0754877395047!2d139.07722421524792!3d35.104768380331086!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6019eaacbc4d7459%3A0x63ff865a77cd5c87!2z44OX44Oq44Oz44K5IOOCueODnuODvOODiCDggqTjg7Mg54ax5rW3!5e0!3m2!1sja!2sjp!4v1690000000000!5m2!1sja!2sjp" 
-                        width="100%" 
-                        height="100%" 
-                        style="border:0; pointer-events: none;" 
-                        allowfullscreen="" 
-                        loading="lazy">
-                    </iframe>
+        <section id="map" class="pt-2">
+            <div class="flex items-center mb-4">
+                <i class="fa-solid fa-map-location-dot text-brand-jtb text-lg mr-2"></i>
+                <h2 class="text-lg font-bold border-b-2 border-brand-jtb pb-0.5">ルートマップ</h2>
+            </div>
+            
+            <div class="space-y-4">
+                <!-- 1日目マップ -->
+                <div id="map-day1" class="day-content relative bg-white p-3 rounded-2xl shadow-sm border border-red-100">
+                    <h3 class="text-xs font-bold text-brand-jtb mb-2"><i class="fa-solid fa-location-dot mr-1"></i>1日目：山梨ルート</h3>
+                    <div class="w-full h-48 bg-gray-100 rounded-xl overflow-hidden relative group cursor-pointer">
+                        <a href="https://maps.app.goo.gl/z1LRvCdDDYC7HzeV7" target="_blank" rel="noopener noreferrer" class="absolute inset-0 z-10 flex items-center justify-center bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <span class="bg-white/90 text-brand-jtb text-xs font-bold px-3 py-1.5 rounded-full shadow-sm"><i class="fa-solid fa-arrow-up-right-from-square mr-1"></i>マップアプリで開く</span>
+                        </a>
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d103755.94723383822!2d138.65476307399878!3d35.53488439775363!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e0!4m5!1s0x6019672ebdd927c3%3A0x6a05e2cc34b22db7!2z5q-F6YeO5YWr5rW3!3m2!1d35.460492899999995!2d138.8231362!4m5!1s0x60195e347e3a890f%3A0xb3bd0f1e8bf1c30e!2z5rKz5Y-j5rmW!3m2!1d35.517094299999996!2d138.7517616!5e0!3m2!1sja!2sjp!4v1716281000000!5m2!1sja!2sjp" 
+                            width="100%" 
+                            height="100%" 
+                            style="border:0; pointer-events: none;" 
+                            allowfullscreen="" 
+                            loading="lazy">
+                        </iframe>
+                    </div>
                 </div>
-                <p class="text-[10px] text-gray-500 text-center">〒413-0005 静岡県熱海市春日町17-14</p>
+
+                <!-- 2日目マップ -->
+                <div id="map-day2" class="day-content relative hidden bg-white p-3 rounded-2xl shadow-sm border border-blue-100">
+                    <h3 class="text-xs font-bold text-blue-500 mb-2"><i class="fa-solid fa-location-dot mr-1"></i>2日目：熱海ルート</h3>
+                    <div class="w-full h-48 bg-gray-100 rounded-xl overflow-hidden relative group cursor-pointer">
+                        <a href="https://maps.app.goo.gl/kX31s3jH9v1m1j75A" target="_blank" rel="noopener noreferrer" class="absolute inset-0 z-10 flex items-center justify-center bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <span class="bg-white/90 text-blue-500 text-xs font-bold px-3 py-1.5 rounded-full shadow-sm"><i class="fa-solid fa-arrow-up-right-from-square mr-1"></i>マップアプリで開く</span>
+                        </a>
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m58!1m12!1m3!1d52119.82173167123!2d138.99551105940562!3d35.09706306509939!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m43!3e0!4m5!1s0x6019eaacbc4d7459%3A0x63ff865a77cd5c87!2z44OX44Oq44Oz44K5IOOCueODnuODvOODiCDggqTjg7Mg54ax5rW3!3m2!1d35.1047684!2d139.0772242!4m5!1s0x60199e6912f29d47%3A0x304d9cf6c3c3327a!2z6YWq6L6y546L5Zu944Kq44Op44OD44OB44Kn!3m2!1d35.1186715!2d138.9928503!4m5!1s0x6019ebbe61e73da9%3A0x5144b6c37ab08f65!2z44GK5a6u44Gu5p2-!3m2!1d35.0984852!2d139.0754868!4m5!1s0x6019eb9e7f45afb1%3A0x6b4fb6c185bb81d!2z54ax5rW35riv!3m2!1d35.091398899999996!2d139.077227!4m5!1s0x6019cbafb7dc98cf%3A0x133ec6ef63d30bd!2z5Yid5bO2!3m2!1d35.0396556!2d139.1724227!4m5!1s0x6019eb641fd5d0e5%3A0x14101e40820cc039!2z54ax5rW36Zm26Iq45bel5oi_ZG9rYQ!3m2!1d35.1009134!2d139.0771501!4m5!1s0x6019ebbe8a62e0eb%3A0xe765677baee27eb!2z44Ob44OG44Or6LKr5LiA!3m2!1d35.1004128!2d139.0763529!5e0!3m2!1sja!2sjp!4v1716281200000!5m2!1sja!2sjp" 
+                            width="100%" 
+                            height="100%" 
+                            style="border:0; pointer-events: none;" 
+                            allowfullscreen="" 
+                            loading="lazy">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="items" class="pt-2">
+            <div class="flex items-center mb-4">
+                <i class="fa-solid fa-suitcase-rolling text-brand-jtb text-lg mr-2"></i>
+                <h2 class="text-lg font-bold border-b-2 border-brand-jtb pb-0.5">持ち物リスト</h2>
+            </div>
+
+            <!-- 支給リスト -->
+            <div class="bg-white rounded-2xl shadow-sm border border-red-100 overflow-hidden mb-4">
+                <div class="bg-red-50 p-3 font-bold text-gray-800 text-sm flex items-center gap-2 border-b border-red-100">
+                    <i class="fa-solid fa-box-archive text-brand-jtb"></i>
+                    <span>支給リスト</span>
+                </div>
+                <div class="p-4 text-sm text-gray-700 space-y-2">
+                    <ul class="list-disc list-inside space-y-1.5 pl-1">
+                        <li>台本・スケジュール表</li>
+                        <li>スタッフパス・身分証</li>
+                        <li>撮影機材一式</li>
+                        <li>酔い止め</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 夏備品 -->
+            <div class="bg-white rounded-2xl shadow-sm border border-red-100 overflow-hidden">
+                <div class="bg-orange-50 p-3 font-bold text-gray-800 text-sm flex items-center gap-2 border-b border-orange-100">
+                    <i class="fa-solid fa-sun text-brand-orange"></i>
+                    <span>夏備品（必要な方は制作部にお声がけください！）</span>
+                </div>
+                <div class="p-4 text-sm text-gray-700 space-y-2">
+                    <ul class="list-disc list-inside space-y-1.5 pl-1">
+                        <li>ドリンク</li>
+                        <li>日焼け止め</li>
+                        <li>虫除けスプレー</li>
+                        <li>ムヒ</li>
+                    </ul>
+                </div>
             </div>
         </section>
         
+        <div class="text-center pt-6 pb-4 text-xs text-gray-400 title-font">
+            Have a great shooting trip! 🎬✨
+        </div>
     </div>
-
-    <div class="fixed bottom-0 left-0 right-0 max-w-md mx-auto p-4 bg-gradient-to-t from-white via-white to-transparent z-20">
-        <a href="index.html" class="block w-full bg-brand-jtb text-white text-center py-3.5 rounded-full font-bold shadow-lg hover:bg-red-700 transition flex items-center justify-center gap-2">
-            <i class="fa-solid fa-book-open"></i> しおりに戻る
-        </a>
-    </div>
-
 </div>
 
+<script>
+    // ページ更新時に一番上に戻す設定
+    if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
+    window.addEventListener('load', function() {
+        setTimeout(() => window.scrollTo(0, 0), 10);
+    });
+
+    // タブ切り替えロジック
+    function switchTab(day) {
+        document.getElementById('btn-day1').className = "w-1/2 py-2.5 bg-transparent text-gray-600 hover:bg-red-100 rounded-full text-sm font-bold transition-all";
+        document.getElementById('btn-day2').className = "w-1/2 py-2.5 bg-transparent text-gray-600 hover:bg-red-100 rounded-full text-sm font-bold transition-all";
+        
+        document.getElementById(`btn-${day}`).className = "w-1/2 py-2.5 bg-brand-jtb text-white rounded-full text-sm font-bold shadow-sm transition-all";
+
+        const contents = document.querySelectorAll('.day-content');
+        contents.forEach(content => {
+            if (content.id.includes(day)) {
+                content.classList.remove('hidden');
+                content.style.opacity = 0;
+                setTimeout(() => content.style.opacity = 1, 50);
+            } else {
+                content.classList.add('hidden');
+            }
+        });
+    }
+
+    // 現在地（バスアイコン）自動更新ロジック
+    function updateCurrentLocation() {
+        const now = new Date();
+        const items = document.querySelectorAll('.timeline-item');
+        
+        document.querySelectorAll('.bus-marker').forEach(el => el.remove());
+        items.forEach(item => item.classList.remove('passed'));
+
+        items.forEach(item => {
+            const startTimeStr = item.getAttribute('data-time');
+            const endTimeStr = item.getAttribute('data-end-time');
+            
+            if (!startTimeStr || !endTimeStr) return;
+
+            const startTime = new Date(startTimeStr);
+            const endTime = new Date(endTimeStr);
+
+            if (now > endTime) {
+                item.classList.add('passed');
+            }
+            
+            if (now >= startTime && now <= endTime) {
+                const targetBox = item.querySelector('.bg-white, .bg-gray-50');
+                if (targetBox && !item.querySelector('.bus-marker')) {
+                    const busEl = document.createElement('div');
+                    busEl.className = 'bus-marker absolute -left-4 top-4 bg-brand-jtb text-white w-7 h-7 rounded-full flex items-center justify-center text-xs shadow-lg border-2 border-white z-20 animate-pulse';
+                    busEl.innerHTML = '<i class="fa-solid fa-bus"></i>';
+                    targetBox.appendChild(busEl);
+                    
+                    if (startTimeStr.includes('08-07') && document.getElementById('schedule-day2').classList.contains('hidden')) {
+                        switchTab('day2');
+                    }
+                }
+            }
+        });
+    }
+
+    // スムーススクロール
+    document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            
+            if (targetId === '#schedule' || targetId === '#map') {
+                const day = document.getElementById('schedule-day2').classList.contains('hidden') ? 'day1' : 'day2';
+                switchTab(day);
+            }
+
+            const navHeight = document.querySelector('nav').offsetHeight;
+            const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navHeight - 15;
+            
+            window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
+            });
+        });
+    });
+
+    // お天気API取得ロジック（安全な要素チェック付き）
+    async function loadWeather() {
+        try {
+            const res1 = await fetch('https://api.open-meteo.com/v1/forecast?latitude=35.50&longitude=138.76&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo');
+            const data1 = await res1.json();
+            
+            const res2 = await fetch('https://api.open-meteo.com/v1/forecast?latitude=35.10&longitude=139.07&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo');
+            const data2 = await res2.json();
+
+            function parseWeather(data, prefix) {
+                const iconEl = document.getElementById(prefix + 'icon');
+                const descEl = document.getElementById(prefix + 'desc');
+                const maxEl = document.getElementById(prefix + 'max');
+                const minEl = document.getElementById(prefix + 'min');
+                
+                if (!iconEl || !descEl || !maxEl || !minEl) return;
+
+                const code = data.daily.weathercode[0]; 
+                const max = Math.round(data.daily.temperature_2m_max[0]);
+                const min = Math.round(data.daily.temperature_2m_min[0]);
+                
+                let icon = '<i class="fa-solid fa-cloud text-gray-400"></i>';
+                let text = '曇り';
+                
+                if (code === 0) { icon = '<i class="fa-solid fa-sun text-orange-500"></i>'; text = '快晴'; }
+                else if (code === 1 || code === 2) { icon = '<i class="fa-solid fa-cloud-sun text-orange-400"></i>'; text = '晴れ/曇'; }
+                else if (code === 3) { icon = '<i class="fa-solid fa-cloud text-gray-400"></i>'; text = '曇り'; }
+                else if (code >= 45 && code <= 48) { icon = '<i class="fa-solid fa-smog text-gray-400"></i>'; text = '霧'; }
+                else if (code >= 51 && code <= 67) { icon = '<i class="fa-solid fa-umbrella text-blue-500"></i>'; text = '雨'; }
+                else if (code >= 71 && code <= 77) { icon = '<i class="fa-solid fa-snowflake text-blue-300"></i>'; text = '雪'; }
+                else if (code >= 95) { icon = '<i class="fa-solid fa-cloud-bolt text-yellow-500"></i>'; text = '雷雨'; }
+
+                iconEl.innerHTML = icon;
+                descEl.innerText = text;
+                maxEl.innerText = max;
+                minEl.innerText = min;
+            }
+
+            parseWeather(data1, 'w-1-');
+            parseWeather(data2, 'w-2-');
+        } catch (e) {
+            console.error('Weather fetch error:', e);
+            const desc1 = document.getElementById('w-1-desc');
+            const desc2 = document.getElementById('w-2-desc');
+            if (desc1) desc1.innerText = '取得失敗';
+            if (desc2) desc2.innerText = '取得失敗';
+        }
+    }
+
+    // コピー機能
+    function copyWifiPass(btn) {
+        const passText = document.getElementById('wifi-pass').innerText;
+        const textArea = document.createElement("textarea");
+        textArea.value = passText;
+        document.body.appendChild(textArea);
+        textArea.select();
+        try {
+            document.execCommand('copy');
+            const originalHTML = btn.innerHTML;
+            // ボタンを「コピー完了」スタイルに変更
+            btn.innerHTML = '<i class="fa-solid fa-check mr-1"></i>完了!';
+            btn.classList.replace('bg-blue-100', 'bg-green-100');
+            btn.classList.replace('text-blue-600', 'text-green-600');
+            
+            // 2秒後に元のデザインに戻す
+            setTimeout(() => {
+                btn.innerHTML = originalHTML;
+                btn.classList.replace('bg-green-100', 'bg-blue-100');
+                btn.classList.replace('text-green-600', 'text-blue-600');
+            }, 2000);
+        } catch (err) {
+            console.error('コピー失敗', err);
+        }
+        document.body.removeChild(textArea);
+    }
+
+    setInterval(updateCurrentLocation, 60000);
+    updateCurrentLocation();
+    loadWeather();
+</script>
 </body>
 </html>
