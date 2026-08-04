@@ -8,7 +8,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <!-- 読みやすい「M PLUS Rounded 1c」と、可愛い「Kiwi Maru」を読み込み -->
+    <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@400;500&family=M+PLUS+Rounded+1c:wght@400;500;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <script>
@@ -23,8 +24,8 @@
                     'brand-bg': '#FFF5F5',
                 },
                 fontFamily: {
-                    'title': ['"Zen Maru Gothic"', 'sans-serif'],
-                    'body': ['"Zen Maru Gothic"', 'sans-serif'],
+                    'title': ['"Kiwi Maru"', 'serif'],
+                    'body': ['"M PLUS Rounded 1c"', 'sans-serif'],
                 }
             }
         }
@@ -33,14 +34,18 @@
     
     <style>
         body {
-            font-family: 'Zen Maru Gothic', sans-serif;
+            font-family: 'M PLUS Rounded 1c', sans-serif;
             background-color: #FFF5F5;
-            color: #2D3748;
+            /* うっすら可愛いピンクのドット背景 */
+            background-image: radial-gradient(#FED7D7 2px, transparent 2px);
+            background-size: 20px 20px;
+            color: #374151; /* 真っ黒ではなく少し柔らかいグレーにして読みやすく */
         }
-        h1, h2, h3, .title-font {
-            font-family: 'Zen Maru Gothic', sans-serif;
-            font-weight: 700;
+        
+        .title-font {
+            font-family: 'Kiwi Maru', serif;
         }
+
         .animate-fade-in {
             animation: fadeIn 0.8s ease-out forwards;
         }
@@ -82,107 +87,101 @@
             animation-delay: 16s;
         }
 
-        /* フェードイン＆ゆっくりズーム（ケンプバーンズ効果） */
         @keyframes kenburns {
             0% { opacity: 0; transform: scale(1); }
             5% { opacity: 1; }
             20% { opacity: 1; }
-            25% { opacity: 0; transform: scale(1.05); } /* ズームしながら消える */
+            25% { opacity: 0; transform: scale(1.05); } 
             100% { opacity: 0; transform: scale(1.05); }
+        }
+
+        /* ふわふわ浮くアイコンのアニメーション */
+        @keyframes float-small {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-3px); }
+        }
+        .animate-float-small {
+            animation: float-small 3s ease-in-out infinite;
         }
     </style>
 </head>
 <body class="pb-24">
 
-<div class="max-w-md mx-auto bg-white min-h-screen shadow-xl overflow-hidden relative">
+<div class="max-w-md mx-auto bg-white/90 backdrop-blur-sm min-h-screen shadow-xl overflow-hidden relative border-x border-red-50">
     
-    <header class="relative h-64 bg-gray-900 overflow-hidden">
+    <header class="relative h-64 bg-gray-900 overflow-hidden rounded-b-[2rem] shadow-md z-10">
         <div class="slider-bg slide-1"></div>
         <div class="slider-bg slide-2"></div>
         <div class="slider-bg slide-3"></div>
         <div class="slider-bg slide-4"></div>
         <div class="slider-bg slide-5"></div>
         
-        <!-- グラデーションオーバーレイ -->
-        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent z-10 pointer-events-none"></div>
+        <!-- グラデーションオーバーレイ（文字を読みやすくするため濃いめに） -->
+        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent z-10 pointer-events-none"></div>
         
-        <!-- タイトルテキスト（ここを修正しました！） -->
-        <div class="absolute bottom-5 left-5 z-20 text-white">
-            <h1 class="text-xl sm:text-2xl font-bold title-font leading-tight drop-shadow-md">プリンス スマート イン 熱海</h1>
-            <p class="text-xs mt-1 opacity-90 drop-shadow-md"><i class="fa-solid fa-location-dot mr-1 text-red-400"></i>熱海駅から徒歩3分</p>
+        <!-- タイトルテキスト -->
+        <div class="absolute bottom-6 left-5 z-20 text-white">
+            <span class="bg-brand-jtb/90 backdrop-blur text-white text-[10px] font-bold px-2 py-0.5 rounded-full mb-1.5 inline-block shadow-sm">HOTEL</span>
+            <h1 class="text-2xl sm:text-3xl font-bold title-font leading-tight drop-shadow-lg tracking-wide">プリンス スマート<br>イン 熱海</h1>
+            <p class="text-sm mt-2 opacity-95 drop-shadow-md font-medium"><i class="fa-solid fa-location-dot mr-1 text-red-400 animate-bounce"></i>熱海駅から徒歩3分</p>
         </div>
         
-        <!-- 戻るボタン（左上） -->
-        <a href="index.html" class="absolute top-4 left-4 w-8 h-8 bg-white/30 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-white/50 transition z-20">
-            <i class="fa-solid fa-chevron-left"></i>
+        <!-- 戻るボタン -->
+        <a href="index.html" class="absolute top-4 left-4 w-9 h-9 bg-black/40 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-black/60 transition z-20 shadow-sm border border-white/20">
+            <i class="fa-solid fa-chevron-left pr-0.5"></i>
         </a>
     </header>
 
-    <div class="px-5 py-6 space-y-6">
+    <div class="px-5 py-6 space-y-7">
         
-        <div class="flex flex-wrap gap-2 animate-fade-in" style="animation-delay: 0.1s;">
-            <div class="bg-red-50 text-brand-jtb border border-red-100 px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 shadow-sm">
-                <i class="fa-solid fa-right-to-bracket"></i> IN 15:00
+        <div class="flex flex-wrap gap-2.5 animate-fade-in" style="animation-delay: 0.1s;">
+            <!-- 変更：IN/OUTを消して集合時間を追加 -->
+            <div class="w-full bg-gradient-to-r from-[#C92434] to-[#E53E3E] text-white border-2 border-red-200 px-4 py-2.5 rounded-xl text-base font-bold flex items-center justify-center gap-2 shadow-md mb-1 tracking-wide title-font">
+                <i class="fa-solid fa-bell animate-pulse text-yellow-300"></i> 翌朝 7:50 ロビー集合！
             </div>
-            <div class="bg-red-50 text-brand-jtb border border-red-100 px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 shadow-sm">
-                <i class="fa-solid fa-right-from-bracket"></i> OUT 10:00
+            <div class="bg-white text-gray-600 border-2 border-gray-100 px-3 py-1.5 rounded-xl text-sm font-bold flex items-center gap-1.5 shadow-sm">
+                <i class="fa-solid fa-wifi text-blue-400"></i> 全室Wi-Fi
             </div>
-            <div class="bg-gray-50 text-gray-600 border border-gray-200 px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 shadow-sm">
-                <i class="fa-solid fa-wifi"></i> 全室Wi-Fi無料
-            </div>
-            <div class="bg-gray-50 text-gray-600 border border-gray-200 px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 shadow-sm">
-                <i class="fa-solid fa-ban-smoking"></i> 全室禁煙
+            <div class="bg-white text-gray-600 border-2 border-gray-100 px-3 py-1.5 rounded-xl text-sm font-bold flex items-center gap-1.5 shadow-sm">
+                <i class="fa-solid fa-ban-smoking text-red-400"></i> 全室禁煙
             </div>
         </div>
 
         <section class="space-y-4 animate-fade-in" style="animation-delay: 0.2s;">
-            <h2 class="text-base font-bold title-font border-b-2 border-brand-jtb inline-block pb-0.5">ここがポイント！✨</h2>
+            <div class="flex items-center gap-2 mb-1">
+                <i class="fa-solid fa-sparkles text-yellow-400 text-lg animate-float-small"></i>
+                <h2 class="text-lg font-bold title-font border-b-2 border-yellow-300 pb-0.5 text-gray-800">ここがポイント！</h2>
+            </div>
             
             <!-- ポイント1: アメニティ -->
-            <div class="bg-white border-2 border-blue-50 rounded-xl p-4 shadow-sm relative overflow-hidden">
-                <div class="absolute -right-3 -top-3 text-5xl text-blue-50 opacity-50"><i class="fa-solid fa-pump-soap"></i></div>
+            <div class="bg-[#F8FAFC] border-2 border-dashed border-blue-200 rounded-2xl p-4 shadow-sm relative overflow-hidden group">
+                <div class="absolute -right-2 -top-2 text-5xl text-blue-100 opacity-60 transform group-hover:rotate-12 transition"><i class="fa-solid fa-pump-soap"></i></div>
                 <div class="flex items-start gap-3 relative z-10">
-                    <div class="w-10 h-10 rounded-full bg-blue-100 text-brand-blue flex items-center justify-center flex-shrink-0 text-lg">
+                    <div class="w-10 h-10 rounded-full bg-blue-100 text-brand-blue flex items-center justify-center flex-shrink-0 text-lg shadow-sm border border-white">
                         <i class="fa-solid fa-shirt"></i>
                     </div>
                     <div>
-                        <h3 class="font-bold text-gray-800 text-sm mb-1 title-font">アメニティはロビーで！</h3>
-                        <p class="text-xs text-gray-600 leading-relaxed">
+                        <h3 class="font-bold text-gray-800 text-base mb-1.5 title-font">アメニティはロビーで！</h3>
+                        <p class="text-sm text-gray-600 leading-relaxed font-medium">
                             お部屋にはタオルとソープ類のみご用意。<br>
-                            <span class="font-bold text-brand-jtb">ナイトウェア</span>、歯ブラシ等は、1階エレベーター前のアメニティコーナーから必要な分を持っていきましょう！
+                            <span class="font-bold text-brand-jtb bg-red-50 px-1 rounded">ナイトウェア</span>、歯ブラシ等は、1階エレベーター前のアメニティコーナーから必要な分を持っていきましょう！
                         </p>
                     </div>
                 </div>
             </div>
 
             <!-- ポイント2: 朝食 -->
-            <div class="bg-white border-2 border-orange-50 rounded-xl p-4 shadow-sm relative overflow-hidden">
-                <div class="absolute -right-3 -top-3 text-5xl text-orange-50 opacity-50"><i class="fa-solid fa-mug-hot"></i></div>
+            <div class="bg-[#FFF9F2] border-2 border-dashed border-orange-200 rounded-2xl p-4 shadow-sm relative overflow-hidden group">
+                <div class="absolute -right-2 -top-2 text-5xl text-orange-100 opacity-60 transform group-hover:-rotate-12 transition"><i class="fa-solid fa-mug-hot"></i></div>
                 <div class="flex items-start gap-3 relative z-10">
-                    <div class="w-10 h-10 rounded-full bg-orange-100 text-brand-orange flex items-center justify-center flex-shrink-0 text-lg">
+                    <div class="w-10 h-10 rounded-full bg-orange-100 text-brand-orange flex items-center justify-center flex-shrink-0 text-lg shadow-sm border border-white">
                         <i class="fa-solid fa-croissant"></i>
                     </div>
                     <div>
-                        <h3 class="font-bold text-gray-800 text-sm mb-1 title-font">1階 タリーズコーヒーで朝食☕️</h3>
-                        <p class="text-xs text-gray-600 leading-relaxed">
+                        <h3 class="font-bold text-gray-800 text-base mb-1.5 title-font">1階 タリーズコーヒーで朝食☕️</h3>
+                        <p class="text-sm text-gray-600 leading-relaxed font-medium">
                             宿泊者はもれなく朝食（6:30〜11:30）が無料！<br>
-                            サンドイッチやホットドッグなど6種類から選べます。<span class="font-bold text-brand-jtb">※チェックイン時に発券されるレシートを必ずお持ちください。</span>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ポイント3: スマートチェックイン -->
-            <div class="bg-white border-2 border-green-50 rounded-xl p-4 shadow-sm relative overflow-hidden">
-                <div class="absolute -right-3 -top-3 text-5xl text-green-50 opacity-50"><i class="fa-solid fa-mobile-screen"></i></div>
-                <div class="flex items-start gap-3 relative z-10">
-                    <div class="w-10 h-10 rounded-full bg-green-100 text-brand-green flex items-center justify-center flex-shrink-0 text-lg">
-                        <i class="fa-solid fa-qrcode"></i>
-                    </div>
-                    <div>
-                        <h3 class="font-bold text-gray-800 text-sm mb-1 title-font">無料ロッカー完備</h3>
-                        <p class="text-xs text-gray-600 leading-relaxed">
-                            当日チェックイン前に限り、ロビーの専用ロッカーに無料で荷物を預けられます！手ぶらで熱海観光へ出かけましょう。（※チェックアウト後の利用は不可）
+                            ホットドッグなど6種類から選べます。<span class="font-bold text-brand-jtb bg-red-50 px-1 rounded block mt-1">※チェックイン時に発券されるレシートを必ずお持ちください。</span>
                         </p>
                     </div>
                 </div>
@@ -190,13 +189,18 @@
         </section>
 
         <section class="animate-fade-in" style="animation-delay: 0.3s;">
-            <h2 class="text-base font-bold title-font border-b-2 border-brand-jtb inline-block pb-0.5 mb-3">MAP</h2>
-            <div class="bg-white p-2 rounded-xl border border-gray-100 shadow-sm">
-                <div class="w-full h-40 bg-gray-100 rounded-lg overflow-hidden relative mb-2 group cursor-pointer">
-                    <!-- マップアプリを開くための透明なボタン -->
+            <div class="flex items-center gap-2 mb-3">
+                <i class="fa-solid fa-map-location-dot text-brand-jtb text-lg animate-float-small"></i>
+                <h2 class="text-lg font-bold title-font border-b-2 border-brand-jtb pb-0.5 text-gray-800">ホテルMAP</h2>
+            </div>
+            <div class="bg-white p-2.5 rounded-2xl border-2 border-red-50 shadow-sm">
+                <!-- マップ部分 -->
+                <div class="w-full h-44 bg-gray-100 rounded-xl overflow-hidden relative group cursor-pointer border border-gray-200">
+                    <!-- スマホでの誤操作(グリグリ)防止と、アプリ起動用のリンク -->
                     <a href="https://maps.google.com/?q=プリンススマートイン熱海" target="_blank" rel="noopener noreferrer" class="absolute inset-0 z-10 flex items-center justify-center bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <span class="bg-white/90 text-brand-jtb text-xs font-bold px-3 py-1.5 rounded-full shadow-sm"><i class="fa-solid fa-arrow-up-right-from-square mr-1"></i>マップアプリで開く</span>
+                        <span class="bg-white/95 text-brand-jtb text-xs font-bold px-4 py-2 rounded-full shadow-md"><i class="fa-solid fa-arrow-up-right-from-square mr-1.5"></i>マップアプリで開く</span>
                     </a>
+                    <!-- pointer-events-none でiframe内の操作を無効化 -->
                     <iframe 
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3257.0754877395047!2d139.07722421524792!3d35.104768380331086!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6019eaacbc4d7459%3A0x63ff865a77cd5c87!2z44OX44Oq44Oz44K5IOOCueODnuODvOODiCDggqTjg7Mg54ax5rW3!5e0!3m2!1sja!2sjp!4v1690000000000!5m2!1sja!2sjp" 
                         width="100%" 
@@ -206,14 +210,14 @@
                         loading="lazy">
                     </iframe>
                 </div>
-                <p class="text-[10px] text-gray-500 text-center">〒413-0005 静岡県熱海市春日町17-14</p>
+                <p class="text-xs text-gray-500 text-center mt-2.5 font-medium"><i class="fa-solid fa-location-pin text-red-300 mr-1"></i>〒413-0005 静岡県熱海市春日町17-14</p>
             </div>
         </section>
         
     </div>
 
-    <div class="fixed bottom-0 left-0 right-0 max-w-md mx-auto p-4 bg-gradient-to-t from-white via-white to-transparent z-20">
-        <a href="index.html" class="block w-full bg-brand-jtb text-white text-center py-3.5 rounded-full font-bold shadow-lg hover:bg-red-700 transition flex items-center justify-center gap-2">
+    <div class="fixed bottom-0 left-0 right-0 max-w-md mx-auto p-4 bg-gradient-to-t from-white via-white/90 to-transparent z-20 pb-6">
+        <a href="index.html" class="block w-full bg-brand-jtb text-white text-center py-4 rounded-full font-bold shadow-lg hover:bg-red-700 transition flex items-center justify-center gap-2 title-font text-base tracking-wide border-2 border-red-700/50 hover:scale-[0.98] active:scale-95">
             <i class="fa-solid fa-book-open"></i> しおりに戻る
         </a>
     </div>
