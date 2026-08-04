@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>宿泊先 - プリンス スマート イン 熱海</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@400;500&family=Mochiy+Pop+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    'brand-jtb': '#C92434',
+                    'brand-orange': '#FF8C42',
+                    'brand-blue': '#4299E1',
+                    'brand-green': '#48BB78',
+                    'brand-bg': '#FFF5F5',
+                },
+                fontFamily: {
+                    'title': ['"Mochiy Pop One"', 'sans-serif'],
+                    'body': ['"Kiwi Maru"', 'serif'],
+                }
+            }
+        }
+    }
+    </script>
+    
+    <style>
+        body {
+            font-family: 'Kiwi Maru', serif;
+            background-color: #FFF5F5;
+            color: #2D3748;
+        }
+        h1, h2, h3, .title-font {
+            font-family: 'Mochiy Pop One', sans-serif;
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="pb-24">
+
+<div class="max-w-md mx-auto bg-white min-h-screen shadow-xl overflow-hidden relative">
+    
+    <header class="relative h-64 bg-gray-200">
+        <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=80" 
+             onerror="this.src='https://placehold.co/800x500/C92434/FFFFFF?text=Prince+Smart+Inn'" 
+             alt="ホテル客室イメージ" 
+             class="w-full h-full object-cover">
+        
+        <!-- グラデーションオーバーレイ -->
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+        
+        <div class="absolute bottom-4 left-4 right-4 text-white">
+            <div class="flex items-center gap-1 mb-1 text-yellow-300 text-xs">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <h1 class="text-xl sm:text-2xl font-bold title-font leading-tight">プリンス スマート イン 熱海</h1>
+            <p class="text-xs mt-1 opacity-90"><i class="fa-solid fa-location-dot mr-1 text-brand-jtb"></i>熱海駅から徒歩3分</p>
+        </div>
+        
+        <!-- 戻るボタン（左上） -->
+        <a href="index.html" class="absolute top-4 left-4 w-8 h-8 bg-white/30 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-white/50 transition">
+            <i class="fa-solid fa-chevron-left"></i>
+        </a>
+    </header>
+
+    <div class="px-5 py-6 space-y-6">
+        
+        <div class="flex flex-wrap gap-2 animate-fade-in" style="animation-delay: 0.1s;">
+            <div class="bg-red-50 text-brand-jtb border border-red-100 px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 shadow-sm">
+                <i class="fa-solid fa-right-to-bracket"></i> IN 15:00
+            </div>
+            <div class="bg-red-50 text-brand-jtb border border-red-100 px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 shadow-sm">
+                <i class="fa-solid fa-right-from-bracket"></i> OUT 11:00
+            </div>
+            <div class="bg-gray-50 text-gray-600 border border-gray-200 px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 shadow-sm">
+                <i class="fa-solid fa-wifi"></i> 全室Wi-Fi無料
+            </div>
+            <div class="bg-gray-50 text-gray-600 border border-gray-200 px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 shadow-sm">
+                <i class="fa-solid fa-ban-smoking"></i> 全室禁煙
+            </div>
+        </div>
+
+        <section class="space-y-4 animate-fade-in" style="animation-delay: 0.2s;">
+            <h2 class="text-base font-bold title-font border-b-2 border-brand-jtb inline-block pb-0.5">ここがポイント！✨</h2>
+            
+            <!-- ポイント1: アメニティ -->
+            <div class="bg-white border-2 border-blue-50 rounded-xl p-4 shadow-sm relative overflow-hidden">
+                <div class="absolute -right-3 -top-3 text-5xl text-blue-50 opacity-50"><i class="fa-solid fa-pump-soap"></i></div>
+                <div class="flex items-start gap-3 relative z-10">
+                    <div class="w-10 h-10 rounded-full bg-blue-100 text-brand-blue flex items-center justify-center flex-shrink-0 text-lg">
+                        <i class="fa-solid fa-shirt"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-gray-800 text-sm mb-1 title-font">アメニティはロビーで！</h3>
+                        <p class="text-xs text-gray-600 leading-relaxed">
+                            必要なものだけを選ぶエコスタイル！<br>
+                            <span class="font-bold text-brand-jtb">ナイトウェア(パジャマ)</span>、歯ブラシ、ヘアブラシ、ボディタオル等は、1階エレベーター前のアメニティコーナーから持っていきましょう。
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ポイント2: 朝食 -->
+            <div class="bg-white border-2 border-orange-50 rounded-xl p-4 shadow-sm relative overflow-hidden">
+                <div class="absolute -right-3 -top-3 text-5xl text-orange-50 opacity-50"><i class="fa-solid fa-mug-hot"></i></div>
+                <div class="flex items-start gap-3 relative z-10">
+                    <div class="w-10 h-10 rounded-full bg-orange-100 text-brand-orange flex items-center justify-center flex-shrink-0 text-lg">
+                        <i class="fa-solid fa-croissant"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-gray-800 text-sm mb-1 title-font">嬉しい無料の朝食付き🥐</h3>
+                        <p class="text-xs text-gray-600 leading-relaxed">
+                            宿泊者はもれなく朝食（コンチネンタルブレックファスト）が無料！専用ボックスに入れて、<span class="font-bold text-brand-jtb">お部屋にテイクアウト</span>して食べることも可能です。
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ポイント3: スマートチェックイン -->
+            <div class="bg-white border-2 border-green-50 rounded-xl p-4 shadow-sm relative overflow-hidden">
+                <div class="absolute -right-3 -top-3 text-5xl text-green-50 opacity-50"><i class="fa-solid fa-mobile-screen"></i></div>
+                <div class="flex items-start gap-3 relative z-10">
+                    <div class="w-10 h-10 rounded-full bg-green-100 text-brand-green flex items-center justify-center flex-shrink-0 text-lg">
+                        <i class="fa-solid fa-qrcode"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-gray-800 text-sm mb-1 title-font">次世代スマートホテル</h3>
+                        <p class="text-xs text-gray-600 leading-relaxed">
+                            自動チェックイン機やスマホキーなど、最新設備が充実。チェックイン前でも無料で使える専用ロッカーもあります。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="animate-fade-in" style="animation-delay: 0.3s;">
+            <h2 class="text-base font-bold title-font border-b-2 border-brand-jtb inline-block pb-0.5 mb-3">MAP</h2>
+            <div class="bg-white p-2 rounded-xl border border-gray-100 shadow-sm">
+                <div class="w-full h-40 bg-gray-100 rounded-lg overflow-hidden relative mb-2">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3257.0754877395047!2d139.07722421524792!3d35.104768380331086!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6019eaacbc4d7459%3A0x63ff865a77cd5c87!2z44OX44Oq44Oz44K5IOOCueODnuODvOODiCDggqTjg7Mg54ax5rW3!5e0!3m2!1sja!2sjp!4v1690000000000!5m2!1sja!2sjp" 
+                        width="100%" 
+                        height="100%" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy">
+                    </iframe>
+                </div>
+                <p class="text-[10px] text-gray-500 text-center">〒413-0005 静岡県熱海市春日町17-14</p>
+            </div>
+        </section>
+        
+    </div>
+
+    <div class="fixed bottom-0 left-0 right-0 max-w-md mx-auto p-4 bg-gradient-to-t from-white via-white to-transparent z-20">
+        <a href="index.html" class="block w-full bg-brand-jtb text-white text-center py-3.5 rounded-full font-bold shadow-lg hover:bg-red-700 transition flex items-center justify-center gap-2">
+            <i class="fa-solid fa-book-open"></i> しおりに戻る
+        </a>
+    </div>
+
+</div>
+
+</body>
+</html>
