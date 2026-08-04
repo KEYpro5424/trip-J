@@ -11,7 +11,7 @@
     <!-- Google Fontsの読み込み -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Yusei+Magic&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@400;500&family=Mochiy+Pop+One&display=swap" rel="stylesheet">
     
     <!-- FontAwesomeの読み込み -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -29,8 +29,8 @@
                     'brand-bg': '#FFF5F5',
                 },
                 fontFamily: {
-                    'title': ['"Yusei Magic"', 'sans-serif'],
-                    'body': ['"Zen Maru Gothic"', 'sans-serif'],
+                    'title': ['"Mochiy Pop One"', 'sans-serif'],
+                    'body': ['"Kiwi Maru"', 'serif'],
                 }
             }
         }
@@ -39,13 +39,13 @@
     
     <style>
         body {
-            font-family: 'Zen Maru Gothic', sans-serif;
+            font-family: 'Kiwi Maru', serif;
             background-color: #FFF5F5;
             color: #2D3748;
         }
 
         h1, h2, h3, .title-font {
-            font-family: 'Yusei Magic', sans-serif;
+            font-family: 'Mochiy Pop One', sans-serif;
         }
 
         /* フワフワ動くアニメーション */
@@ -144,24 +144,24 @@
                 <i class="fa-solid fa-cloud-sun text-brand-jtb text-lg mr-2"></i>
                 <h2 class="text-lg font-bold border-b-2 border-brand-jtb pb-0.5">現地の天気予報</h2>
             </div>
-            <div class="grid grid-cols-2 gap-3">
-                <!-- 山梨 (河口湖) -->
-                <div class="bg-white p-3 rounded-2xl shadow-sm border border-red-100 flex flex-col items-center text-center">
-                    <span class="text-xs font-bold text-gray-600 mb-1">山梨 (河口湖)</span>
-                    <div id="w-1-icon" class="text-2xl my-1"><i class="fa-solid fa-spinner animate-spin text-gray-400"></i></div>
-                    <span id="w-1-desc" class="text-xs font-bold text-gray-700">読み込み中...</span>
-                    <div class="text-[11px] text-gray-500 mt-1">
-                        最高 <span id="w-1-max">--</span>°C / 最低 <span id="w-1-min">--</span>°C
-                    </div>
+            
+            <!-- 山梨 (河口湖) -->
+            <div id="weather-day1" class="day-content relative bg-white p-4 rounded-2xl shadow-sm border border-red-100 flex flex-col items-center text-center">
+                <span class="text-sm font-bold text-gray-600 mb-1"><i class="fa-solid fa-mountain mr-1 text-gray-400"></i>山梨 (河口湖)</span>
+                <div id="w-1-icon" class="text-4xl my-2"><i class="fa-solid fa-spinner animate-spin text-gray-400"></i></div>
+                <span id="w-1-desc" class="text-sm font-bold text-gray-700">読み込み中...</span>
+                <div class="text-xs text-gray-500 mt-2 font-medium">
+                    最高 <span id="w-1-max" class="text-red-500">--</span>°C / 最低 <span id="w-1-min" class="text-blue-500">--</span>°C
                 </div>
-                <!-- 静岡 (熱海) -->
-                <div class="bg-white p-3 rounded-2xl shadow-sm border border-red-100 flex flex-col items-center text-center">
-                    <span class="text-xs font-bold text-gray-600 mb-1">静岡 (熱海)</span>
-                    <div id="w-2-icon" class="text-2xl my-1"><i class="fa-solid fa-spinner animate-spin text-gray-400"></i></div>
-                    <span id="w-2-desc" class="text-xs font-bold text-gray-700">読み込み中...</span>
-                    <div class="text-[11px] text-gray-500 mt-1">
-                        最高 <span id="w-2-max">--</span>°C / 最低 <span id="w-2-min">--</span>°C
-                    </div>
+            </div>
+
+            <!-- 静岡 (熱海) -->
+            <div id="weather-day2" class="day-content relative hidden bg-white p-4 rounded-2xl shadow-sm border border-blue-100 flex flex-col items-center text-center">
+                <span class="text-sm font-bold text-gray-600 mb-1"><i class="fa-solid fa-water mr-1 text-blue-400"></i>静岡 (熱海)</span>
+                <div id="w-2-icon" class="text-4xl my-2"><i class="fa-solid fa-spinner animate-spin text-gray-400"></i></div>
+                <span id="w-2-desc" class="text-sm font-bold text-gray-700">読み込み中...</span>
+                <div class="text-xs text-gray-500 mt-2 font-medium">
+                    最高 <span id="w-2-max" class="text-red-500">--</span>°C / 最低 <span id="w-2-min" class="text-blue-500">--</span>°C
                 </div>
             </div>
         </section>
@@ -177,27 +177,37 @@
                 </summary>
                 <div class="p-4 space-y-4 text-sm">
                     <div>
-                        <h4 class="font-bold text-brand-jtb mb-1 text-xs uppercase tracking-wider">出演・メイン</h4>
-                        <div class="grid grid-cols-1 gap-2 text-gray-700">
-                            <div class="bg-red-50/50 p-2 rounded-xl flex items-center gap-2">
-                                <span class="text-lg">🎬</span>
-                                <div><div class="font-bold">撮影チーム</div><div class="text-xs text-gray-500">キャスト・スタッフ</div></div>
+                        <h4 class="font-bold text-brand-jtb mb-2 text-xs uppercase tracking-wider">メイン</h4>
+                        <div class="grid grid-cols-2 gap-2 text-gray-700">
+                            <div class="bg-red-50 p-2 rounded-xl border border-red-100 flex flex-col justify-center">
+                                <div class="font-bold text-[10px] text-brand-jtb mb-0.5">監督</div>
+                                <div class="text-xs font-bold">（お名前）</div>
+                            </div>
+                            <div class="bg-red-50 p-2 rounded-xl border border-red-100 flex flex-col justify-center">
+                                <div class="font-bold text-[10px] text-brand-jtb mb-0.5">キャスト</div>
+                                <div class="text-xs font-bold">（お名前）</div>
                             </div>
                         </div>
                     </div>
                     <div>
-                        <h4 class="font-bold text-brand-jtb mb-1 text-xs uppercase tracking-wider">技術・HM</h4>
-                        <!-- ここを grid-cols-3 に変更して3列設定に -->
-                        <div class="grid grid-cols-3 gap-1.5 text-gray-700 text-center">
-                            <div class="bg-gray-50 py-2 px-1 rounded-xl border border-gray-100">
-                                <div class="font-bold text-[10px] text-brand-jtb mb-0.5 leading-tight">撮影セカンド</div>
-                                <div class="text-[11px] font-medium whitespace-nowrap">伊藤隼幹</div>
+                        <h4 class="font-bold text-brand-jtb mb-2 text-xs uppercase tracking-wider">技術・制作</h4>
+                        <div class="grid grid-cols-2 gap-2 text-gray-700">
+                            <div class="bg-gray-50 p-2 rounded-xl border border-gray-100">
+                                <div class="font-bold text-[10px] text-brand-jtb mb-0.5">撮影セカンド</div>
+                                <div class="text-xs font-bold">伊藤隼幹</div>
                             </div>
-                            <div class="bg-gray-50 py-2 px-1 rounded-xl border border-gray-100">
-                                <div class="font-bold text-[10px] text-brand-jtb mb-0.5 leading-tight">録音部助手</div>
-                                <div class="text-[11px] font-medium whitespace-nowrap">魚野陽多</div>
+                            <div class="bg-gray-50 p-2 rounded-xl border border-gray-100">
+                                <div class="font-bold text-[10px] text-brand-jtb mb-0.5">録音部助手</div>
+                                <div class="text-xs font-bold">魚野陽多</div>
                             </div>
-                            <!-- スタッフが増えたら同じ形式で追加すれば3つまで横に並びます -->
+                            <div class="bg-gray-50 p-2 rounded-xl border border-gray-100">
+                                <div class="font-bold text-[10px] text-brand-jtb mb-0.5">ヘアメイク</div>
+                                <div class="text-xs font-bold">（お名前）</div>
+                            </div>
+                            <div class="bg-gray-50 p-2 rounded-xl border border-gray-100">
+                                <div class="font-bold text-[10px] text-brand-jtb mb-0.5">制作進行</div>
+                                <div class="text-xs font-bold">（お名前）</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -294,7 +304,12 @@
                             <span class="font-bold text-gray-600 text-base">17:30</span>
                             <h3 class="font-bold text-gray-800 text-base">移動・熱海ホテル着</h3>
                         </div>
-                        <p class="text-xs text-gray-600">熱海の宿泊先へ移動、夕食＆ミーティング。</p>
+                        <p class="text-xs text-gray-600 mb-2">熱海の宿泊先へ移動、夕食＆ミーティング。</p>
+                        
+                        <!-- 宿泊ページへのリンクボタンを追加 -->
+                        <a href="hotel.html" class="inline-flex items-center justify-center bg-white border border-brand-jtb text-brand-jtb text-[10px] font-bold px-3 py-1.5 rounded-full shadow-sm hover:bg-red-50 transition w-full sm:w-auto">
+                            <i class="fa-solid fa-bed mr-1.5"></i>ホテルの詳細・アメニティを見る
+                        </a>
                     </div>
                 </div>
             </div>
@@ -370,7 +385,7 @@
             
             <div class="space-y-4">
                 <!-- 1日目マップ -->
-                <div class="bg-white p-3 rounded-2xl shadow-sm border border-red-100">
+                <div id="map-day1" class="day-content relative bg-white p-3 rounded-2xl shadow-sm border border-red-100">
                     <h3 class="text-xs font-bold text-brand-jtb mb-2"><i class="fa-solid fa-location-dot mr-1"></i>1日目：山梨ルート</h3>
                     <div class="w-full h-40 bg-gray-100 rounded-xl overflow-hidden relative">
                         <iframe 
@@ -385,12 +400,12 @@
                 </div>
 
                 <!-- 2日目マップ -->
-                <div class="bg-white p-3 rounded-2xl shadow-sm border border-red-100">
-                    <h3 class="text-xs font-bold text-brand-orange mb-2"><i class="fa-solid fa-location-dot mr-1"></i>2日目：熱アルミッションマップ</h3>
-                    <div class="w-full h-36 bg-orange-50 rounded-xl overflow-hidden flex flex-col items-center justify-center p-4 text-center border border-orange-200">
-                        <i class="fa-solid fa-map-marked-alt text-3xl text-brand-orange mb-2"></i>
-                        <p class="text-xs text-gray-700 font-bold mb-3">熱海エリアの詳細ルートはこちらをご確認ください</p>
-                        <a href="https://maps.app.goo.gl/GeZPXgSn4ALdqzv9A" target="_blank" class="bg-brand-orange text-white text-xs font-bold px-4 py-2 rounded-full shadow hover:bg-orange-600 transition flex items-center gap-1.5">
+                <div id="map-day2" class="day-content relative hidden bg-white p-3 rounded-2xl shadow-sm border border-blue-100">
+                    <h3 class="text-xs font-bold text-blue-500 mb-2"><i class="fa-solid fa-location-dot mr-1"></i>2日目：熱海ルート</h3>
+                    <div class="w-full h-40 bg-blue-50 rounded-xl overflow-hidden flex flex-col items-center justify-center p-4 text-center border border-blue-200">
+                        <i class="fa-solid fa-map-marked-alt text-3xl text-blue-500 mb-2"></i>
+                        <p class="text-[10px] text-gray-700 font-bold mb-3">熱海エリアの詳細ルートはこちらをご確認ください</p>
+                        <a href="https://maps.app.goo.gl/GeZPXgSn4ALdqzv9A" target="_blank" class="bg-blue-500 text-white text-[10px] font-bold px-4 py-2 rounded-full shadow hover:bg-blue-600 transition flex items-center gap-1.5">
                             <i class="fa-solid fa-external-link-alt"></i>Googleマップを開く
                         </a>
                     </div>
@@ -455,10 +470,10 @@
 
     // タブ切り替えロジック
     function switchTab(day) {
-        document.getElementById('btn-day1').className = "w-1/2 py-2 bg-transparent text-gray-600 hover:bg-gray-200 rounded-full text-xs font-bold transition-all";
-        document.getElementById('btn-day2').className = "w-1/2 py-2 bg-transparent text-gray-600 hover:bg-gray-200 rounded-full text-xs font-bold transition-all";
+        document.getElementById('btn-day1').className = "w-1/2 py-2.5 bg-transparent text-gray-600 hover:bg-red-100 rounded-full text-sm font-bold transition-all";
+        document.getElementById('btn-day2').className = "w-1/2 py-2.5 bg-transparent text-gray-600 hover:bg-red-100 rounded-full text-sm font-bold transition-all";
         
-        document.getElementById(`btn-${day}`).className = "w-1/2 py-2 bg-brand-jtb text-white rounded-full text-xs font-bold shadow-sm transition-all";
+        document.getElementById(`btn-${day}`).className = "w-1/2 py-2.5 bg-brand-jtb text-white rounded-full text-sm font-bold shadow-sm transition-all";
 
         const contents = document.querySelectorAll('.day-content');
         contents.forEach(content => {
