@@ -11,7 +11,7 @@
     <!-- Google Fontsの読み込み -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@400;500&family=Mochiy+Pop+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap" rel="stylesheet">
     
     <!-- FontAwesomeの読み込み -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -29,8 +29,8 @@
                     'brand-bg': '#FFF5F5',
                 },
                 fontFamily: {
-                    'title': ['"Mochiy Pop One"', 'sans-serif'],
-                    'body': ['"Kiwi Maru"', 'serif'],
+                    'title': ['"Zen Maru Gothic"', 'sans-serif'],
+                    'body': ['"Zen Maru Gothic"', 'sans-serif'],
                 }
             }
         }
@@ -39,13 +39,14 @@
     
     <style>
         body {
-            font-family: 'Kiwi Maru', serif;
+            font-family: 'Zen Maru Gothic', sans-serif;
             background-color: #FFF5F5;
             color: #2D3748;
         }
 
         h1, h2, h3, .title-font {
-            font-family: 'Mochiy Pop One', sans-serif;
+            font-family: 'Zen Maru Gothic', sans-serif;
+            font-weight: 700;
         }
 
         /* フワフワ動くアニメーション */
@@ -179,38 +180,103 @@
                     </div>
                     <i class="fa-solid fa-chevron-down text-gray-400 transition-transform group-open:rotate-180"></i>
                 </summary>
-                <div class="p-4 space-y-4 text-sm">
+                <div class="p-4 space-y-5 text-sm">
+                    <!-- JTB・セプテーニ -->
                     <div>
-                        <h4 class="font-bold text-brand-jtb mb-2 text-xs uppercase tracking-wider">メイン</h4>
+                        <h4 class="font-bold text-brand-jtb mb-2 text-xs uppercase tracking-wider border-b border-red-100 pb-1">JTB・セプテーニ</h4>
                         <div class="grid grid-cols-2 gap-2 text-gray-700">
                             <div class="bg-red-50 p-2 rounded-xl border border-red-100 flex flex-col justify-center">
-                                <div class="font-bold text-[10px] text-brand-jtb mb-0.5">監督</div>
-                                <div class="text-xs font-bold">（お名前）</div>
+                                <div class="font-bold text-[10px] text-brand-jtb mb-0.5">JTB</div>
+                                <div class="text-xs font-bold">青山 瑚子</div>
                             </div>
                             <div class="bg-red-50 p-2 rounded-xl border border-red-100 flex flex-col justify-center">
-                                <div class="font-bold text-[10px] text-brand-jtb mb-0.5">キャスト</div>
-                                <div class="text-xs font-bold">（お名前）</div>
+                                <div class="font-bold text-[10px] text-brand-jtb mb-0.5">JTB</div>
+                                <div class="text-xs font-bold">宮坂 希</div>
+                            </div>
+                            <div class="bg-red-50 p-2 rounded-xl border border-red-100 flex flex-col justify-center">
+                                <div class="font-bold text-[10px] text-brand-jtb mb-0.5">JTB</div>
+                                <div class="text-xs font-bold">佐藤 怜美</div>
+                            </div>
+                            <div class="bg-orange-50 p-2 rounded-xl border border-orange-100 flex flex-col justify-center">
+                                <div class="font-bold text-[10px] text-brand-orange mb-0.5">セプテーニ</div>
+                                <div class="text-xs font-bold">福井 沙也果</div>
+                            </div>
+                            <div class="bg-orange-50 p-2 rounded-xl border border-orange-100 flex flex-col justify-center">
+                                <div class="font-bold text-[10px] text-brand-orange mb-0.5">セプテーニ</div>
+                                <div class="text-xs font-bold">加藤 凜乃</div>
                             </div>
                         </div>
                     </div>
+
+                    <!-- 演出・制作 -->
                     <div>
-                        <h4 class="font-bold text-brand-jtb mb-2 text-xs uppercase tracking-wider">技術・制作</h4>
+                        <h4 class="font-bold text-brand-jtb mb-2 text-xs uppercase tracking-wider border-b border-red-100 pb-1">演出・制作</h4>
                         <div class="grid grid-cols-2 gap-2 text-gray-700">
                             <div class="bg-gray-50 p-2 rounded-xl border border-gray-100">
-                                <div class="font-bold text-[10px] text-brand-jtb mb-0.5">撮影セカンド</div>
-                                <div class="text-xs font-bold">伊藤隼幹</div>
+                                <div class="font-bold text-[10px] text-gray-500 mb-0.5">監督</div>
+                                <div class="text-xs font-bold">佐藤 恵美</div>
                             </div>
                             <div class="bg-gray-50 p-2 rounded-xl border border-gray-100">
-                                <div class="font-bold text-[10px] text-brand-jtb mb-0.5">録音部助手</div>
-                                <div class="text-xs font-bold">魚野陽多</div>
+                                <div class="font-bold text-[10px] text-gray-500 mb-0.5">監督補佐</div>
+                                <div class="text-xs font-bold">金澤 善風</div>
                             </div>
                             <div class="bg-gray-50 p-2 rounded-xl border border-gray-100">
-                                <div class="font-bold text-[10px] text-brand-jtb mb-0.5">ヘアメイク</div>
-                                <div class="text-xs font-bold">（お名前）</div>
+                                <div class="font-bold text-[10px] text-gray-500 mb-0.5">制作</div>
+                                <div class="text-xs font-bold">市川 拓弥</div>
                             </div>
                             <div class="bg-gray-50 p-2 rounded-xl border border-gray-100">
-                                <div class="font-bold text-[10px] text-brand-jtb mb-0.5">制作進行</div>
-                                <div class="text-xs font-bold">（お名前）</div>
+                                <div class="font-bold text-[10px] text-gray-500 mb-0.5">制作</div>
+                                <div class="text-xs font-bold">加藤 芳崇</div>
+                            </div>
+                            <div class="bg-gray-50 p-2 rounded-xl border border-gray-100">
+                                <div class="font-bold text-[10px] text-gray-500 mb-0.5">制作</div>
+                                <div class="text-xs font-bold">佐藤 汐</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 技術 -->
+                    <div>
+                        <h4 class="font-bold text-brand-jtb mb-2 text-xs uppercase tracking-wider border-b border-red-100 pb-1">技術 (撮影・照明・録音)</h4>
+                        <div class="grid grid-cols-2 gap-2 text-gray-700">
+                            <div class="bg-gray-50 p-2 rounded-xl border border-gray-100">
+                                <div class="font-bold text-[10px] text-gray-500 mb-0.5">撮影</div>
+                                <div class="text-xs font-bold">時光 佑輔</div>
+                            </div>
+                            <div class="bg-gray-50 p-2 rounded-xl border border-gray-100">
+                                <div class="font-bold text-[10px] text-gray-500 mb-0.5">撮影 チーフ</div>
+                                <div class="text-xs font-bold">山城 俊介</div>
+                            </div>
+                            <div class="bg-gray-50 p-2 rounded-xl border border-gray-100">
+                                <div class="font-bold text-[10px] text-gray-500 mb-0.5">撮影 セカンド</div>
+                                <div class="text-xs font-bold">伊藤 隼幹</div>
+                            </div>
+                            <div class="bg-gray-50 p-2 rounded-xl border border-gray-100">
+                                <div class="font-bold text-[10px] text-gray-500 mb-0.5">照明</div>
+                                <div class="text-xs font-bold">ふじまたゆうと</div>
+                            </div>
+                            <div class="bg-gray-50 p-2 rounded-xl border border-gray-100">
+                                <div class="font-bold text-[10px] text-gray-500 mb-0.5">録音</div>
+                                <div class="text-xs font-bold">池本あずさ</div>
+                            </div>
+                            <div class="bg-gray-50 p-2 rounded-xl border border-gray-100">
+                                <div class="font-bold text-[10px] text-gray-500 mb-0.5">録音 助手</div>
+                                <div class="text-xs font-bold">魚野 陽多</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- STY・HM -->
+                    <div>
+                        <h4 class="font-bold text-brand-jtb mb-2 text-xs uppercase tracking-wider border-b border-red-100 pb-1">STY・HM</h4>
+                        <div class="grid grid-cols-2 gap-2 text-gray-700">
+                            <div class="bg-gray-50 p-2 rounded-xl border border-gray-100">
+                                <div class="font-bold text-[10px] text-gray-500 mb-0.5">STY</div>
+                                <div class="text-xs font-bold">小澤 奈月</div>
+                            </div>
+                            <div class="bg-gray-50 p-2 rounded-xl border border-gray-100">
+                                <div class="font-bold text-[10px] text-gray-500 mb-0.5">HM</div>
+                                <div class="text-xs font-bold">木附沢 美耶</div>
                             </div>
                         </div>
                     </div>
@@ -391,9 +457,9 @@
                 <!-- 1日目マップ -->
                 <div id="map-day1" class="day-content relative bg-white p-3 rounded-2xl shadow-sm border border-red-100">
                     <h3 class="text-xs font-bold text-brand-jtb mb-2"><i class="fa-solid fa-location-dot mr-1"></i>1日目：山梨ルート</h3>
-                    <div class="w-full h-40 bg-gray-100 rounded-xl overflow-hidden relative">
+                    <div class="w-full h-48 bg-gray-100 rounded-xl overflow-hidden relative">
                         <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d103847.66288824247!2d138.80489600000003!3d35.47466820000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sja!2sjp!4v1700000000000!5m2!1sja!2sjp" 
+                            src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d103755.94723383822!2d138.65476307399878!3d35.53488439775363!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e0!4m5!1s0x6019672ebdd927c3%3A0x6a05e2cc34b22db7!2z5q-F6YeO5YWr5rW3!3m2!1d35.460492899999995!2d138.8231362!4m5!1s0x60195e347e3a890f%3A0xb3bd0f1e8bf1c30e!2z5rKz5Y-j5rmW!3m2!1d35.517094299999996!2d138.7517616!5e0!3m2!1sja!2sjp!4v1716281000000!5m2!1sja!2sjp" 
                             width="100%" 
                             height="100%" 
                             style="border:0;" 
@@ -406,12 +472,15 @@
                 <!-- 2日目マップ -->
                 <div id="map-day2" class="day-content relative hidden bg-white p-3 rounded-2xl shadow-sm border border-blue-100">
                     <h3 class="text-xs font-bold text-blue-500 mb-2"><i class="fa-solid fa-location-dot mr-1"></i>2日目：熱海ルート</h3>
-                    <div class="w-full h-40 bg-blue-50 rounded-xl overflow-hidden flex flex-col items-center justify-center p-4 text-center border border-blue-200">
-                        <i class="fa-solid fa-map-marked-alt text-3xl text-blue-500 mb-2"></i>
-                        <p class="text-[10px] text-gray-700 font-bold mb-3">熱海エリアの詳細ルートはこちらをご確認ください</p>
-                        <a href="https://maps.app.goo.gl/GeZPXgSn4ALdqzv9A" target="_blank" class="bg-blue-500 text-white text-[10px] font-bold px-4 py-2 rounded-full shadow hover:bg-blue-600 transition flex items-center gap-1.5">
-                            <i class="fa-solid fa-external-link-alt"></i>Googleマップを開く
-                        </a>
+                    <div class="w-full h-48 bg-gray-100 rounded-xl overflow-hidden relative">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d13029.071720815147!2d139.0659850165036!3d35.09918712399998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e0!4m5!1s0x6019ebdcb86b7201%3A0x501bbda3eb20dc9!2z54ax5rW36aeF!3m2!1d35.103233899999995!2d139.0776766!4m5!1s0x6019eb9e7f45afb1%3A0x6b4fb6c185bb81d!2z54ax5rW35riv!3m2!1d35.091398899999996!2d139.077227!5e0!3m2!1sja!2sjp!4v1716281200000!5m2!1sja!2sjp" 
+                            width="100%" 
+                            height="100%" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy">
+                        </iframe>
                     </div>
                 </div>
             </div>
