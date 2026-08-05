@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>初島カフェ メニュー</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- しおり全体と統一した可愛いフォント -->
+    <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@400;500&family=M+PLUS+Rounded+1c:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    'brand-jtb': '#C92434',
+                    'brand-orange': '#F97316',
+                    'brand-yellow': '#FBBF24',
+                    'brand-cyan': '#06B6D4',
+                    'brand-sand': '#FEFCE8',
+                },
+                fontFamily: {
+                    'title': ['"Kiwi Maru"', 'serif'],
+                    'body': ['"M PLUS Rounded 1c"', 'sans-serif'],
+                }
+            }
+        }
+    }
+    </script>
+    
+    <style>
+        body {
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+            background-color: #F0FDFA; /* 爽やかな海のシアン系の背景 */
+            background-image: 
+                radial-gradient(#CCFBF1 2px, transparent 2px),
+                radial-gradient(#CCFBF1 2px, transparent 2px);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            color: #374151;
+        }
+        
+        .title-font {
+            font-family: 'Kiwi Maru', serif;
+        }
+
+        /* ふわふわ浮くアニメーション（南国風） */
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-6px) rotate(3deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        /* メニュー項目のドット線リーダー（価格との間の点線） */
+        .dotted-leader {
+            border-bottom: 2px dotted #E5E7EB;
+            flex-grow: 1;
+            margin: 0 8px;
+            position: relative;
+            top: -6px;
+        }
+    </style>
+</head>
+<body class="pb-24">
+
+<div class="max-w-md mx-auto bg-white/80 backdrop-blur-md min-h-screen shadow-xl overflow-hidden relative border-x border-cyan-50">
+    
+    <header class="relative h-56 bg-gradient-to-br from-cyan-400 via-blue-400 to-blue-500 overflow-hidden rounded-b-[2.5rem] shadow-md z-10 text-white">
+        <!-- 海と太陽の装飾 -->
+        <div class="absolute top-4 left-6 text-yellow-200 opacity-80 text-5xl animate-float" style="animation-delay: 0s;"><i class="fa-solid fa-sun"></i></div>
+        <div class="absolute top-10 right-4 text-white opacity-30 text-6xl animate-float" style="animation-delay: 1.5s;"><i class="fa-solid fa-cloud"></i></div>
+        <div class="absolute bottom-6 right-10 text-white opacity-40 text-4xl animate-float" style="animation-delay: 0.5s;"><i class="fa-solid fa-umbrella-beach"></i></div>
+        
+        <div class="absolute inset-0 flex flex-col items-center justify-center text-white z-10 pt-6 px-4 text-center">
+            <span class="bg-white/20 backdrop-blur-md text-white text-[10px] font-bold px-3 py-1 rounded-full shadow-sm tracking-widest border border-white/30 mb-2">
+                PICA 初島 / ENOTEA RESTAURANT
+            </span>
+            <h1 class="text-3xl font-bold mb-1 tracking-wider drop-shadow-md title-font leading-tight">
+                TakeOut Menu
+            </h1>
+            <p class="text-sm font-bold opacity-95 tracking-widest mt-1 bg-black/15 px-4 py-1 rounded-full backdrop-blur-sm shadow-inner">
+                <i class="fa-solid fa-utensils mr-1.5"></i>テイクアウトカフェ
+            </p>
+        </div>
+        
+        <!-- 戻るボタン -->
+        <a href="index.html" class="absolute top-4 left-4 w-9 h-9 bg-black/30 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-black/50 transition z-20 shadow-sm border border-white/20">
+            <i class="fa-solid fa-chevron-left pr-0.5"></i>
+        </a>
+    </header>
+
+    <div class="px-5 py-6 space-y-8">
+        
+        <section>
+            <div class="flex items-center justify-between mb-3">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-file-pdf text-red-500 text-lg animate-float"></i>
+                    <h2 class="text-lg font-bold title-font border-b-2 border-red-400 pb-0.5 text-gray-800">オリジナルメニュー表</h2>
+                </div>
+            </div>
+            
+            <!-- PDF埋め込み枠 -->
+            <div class="w-full h-[55vh] min-h-[400px] bg-gray-100 rounded-2xl overflow-hidden shadow-sm border-2 border-gray-200 relative group">
+                <!-- PDFがブラウザで開けない時のためのフォールバックをobjectタグで実装 -->
+                <object data="初島カフェメニュー.pdf" type="application/pdf" class="w-full h-full">
+                    <div class="absolute inset-0 flex flex-col items-center justify-center bg-gray-50 p-6 text-center">
+                        <i class="fa-regular fa-face-frown text-4xl text-gray-400 mb-3"></i>
+                        <p class="text-sm text-gray-600 font-medium mb-4 leading-relaxed">
+                            お使いのブラウザでは<br>PDFを直接表示できません。
+                        </p>
+                        <a href="初島カフェメニュー.pdf" target="_blank" class="bg-brand-orange text-white font-bold py-2.5 px-5 rounded-full shadow-md text-sm flex items-center gap-2 hover:bg-orange-600 transition">
+                            <i class="fa-solid fa-download"></i> PDFを開く・保存する
+                        </a>
+                    </div>
+                </object>
+                
+                <!-- スマホ向けに独立したボタンも上に被せて配置（タップしやすくするため） -->
+                <a href="初島カフェメニュー.pdf" target="_blank" class="absolute bottom-4 right-4 bg-gray-900/80 backdrop-blur text-white text-xs font-bold px-3 py-2 rounded-lg shadow-lg flex items-center gap-1.5 z-10 border border-gray-700 hover:bg-black transition">
+                    <i class="fa-solid fa-expand"></i> 拡大表示
+                </a>
+            </div>
+        </section>
+
+        <section>
+            <div class="flex items-center gap-2 mb-4">
+                <i class="fa-solid fa-mobile-screen text-brand-cyan text-lg animate-float" style="animation-delay: 0.5s;"></i>
+                <h2 class="text-lg font-bold title-font border-b-2 border-brand-cyan pb-0.5 text-gray-800">スマホ用 見やすいメニュー</h2>
+            </div>
+
+            <!-- アラート -->
+            <div class="bg-orange-50 border border-orange-200 rounded-xl p-3 flex items-start gap-3 shadow-sm mb-5">
+                <i class="fa-solid fa-circle-exclamation text-brand-orange mt-0.5"></i>
+                <p class="text-[11px] text-orange-800 font-medium leading-relaxed">
+                    ※メニューの画像は店内用です。テイクアウト用に梱包してご提供いたします。
+                </p>
+            </div>
+
+            <!-- FOOD メニュー -->
+            <div class="mb-6">
+                <h3 class="text-sm font-bold text-white bg-brand-orange inline-block px-4 py-1 rounded-t-lg rounded-br-lg shadow-sm mb-3 font-title tracking-wide">
+                    <i class="fa-solid fa-burger mr-1.5"></i>FOODS
+                </h3>
+                
+                <div class="bg-white rounded-2xl p-4 shadow-sm border border-orange-100 space-y-4">
+                    
+                    <div class="flex items-end justify-between">
+                        <div>
+                            <p class="font-bold text-gray-800 text-sm">PICAオリジナルチキンカレーBOX</p>
+                            <p class="text-[9px] text-gray-400">PICA Original Chiken Curry</p>
+                        </div>
+                        <div class="dotted-leader"></div>
+                        <p class="font-bold text-brand-orange whitespace-nowrap text-sm title-font">1,500<span class="text-[10px] ml-0.5 text-gray-500">yen</span></p>
+                    </div>
+
+                    <div class="flex items-end justify-between">
+                        <div>
+                            <p class="font-bold text-gray-800 text-sm">スパイスレモンカレーBOX</p>
+                            <p class="text-[9px] text-gray-400">Spicy Lemon Curry</p>
+                        </div>
+                        <div class="dotted-leader"></div>
+                        <p class="font-bold text-brand-orange whitespace-nowrap text-sm title-font">1,500<span class="text-[10px] ml-0.5 text-gray-500">yen</span></p>
+                    </div>
+
+                    <div class="flex items-end justify-between">
+                        <div>
+                            <p class="font-bold text-gray-800 text-sm">ガパオライスBOX</p>
+                            <p class="text-[9px] text-gray-400">Fried Rice with Basil Plate</p>
+                        </div>
+                        <div class="dotted-leader"></div>
+                        <p class="font-bold text-brand-orange whitespace-nowrap text-sm title-font">1,650<span class="text-[10px] ml-0.5 text-gray-500">yen</span></p>
+                    </div>
+
+                    <div class="flex items-end justify-between">
+                        <div>
+                            <p class="font-bold text-gray-800 text-sm">ロコモコBOX</p>
+                            <p class="text-[9px] text-gray-400">Loco Moco bowl</p>
+                        </div>
+                        <div class="dotted-leader"></div>
+                        <p class="font-bold text-brand-orange whitespace-nowrap text-sm title-font">1,500<span class="text-[10px] ml-0.5 text-gray-500">yen</span></p>
+                    </div>
+
+                    <div class="flex items-end justify-between relative">
+                        <div>
+                            <p class="font-bold text-gray-800 text-sm flex items-center gap-1.5">初島バーガー <span class="bg-cyan-100 text-cyan-700 text-[9px] px-1.5 py-0.5 rounded font-bold">青いバンズ!</span></p>
+                            <p class="text-[9px] text-gray-400">Hatsushima Burger</p>
+                        </div>
+                        <div class="dotted-leader"></div>
+                        <p class="font-bold text-brand-orange whitespace-nowrap text-sm title-font">1,300<span class="text-[10px] ml-0.5 text-gray-500">yen</span></p>
+                    </div>
+
+                    <div class="flex items-end justify-between">
+                        <div>
+                            <p class="font-bold text-gray-800 text-sm">フィッシュ&チップス</p>
+                            <p class="text-[9px] text-gray-400">Fish & Chips</p>
+                        </div>
+                        <div class="dotted-leader"></div>
+                        <p class="font-bold text-brand-orange whitespace-nowrap text-sm title-font">1,050<span class="text-[10px] ml-0.5 text-gray-500">yen</span></p>
+                    </div>
+
+                    <div class="flex items-end justify-between">
+                        <div>
+                            <p class="font-bold text-gray-800 text-sm">レモンナゲット</p>
+                            <p class="text-[9px] text-gray-400">Lemon-Flavored Chicken Nuggets</p>
+                        </div>
+                        <div class="dotted-leader"></div>
+                        <p class="font-bold text-brand-orange whitespace-nowrap text-sm title-font">800<span class="text-[10px] ml-0.5 text-gray-500">yen</span></p>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- DRINK & DESSERT メニュー -->
+            <div>
+                <h3 class="text-sm font-bold text-white bg-brand-cyan inline-block px-4 py-1 rounded-t-lg rounded-br-lg shadow-sm mb-3 font-title tracking-wide">
+                    <i class="fa-solid fa-ice-cream mr-1.5"></i>DESSERT & DRINK
+                </h3>
+                
+                <div class="bg-white rounded-2xl p-4 shadow-sm border border-cyan-100 space-y-4">
+                    
+                    <div class="flex items-end justify-between">
+                        <div>
+                            <p class="font-bold text-gray-800 text-sm">スフレパンケーキレモン</p>
+                            <p class="text-[9px] text-gray-400">Lemon Flavored Souffle Pancakes</p>
+                        </div>
+                        <div class="dotted-leader"></div>
+                        <p class="font-bold text-brand-cyan whitespace-nowrap text-sm title-font">950<span class="text-[10px] ml-0.5 text-gray-500">yen</span></p>
+                    </div>
+
+                    <div class="flex items-end justify-between">
+                        <div>
+                            <p class="font-bold text-gray-800 text-sm">ココナッツアイス</p>
+                            <p class="text-[9px] text-gray-400">Coconut Flavored Ice Cream</p>
+                        </div>
+                        <div class="dotted-leader"></div>
+                        <p class="font-bold text-brand-cyan whitespace-nowrap text-sm title-font">650<span class="text-[10px] ml-0.5 text-gray-500">yen</span></p>
+                    </div>
+
+                    <div class="flex items-end justify-between">
+                        <div>
+                            <p class="font-bold text-gray-800 text-sm">レモンシャーベット</p>
+                            <p class="text-[9px] text-gray-400">Lemon Flavored Sherbet</p>
+                        </div>
+                        <div class="dotted-leader"></div>
+                        <p class="font-bold text-brand-cyan whitespace-nowrap text-sm title-font">600<span class="text-[10px] ml-0.5 text-gray-500">yen</span></p>
+                    </div>
+
+                    <div class="flex items-end justify-between">
+                        <div>
+                            <p class="font-bold text-gray-800 text-sm">初島檸檬スカッシュ</p>
+                            <p class="text-[9px] text-gray-400">Hatsushima Lemon Squash</p>
+                        </div>
+                        <div class="dotted-leader"></div>
+                        <p class="font-bold text-brand-cyan whitespace-nowrap text-sm title-font">750<span class="text-[10px] ml-0.5 text-gray-500">yen</span></p>
+                    </div>
+
+                    <div class="flex items-end justify-between">
+                        <div>
+                            <p class="font-bold text-gray-800 text-sm flex items-center gap-1.5">オーロラソーダ <span class="bg-blue-50 text-blue-600 text-[10px] px-1.5 rounded font-bold border border-blue-100">ブルー / イエロー</span></p>
+                            <p class="text-[9px] text-gray-400">Aurora Soda - Blue/Yellow</p>
+                        </div>
+                        <div class="dotted-leader"></div>
+                        <p class="font-bold text-brand-cyan whitespace-nowrap text-sm title-font">700<span class="text-[10px] ml-0.5 text-gray-500">yen</span></p>
+                    </div>
+
+                    <div class="flex items-end justify-between">
+                        <div>
+                            <p class="font-bold text-gray-800 text-sm">マンゴーラッシー</p>
+                            <p class="text-[9px] text-gray-400">Mango Lassi</p>
+                        </div>
+                        <div class="dotted-leader"></div>
+                        <p class="font-bold text-brand-cyan whitespace-nowrap text-sm title-font">650<span class="text-[10px] ml-0.5 text-gray-500">yen</span></p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        
+    </div>
+
+    <div class="fixed bottom-0 left-0 right-0 max-w-md mx-auto p-4 bg-gradient-to-t from-white via-white/90 to-transparent z-20 pb-6">
+        <a href="index.html" class="block w-full bg-brand-cyan text-white text-center py-4 rounded-full font-bold shadow-lg hover:bg-cyan-600 transition flex items-center justify-center gap-2 title-font text-base tracking-wide border-2 border-cyan-600/50 hover:scale-[0.98] active:scale-95">
+            <i class="fa-solid fa-book-open"></i> しおりに戻る
+        </a>
+    </div>
+
+</div>
+
+</body>
+</html>
