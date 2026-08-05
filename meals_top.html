@@ -56,7 +56,6 @@
 </head>
 <body class="pb-24 flex flex-col min-h-screen">
 
-<!-- ↓ overflow-hidden を削除し、スクロール可能に修正 ↓ -->
 <div class="max-w-md mx-auto w-full bg-white/95 backdrop-blur-sm shadow-xl flex-grow flex flex-col relative border-x border-red-50">
     
     <header class="relative h-48 bg-gradient-to-br from-[#FF9A9E] via-[#FECFEF] to-[#FECFEF] overflow-hidden rounded-b-[2.5rem] shadow-sm z-10 text-gray-800 flex flex-col items-center justify-center">
@@ -81,27 +80,26 @@
         </div>
     </header>
 
-    <!-- ↓ 一番下の余白を pb-20 から pb-32 に増やして固定ボタンとの被りを防止 ↓ -->
     <div class="px-6 py-10 flex flex-col gap-6 flex-grow justify-center pb-32">
         
         <p class="text-center text-sm text-gray-500 font-bold mb-2">どちらのメニューを見ますか？</p>
 
         <!-- 山梨（夕食）ボタン -->
-        <a href="#" class="animate-bounce-in group relative block w-full bg-gradient-to-br from-green-400 to-green-600 rounded-3xl p-1 shadow-lg transform transition active:scale-95" style="animation-delay: 0.1s;">
+        <a href="yamanashi_menu.html" class="animate-bounce-in group relative block w-full bg-gradient-to-br from-orange-400 to-amber-500 rounded-3xl p-1 shadow-lg transform transition active:scale-95" style="animation-delay: 0.1s;">
             <div class="bg-white/10 absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition"></div>
-            <div class="bg-green-50 rounded-[1.3rem] px-5 py-6 flex items-center gap-4 relative overflow-hidden border-2 border-transparent">
+            <div class="bg-orange-50 rounded-[1.3rem] px-5 py-6 flex items-center gap-4 relative overflow-hidden border-2 border-transparent">
                 <!-- 装飾 -->
-                <div class="absolute -right-4 -bottom-4 text-green-200 text-6xl opacity-30 transform -rotate-12"><i class="fa-solid fa-campground"></i></div>
+                <div class="absolute -right-4 -bottom-4 text-orange-200 text-6xl opacity-30 transform -rotate-12"><i class="fa-solid fa-utensils"></i></div>
                 
-                <div class="w-14 h-14 bg-gradient-to-br from-green-400 to-green-500 rounded-full flex items-center justify-center text-white text-2xl shadow-md z-10 flex-shrink-0">
-                    <i class="fa-solid fa-fire-burner"></i>
+                <div class="w-14 h-14 bg-gradient-to-br from-orange-400 to-amber-500 rounded-full flex items-center justify-center text-white text-2xl shadow-md z-10 flex-shrink-0">
+                    <i class="fa-solid fa-box-open"></i>
                 </div>
                 <div class="z-10">
-                    <p class="text-green-600 text-xs font-bold tracking-widest mb-0.5"><i class="fa-solid fa-moon mr-1"></i>Day1 / 夕食</p>
-                    <h2 class="text-2xl font-black text-gray-800 tracking-wide">山梨 (BBQ)</h2>
-                    <p class="text-[10px] text-gray-500 mt-1 font-bold">メニューは現在準備中です🙇‍♀️</p>
+                    <p class="text-orange-600 text-xs font-bold tracking-widest mb-0.5"><i class="fa-solid fa-moon mr-1"></i>Day1 / 夕食</p>
+                    <h2 class="text-2xl font-black text-gray-800 tracking-wide">山梨 (お弁当)</h2>
+                    <p class="text-[10px] text-gray-500 mt-1 font-bold">W-CLUBの特製ディナーボックス</p>
                 </div>
-                <i class="fa-solid fa-chevron-right absolute right-5 text-green-300 text-xl z-10"></i>
+                <i class="fa-solid fa-chevron-right absolute right-5 text-orange-300 text-xl z-10"></i>
             </div>
         </a>
 
