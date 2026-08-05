@@ -96,7 +96,8 @@
         </a>
     </header>
 
-    <div class="px-5 py-6 space-y-8">
+    <!-- ↓ 余白（pb-36）を大きく追加して、一番下までスクロールできるように修正 ↓ -->
+    <div class="px-5 pt-6 pb-36 space-y-8">
         
         <section>
             <div class="flex items-center justify-between mb-3">
@@ -108,7 +109,7 @@
             
             <!-- 画像表示枠（タップで拡大） -->
             <div class="w-full bg-white rounded-2xl overflow-hidden shadow-sm border-2 border-gray-200 relative group cursor-pointer" onclick="openModal()">
-                <img src="初島カフェメニュー_2.jpg" alt="初島カフェ テイクアウトメニュー" class="w-full h-auto object-contain">
+                <img src="hatuzima_cafe_menu.jpg" alt="初島カフェ テイクアウトメニュー" class="w-full h-auto object-contain">
                 
                 <!-- スマホ向けに独立したボタンも上に被せて配置（タップしやすくするため） -->
                 <button type="button" class="absolute bottom-4 right-4 bg-gray-900/80 backdrop-blur text-white text-xs font-bold px-3 py-2 rounded-lg shadow-lg flex items-center gap-1.5 z-10 border border-gray-700 hover:bg-black transition pointer-events-none">
@@ -288,7 +289,7 @@
         <i class="fa-solid fa-xmark"></i>
     </button>
     <!-- 拡大画像（画像自体をタップしても閉じないように event.stopPropagation() を設定） -->
-    <img src="初島カフェメニュー_2.jpg" alt="メニュー拡大" class="max-w-full max-h-[85vh] object-contain shadow-2xl rounded" onclick="event.stopPropagation()">
+    <img src="hatuzima_cafe_menu.jpg" alt="メニュー拡大" class="max-w-full max-h-[85vh] object-contain shadow-2xl rounded" onclick="event.stopPropagation()">
     <!-- 案内テキスト -->
     <p class="text-white/80 text-sm mt-5 font-bold tracking-widest bg-black/50 px-4 py-2 rounded-full backdrop-blur-sm"><i class="fa-regular fa-hand-pointer mr-2"></i>枠外をタップして閉じる</p>
 </div>
