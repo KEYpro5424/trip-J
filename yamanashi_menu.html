@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Day1 夕食メニュー - W-CLUB</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@400;500&family=M+PLUS+Rounded+1c:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    'brand-jtb': '#C92434',
+                    'brand-orange': '#EA580C',
+                    'brand-brown': '#78350F',
+                },
+                fontFamily: {
+                    'title': ['"Kiwi Maru"', 'serif'],
+                    'body': ['"M PLUS Rounded 1c"', 'sans-serif'],
+                }
+            }
+        }
+    }
+    </script>
+    
+    <style>
+        body {
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+            background-color: #FFFBEB; /* 温かみのあるアイボリー背景 */
+            background-image: radial-gradient(#FDE68A 1.5px, transparent 1.5px);
+            background-size: 24px 24px;
+            color: #451A03;
+        }
+        
+        .title-font {
+            font-family: 'Kiwi Maru', serif;
+        }
+
+        /* ふわっと浮かび上がるアニメーション */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-up {
+            animation: fadeUp 0.6s ease-out forwards;
+            opacity: 0;
+        }
+
+        /* 料理画像のポラロイド風装飾 */
+        .food-card {
+            background: white;
+            padding: 10px 10px 20px 10px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            transform: rotate(-1deg);
+            transition: transform 0.3s ease;
+        }
+        .food-card:nth-child(even) {
+            transform: rotate(1.5deg);
+        }
+        .food-card:hover {
+            transform: scale(1.02) rotate(0deg);
+        }
+    </style>
+</head>
+<body class="pb-24">
+
+<div class="max-w-md mx-auto bg-white/60 backdrop-blur-sm min-h-screen shadow-xl overflow-hidden relative border-x border-amber-50">
+    
+    <header class="relative h-56 bg-gradient-to-br from-orange-600 via-orange-500 to-amber-500 overflow-hidden rounded-b-[2.5rem] shadow-md z-10 text-white">
+        <!-- 背景の装飾 -->
+        <div class="absolute top-4 left-6 text-white opacity-20 text-6xl transform -rotate-12"><i class="fa-solid fa-utensils"></i></div>
+        <div class="absolute bottom-6 right-8 text-white opacity-20 text-5xl transform rotate-12"><i class="fa-solid fa-wine-glass"></i></div>
+        
+        <div class="absolute inset-0 flex flex-col items-center justify-center text-white z-10 pt-6 px-4 text-center">
+            <span class="bg-white/20 backdrop-blur-md text-white text-[10px] font-bold px-3 py-1 rounded-full shadow-sm tracking-widest border border-white/30 mb-2">
+                Day1 / Dinner Box
+            </span>
+            <h1 class="text-3xl font-bold mb-1 tracking-wider drop-shadow-md title-font leading-tight">
+                夕食メニュー
+            </h1>
+            <p class="text-sm font-bold opacity-95 tracking-widest mt-1 bg-black/20 px-4 py-1 rounded-full backdrop-blur-sm shadow-inner flex items-center gap-1.5">
+                <i class="fa-solid fa-shop"></i> W-CLUB (ワシントンクラブ)
+            </p>
+        </div>
+        
+        <!-- 戻るボタン (食事トップへ) -->
+        <a href="meals_top.html" class="absolute top-4 left-4 w-9 h-9 bg-black/20 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-black/40 transition z-20 shadow-sm border border-white/20">
+            <i class="fa-solid fa-chevron-left pr-0.5"></i>
+        </a>
+    </header>
+
+    <div class="px-5 py-6 space-y-8">
+        
+        <!-- お店情報リンク -->
+        <a href="http://www.w-club.co.jp/menu.html" target="_blank" rel="noopener noreferrer" class="animate-fade-up block bg-gradient-to-r from-amber-100 to-orange-50 p-4 rounded-2xl shadow-sm border border-orange-200 relative overflow-hidden group">
+            <div class="absolute -right-4 -top-4 text-5xl text-orange-200/50 group-hover:scale-110 transition-transform"><i class="fa-solid fa-globe"></i></div>
+            <div class="flex items-center justify-between relative z-10">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-brand-orange shadow-sm">
+                        <i class="fa-solid fa-store"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-sm font-bold text-brand-brown title-font">お店の雰囲気をチェック👀</h3>
+                        <p class="text-[10px] text-orange-600/80 font-bold mt-0.5">公式サイトのメニューページへ飛びます</p>
+                    </div>
+                </div>
+                <i class="fa-solid fa-arrow-up-right-from-square text-orange-400"></i>
+            </div>
+        </a>
+
+        <section class="space-y-6 pb-6">
+            <div class="flex items-center justify-center gap-2 mb-2">
+                <i class="fa-solid fa-star text-amber-400 text-sm"></i>
+                <h2 class="text-base font-bold title-font text-brand-brown tracking-widest">3種類から選べます</h2>
+                <i class="fa-solid fa-star text-amber-400 text-sm"></i>
+            </div>
+
+            <!-- ① 手ごねハンバーグ -->
+            <div class="food-card animate-fade-up" style="animation-delay: 0.1s;">
+                <div class="relative rounded-lg overflow-hidden bg-gray-100 aspect-video flex items-center justify-center mb-3">
+                    <!-- 画像URLをセットしてください -->
+                    <img src="winefood_1.png" alt="手ごねハンバーグ" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://placehold.co/800x533/FFFBEB/EA580C?text=No+Image';">
+                    
+                    <!-- 左上の可愛いリボン -->
+                    <div class="absolute top-2 left-[-20px] bg-red-500 text-white text-[10px] font-bold py-1 px-8 transform -rotate-45 shadow-md">
+                        No.1
+                    </div>
+                </div>
+                <h3 class="text-center font-bold text-brand-brown text-base title-font">手ごねハンバーグ</h3>
+            </div>
+
+            <!-- ② オムライス＆柔らかビーフシチュー御膳弁当 -->
+            <div class="food-card animate-fade-up" style="animation-delay: 0.2s;">
+                <div class="relative rounded-lg overflow-hidden bg-gray-100 aspect-video flex items-center justify-center mb-3">
+                    <!-- 画像URLをセットしてください -->
+                    <img src="winefood_2.png" alt="オムライス＆柔らかビーフシチュー御膳弁当" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://placehold.co/800x533/FFFBEB/EA580C?text=No+Image';">
+                    
+                    <div class="absolute top-2 left-[-20px] bg-orange-500 text-white text-[10px] font-bold py-1 px-8 transform -rotate-45 shadow-md">
+                        No.2
+                    </div>
+                </div>
+                <h3 class="text-center font-bold text-brand-brown text-[15px] title-font leading-tight mt-1">オムライス＆<br>柔らかビーフシチュー御膳弁当</h3>
+            </div>
+
+            <!-- ③ 海の幸のピラフ＆帆立のフライ御膳弁当 -->
+            <div class="food-card animate-fade-up" style="animation-delay: 0.3s;">
+                <div class="relative rounded-lg overflow-hidden bg-gray-100 aspect-video flex items-center justify-center mb-3">
+                    <!-- 画像URLをセットしてください -->
+                    <img src="winefood_3.png" alt="海の幸のピラフ＆帆立のフライ御膳弁当" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://placehold.co/800x533/FFFBEB/EA580C?text=No+Image';">
+                    
+                    <div class="absolute top-2 left-[-20px] bg-amber-500 text-white text-[10px] font-bold py-1 px-8 transform -rotate-45 shadow-md">
+                        No.3
+                    </div>
+                </div>
+                <h3 class="text-center font-bold text-brand-brown text-[15px] title-font leading-tight mt-1">海の幸のピラフ＆<br>帆立のフライ御膳弁当</h3>
+            </div>
+
+        </section>
+    </div>
+
+    <div class="fixed bottom-0 left-0 right-0 max-w-md mx-auto p-4 bg-gradient-to-t from-white via-white/90 to-transparent z-20 pb-6">
+        <a href="index.html" class="block w-full bg-brand-orange text-white text-center py-4 rounded-full font-bold shadow-lg hover:bg-orange-700 transition flex items-center justify-center gap-2 title-font text-base tracking-wide border-2 border-orange-700/50 hover:scale-[0.98] active:scale-95">
+            <i class="fa-solid fa-book-open"></i> しおりに戻る
+        </a>
+    </div>
+
+</div>
+
+</body>
+</html>
