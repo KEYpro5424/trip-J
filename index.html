@@ -180,19 +180,25 @@
             <div class="bg-gradient-to-r from-[#F0F9FF] to-[#E0F2FE] rounded-2xl shadow-sm border border-blue-100 p-4 relative overflow-hidden">
                 <div class="absolute -right-3 -top-3 text-6xl text-blue-200 opacity-30 transform rotate-12"><i class="fa-solid fa-wifi"></i></div>
                 
-                <div class="flex items-center gap-2 mb-3 border-b-2 border-blue-200 pb-1 inline-flex relative z-10">
-                    <i class="fa-solid fa-wifi text-blue-500 text-lg"></i>
-                    <span class="font-bold text-gray-800 text-base">ロケバス / 共有 Wi-Fi</span>
+                <div class="flex items-center justify-between border-b-2 border-blue-200 pb-1 mb-3 relative z-10">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-wifi text-blue-500 text-lg"></i>
+                        <span class="font-bold text-gray-800 text-base">共有 Wi-Fi <span class="text-[10px] text-gray-500 font-normal ml-1 bg-white/60 px-1.5 py-0.5 rounded">※どちらでも接続可</span></span>
+                    </div>
+                    <div class="flex gap-1.5">
+                        <div id="wifi-dot-0" class="w-2 h-2 rounded-full bg-blue-500 transition-colors duration-500"></div>
+                        <div id="wifi-dot-1" class="w-2 h-2 rounded-full bg-blue-200 transition-colors duration-500"></div>
+                    </div>
                 </div>
                 
-                <div class="space-y-2 text-sm text-gray-700 relative z-10">
+                <div id="wifi-container" class="space-y-2 text-sm text-gray-700 relative z-10 transition-opacity duration-500">
                     <div class="flex justify-between items-center bg-white p-2.5 rounded-xl border border-blue-50 shadow-sm">
                         <span class="text-xs text-white bg-blue-400 px-2 py-0.5 rounded-md font-bold w-12 text-center shadow-inner">ID</span>
-                        <span class="font-bold tracking-wider flex-grow text-gray-800 ml-3 text-base">TOUR_WIFI_2026</span>
+                        <span id="wifi-id" class="font-bold tracking-wider flex-grow text-gray-800 ml-3 text-base">AIR-WiFi_0ZRU4V</span>
                     </div>
                     <div class="flex justify-between items-center bg-white p-2.5 rounded-xl border border-blue-50 shadow-sm">
                         <span class="text-xs text-white bg-blue-400 px-2 py-0.5 rounded-md font-bold w-12 text-center shadow-inner">PASS</span>
-                        <span id="wifi-pass" class="font-bold tracking-wider flex-grow text-gray-800 ml-3 text-base">shooting0806</span>
+                        <span id="wifi-pass" class="font-bold tracking-wider flex-grow text-gray-800 ml-3 text-base">63480320</span>
                         <button onclick="copyWifiPass(this)" class="bg-blue-50 hover:bg-blue-100 text-blue-600 text-xs font-bold py-1.5 px-3 rounded-lg transition active:scale-95 flex items-center shadow-sm border border-blue-100">
                             <i class="fa-regular fa-copy mr-1"></i>コピー
                         </button>
@@ -266,7 +272,7 @@
                                 <div class="text-sm font-bold">金澤 善風</div>
                             </div>
                             <div class="bg-white p-2.5 rounded-2xl border-2 border-blue-50 shadow-sm flex flex-col items-center text-center">
-                                <div class="text-[10px] text-blue-600 font-bold mb-1 bg-blue-50 px-2 py-0.5 rounded-full shadow-inner">制作</div>
+                                <div class="text-[10px] text-blue-600 font-bold mb-1 bg-blue-50 px-2 py-0.5 rounded-full shadow-inner">プロデューサー</div>
                                 <div class="text-sm font-bold">市川 拓弥</div>
                             </div>
                             <div class="bg-white p-2.5 rounded-2xl border-2 border-blue-50 shadow-sm flex flex-col items-center text-center">
@@ -276,6 +282,10 @@
                             <div class="bg-white p-2.5 rounded-2xl border-2 border-blue-50 shadow-sm flex flex-col items-center text-center">
                                 <div class="text-[10px] text-blue-600 font-bold mb-1 bg-blue-50 px-2 py-0.5 rounded-full shadow-inner">制作</div>
                                 <div class="text-sm font-bold">佐藤 汐</div>
+                            </div>
+                            <div class="bg-white p-2.5 rounded-2xl border-2 border-blue-50 shadow-sm flex flex-col items-center text-center">
+                                <div class="text-[10px] text-blue-600 font-bold mb-1 bg-blue-50 px-2 py-0.5 rounded-full shadow-inner">制作</div>
+                                <div class="text-sm font-bold">内海 拓也</div>
                             </div>
                         </div>
                     </div>
@@ -304,7 +314,7 @@
                             </div>
                             <div class="bg-white p-2.5 rounded-2xl border-2 border-green-50 shadow-sm flex flex-col items-center text-center">
                                 <div class="text-[10px] text-green-700 font-bold mb-1 bg-green-50 px-2 py-0.5 rounded-full shadow-inner">録音</div>
-                                <div class="text-sm font-bold">池本あずさ</div>
+                                <div class="text-sm font-bold">池本 あずさ</div>
                             </div>
                             <div class="bg-white p-2.5 rounded-2xl border-2 border-green-50 shadow-sm flex flex-col items-center text-center">
                                 <div class="text-[10px] text-green-700 font-bold mb-1 bg-green-50 px-2 py-0.5 rounded-full shadow-inner">録音 助手</div>
@@ -668,6 +678,11 @@
                             <span class="font-extrabold text-teal-500 text-lg tracking-wide w-[3.25rem] flex-shrink-0 pt-0.5">12:30</span>
                             <h3 class="font-bold text-gray-800 text-base leading-snug break-words pt-1">初島着</h3>
                         </div>
+                        <div class="pl-[3.5rem] mt-1.5">
+                            <a href="cafe_menu.html" class="inline-flex items-center justify-center bg-teal-50 border border-teal-500 text-teal-600 text-[11px] font-bold px-3 py-2 rounded-lg shadow-sm hover:bg-teal-100 transition w-full">
+                                <i class="fa-solid fa-utensils mr-1.5 text-sm"></i>初島カフェのメニューを見る
+                            </a>
+                        </div>
                     </div>
                 </div>
 
@@ -831,19 +846,25 @@
                 <div class="p-5 bg-[#FFFDFD]">
                     <ul class="space-y-3.5">
                         <li class="flex items-center gap-3 text-sm text-gray-700 font-bold">
-                            <i class="fa-solid fa-star text-[10px] text-brand-jtb"></i>カッパ
-                        </li>
-                        <li class="flex items-center gap-3 text-sm text-gray-700 font-bold">
                             <i class="fa-solid fa-star text-[10px] text-brand-jtb"></i>ハンディファン
                         </li>
                         <li class="flex items-center gap-3 text-sm text-gray-700 font-bold">
                             <i class="fa-solid fa-star text-[10px] text-brand-jtb"></i>ウェットシート
                         </li>
                         <li class="flex items-center gap-3 text-sm text-gray-700 font-bold">
-                            <i class="fa-solid fa-star text-[10px] text-brand-jtb"></i>酔い止め
+                            <i class="fa-solid fa-star text-[10px] text-brand-jtb"></i>汗拭きシート
                         </li>
                         <li class="flex items-center gap-3 text-sm text-gray-700 font-bold">
-                            <i class="fa-solid fa-star text-[10px] text-brand-jtb"></i>ボディーシート
+                            <i class="fa-solid fa-star text-[10px] text-brand-jtb"></i>冷タオル
+                        </li>
+                        <li class="flex items-center gap-3 text-sm text-gray-700 font-bold">
+                            <i class="fa-solid fa-star text-[10px] text-brand-jtb"></i>ティッシュ
+                        </li>
+                        <li class="flex items-center gap-3 text-sm text-gray-700 font-bold">
+                            <i class="fa-solid fa-star text-[10px] text-brand-jtb"></i>カッパ
+                        </li>
+                        <li class="flex items-center gap-3 text-sm text-gray-700 font-bold">
+                            <i class="fa-solid fa-star text-[10px] text-brand-jtb"></i>塩分チャージ飴
                         </li>
                     </ul>
                 </div>
@@ -873,6 +894,12 @@
                         </li>
                         <li class="flex items-center gap-3 text-sm text-gray-700 font-bold">
                             <i class="fa-solid fa-droplet text-[10px] text-brand-orange"></i>ムヒ
+                        </li>
+                        <li class="flex items-center gap-3 text-sm text-gray-700 font-bold">
+                            <i class="fa-solid fa-droplet text-[10px] text-brand-orange"></i>酔い止め
+                        </li>
+                        <li class="flex items-center gap-3 text-sm text-gray-700 font-bold">
+                            <i class="fa-solid fa-droplet text-[10px] text-brand-orange"></i>冷却スプレー
                         </li>
                     </ul>
                 </div>
@@ -1051,6 +1078,47 @@
         }
         document.body.removeChild(textArea);
     }
+
+    const wifiNetworks = [
+        { id: 'AIR-WiFi_0ZRU4V', pass: '63480320' },
+        { id: 'AIR-WiFi_0ZRAU8', pass: '83480320' }
+    ];
+    let currentWifiIndex = 0;
+
+    function rotateWifi() {
+        const container = document.getElementById('wifi-container');
+        const idEl = document.getElementById('wifi-id');
+        const passEl = document.getElementById('wifi-pass');
+        const dot0 = document.getElementById('wifi-dot-0');
+        const dot1 = document.getElementById('wifi-dot-1');
+
+        if (!container || !idEl || !passEl) return;
+
+        // 一旦透明にする
+        container.style.opacity = '0';
+        
+        setTimeout(() => {
+            // 中身を次のWi-Fi情報に書き換える
+            currentWifiIndex = (currentWifiIndex + 1) % wifiNetworks.length;
+            idEl.innerText = wifiNetworks[currentWifiIndex].id;
+            passEl.innerText = wifiNetworks[currentWifiIndex].pass;
+            
+            // ドットの色を切り替える
+            if (currentWifiIndex === 0) {
+                dot0.classList.replace('bg-blue-200', 'bg-blue-500');
+                dot1.classList.replace('bg-blue-500', 'bg-blue-200');
+            } else {
+                dot0.classList.replace('bg-blue-500', 'bg-blue-200');
+                dot1.classList.replace('bg-blue-200', 'bg-blue-500');
+            }
+
+            // 再び表示する
+            container.style.opacity = '1';
+        }, 500); // フェードアウトの時間待つ
+    }
+
+    // 4.5秒ごとに切り替え処理を実行
+    setInterval(rotateWifi, 4500); 
 
     setInterval(updateCurrentLocation, 10000);
     updateCurrentLocation();
