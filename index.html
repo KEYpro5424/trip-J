@@ -168,21 +168,24 @@
                 <h2 class="text-lg font-bold border-b-2 border-brand-jtb pb-0.5 text-gray-800">現地の天気予報</h2>
             </div>
             
-            <div id="weather-day1" class="day-content relative bg-white p-4 rounded-2xl shadow-sm border-2 border-red-50 flex flex-col items-center text-center">
-                <span class="text-sm font-bold text-gray-500 mb-1 tracking-wider"><i class="fa-solid fa-mountain mr-1 text-gray-400"></i>山梨 (河口湖)</span>
-                <div id="w-1-icon" class="text-5xl my-2 drop-shadow-sm"><i class="fa-solid fa-spinner animate-spin text-gray-300"></i></div>
-                <span id="w-1-desc" class="text-base font-bold text-gray-800">読み込み中...</span>
-                <div class="text-sm text-gray-500 mt-2 font-bold bg-gray-50 px-4 py-1 rounded-full border border-gray-100">
-                    最高 <span id="w-1-max" class="text-red-500">--</span>°C / 最低 <span id="w-1-min" class="text-blue-500">--</span>°C
+            <!-- 1日目と2日目を横並びで表示 -->
+            <div class="grid grid-cols-2 gap-3">
+                <div id="weather-day1" class="day-content relative bg-white p-3 rounded-2xl shadow-sm border-2 border-red-50 flex flex-col items-center text-center">
+                    <span class="text-[11px] font-bold text-gray-500 mb-1 tracking-wider"><i class="fa-solid fa-mountain mr-1 text-gray-400"></i>山梨(1日目)</span>
+                    <div id="w-1-icon" class="text-4xl my-1.5 drop-shadow-sm"><i class="fa-solid fa-spinner animate-spin text-gray-300"></i></div>
+                    <span id="w-1-desc" class="text-sm font-bold text-gray-800">読込中...</span>
+                    <div class="text-[10px] text-gray-500 mt-1.5 font-bold bg-gray-50 px-2 py-0.5 rounded-full border border-gray-100">
+                        高 <span id="w-1-max" class="text-red-500">--</span> / 低 <span id="w-1-min" class="text-blue-500">--</span>
+                    </div>
                 </div>
-            </div>
 
-            <div id="weather-day2" class="day-content relative hidden bg-white p-4 rounded-2xl shadow-sm border-2 border-blue-50 flex flex-col items-center text-center">
-                <span class="text-sm font-bold text-gray-500 mb-1 tracking-wider"><i class="fa-solid fa-water mr-1 text-blue-400"></i>静岡 (熱海)</span>
-                <div id="w-2-icon" class="text-5xl my-2 drop-shadow-sm"><i class="fa-solid fa-spinner animate-spin text-gray-300"></i></div>
-                <span id="w-2-desc" class="text-base font-bold text-gray-800">読み込み中...</span>
-                <div class="text-sm text-gray-500 mt-2 font-bold bg-gray-50 px-4 py-1 rounded-full border border-gray-100">
-                    最高 <span id="w-2-max" class="text-red-500">--</span>°C / 最低 <span id="w-2-min" class="text-blue-500">--</span>°C
+                <div id="weather-day2" class="day-content relative bg-white p-3 rounded-2xl shadow-sm border-2 border-blue-50 flex flex-col items-center text-center">
+                    <span class="text-[11px] font-bold text-gray-500 mb-1 tracking-wider"><i class="fa-solid fa-water mr-1 text-blue-400"></i>熱海(2日目)</span>
+                    <div id="w-2-icon" class="text-4xl my-1.5 drop-shadow-sm"><i class="fa-solid fa-spinner animate-spin text-gray-300"></i></div>
+                    <span id="w-2-desc" class="text-sm font-bold text-gray-800">読込中...</span>
+                    <div class="text-[10px] text-gray-500 mt-1.5 font-bold bg-gray-50 px-2 py-0.5 rounded-full border border-gray-100">
+                        高 <span id="w-2-max" class="text-red-500">--</span> / 低 <span id="w-2-min" class="text-blue-500">--</span>
+                    </div>
                 </div>
             </div>
         </section>
@@ -314,4 +317,113 @@
                                 <div class="text-[10px] text-green-700 font-bold mb-1 bg-green-50 px-2 py-0.5 rounded-full shadow-inner">撮影 チーフ</div>
                                 <div class="text-sm font-bold">山城 俊介</div>
                             </div>
-                            <div class="bg-white p-2.5 rounded-2xl border-2 border-green-50 shadow-sm flex flex-col items-
+                            <div class="bg-white p-2.5 rounded-2xl border-2 border-green-50 shadow-sm flex flex-col items-center text-center">
+                                <div class="text-[10px] text-green-700 font-bold mb-1 bg-green-50 px-2 py-0.5 rounded-full shadow-inner">撮影アシ</div>
+                                <div class="text-sm font-bold">平良 隆</div>
+                            </div>
+                            <div class="bg-white p-2.5 rounded-2xl border-2 border-green-50 shadow-sm flex flex-col items-center text-center">
+                                <div class="text-[10px] text-green-700 font-bold mb-1 bg-green-50 px-2 py-0.5 rounded-full shadow-inner">照明</div>
+                                <div class="text-sm font-bold">中本 剛史</div>
+                            </div>
+                            <div class="bg-white p-2.5 rounded-2xl border-2 border-green-50 shadow-sm flex flex-col items-center text-center">
+                                <div class="text-[10px] text-green-700 font-bold mb-1 bg-green-50 px-2 py-0.5 rounded-full shadow-inner">録音</div>
+                                <div class="text-sm font-bold">長澤 佑樹</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </details>
+        </section>
+
+    </div>
+</div>
+
+<script>
+    async function fetchWeather() {
+        try {
+            // Open-Meteo API で 山梨(河口湖周辺) と 熱海 の天気を取得
+            const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=35.502,35.097&longitude=138.761,139.071&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo&forecast_days=3');
+            const data = await res.json();
+            
+            // data[0]が山梨、data[1]が熱海
+            const yamanashi = data[0].daily;
+            const atami = data[1].daily;
+
+            // 明日(index 1)を山梨、明後日(index 2)を熱海として表示
+            updateWeatherDOM(1, yamanashi, 1);
+            updateWeatherDOM(2, atami, 2);
+            
+        } catch (error) {
+            console.error("天気情報の取得に失敗しました", error);
+            document.getElementById('w-1-desc').innerText = "取得失敗";
+            document.getElementById('w-2-desc').innerText = "取得失敗";
+            document.getElementById('w-1-icon').innerHTML = '<i class="fa-solid fa-triangle-exclamation text-yellow-500"></i>';
+            document.getElementById('w-2-icon').innerHTML = '<i class="fa-solid fa-triangle-exclamation text-yellow-500"></i>';
+        }
+    }
+
+    // 天気コードをアイコンとテキストに変換してHTMLに反映
+    function updateWeatherDOM(day, dailyData, dateIndex) {
+        const code = dailyData.weathercode[dateIndex];
+        const max = Math.round(dailyData.temperature_2m_max[dateIndex]);
+        const min = Math.round(dailyData.temperature_2m_min[dateIndex]);
+        
+        let iconHTML = '';
+        let text = '';
+        
+        if (code === 0) {
+            iconHTML = '<i class="fa-solid fa-sun text-orange-400"></i>'; text = '快晴';
+        } else if (code <= 3) {
+            iconHTML = '<i class="fa-solid fa-cloud-sun text-gray-400"></i>'; text = '晴れ/曇り';
+        } else if (code <= 48) {
+            iconHTML = '<i class="fa-solid fa-smog text-gray-400"></i>'; text = '霧/くもり';
+        } else if (code <= 67) {
+            iconHTML = '<i class="fa-solid fa-umbrella text-blue-500"></i>'; text = '雨';
+        } else if (code <= 77) {
+            iconHTML = '<i class="fa-solid fa-snowflake text-blue-300"></i>'; text = '雪';
+        } else {
+            iconHTML = '<i class="fa-solid fa-cloud-bolt text-yellow-500"></i>'; text = '荒天';
+        }
+        
+        document.getElementById(`w-${day}-icon`).innerHTML = iconHTML;
+        document.getElementById(`w-${day}-desc`).innerText = text;
+        document.getElementById(`w-${day}-max`).innerText = max + '°';
+        document.getElementById(`w-${day}-min`).innerText = min + '°';
+    }
+
+    function copyWifiPass(btn) {
+        const pass = document.getElementById('wifi-pass').innerText;
+        
+        // クリップボードにコピー
+        let textArea = document.createElement("textarea");
+        textArea.value = pass;
+        textArea.style.position = "fixed";
+        textArea.style.left = "-999999px";
+        textArea.style.top = "-999999px";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        try {
+            document.execCommand('copy');
+        } catch (err) {
+            console.error('コピーに失敗しました', err);
+        }
+        textArea.remove();
+        
+        // ボタンの見た目を一時的に変更
+        const originalHTML = btn.innerHTML;
+        btn.innerHTML = '<i class="fa-solid fa-check text-green-500 mr-1"></i>完了!';
+        btn.classList.add('bg-green-50', 'border-green-200');
+        setTimeout(() => {
+            btn.innerHTML = originalHTML;
+            btn.classList.remove('bg-green-50', 'border-green-200');
+        }, 2000);
+    }
+
+    // ページ読み込み時に天気を取得開始
+    document.addEventListener('DOMContentLoaded', fetchWeather);
+</script>
+
+</body>
+</html>
