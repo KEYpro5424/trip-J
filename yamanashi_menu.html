@@ -52,24 +52,59 @@
             opacity: 0;
         }
 
-        /* 料理画像のポラロイド風装飾 */
+        /* 料理画像のポラロイド風装飾 (サイズを少しコンパクトに調整) */
         .food-card {
             background: white;
-            padding: 10px 10px 20px 10px;
+            padding: 8px 8px 16px 8px; /* パディングを少し小さく */
             border-radius: 12px;
             box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
             transform: rotate(-1deg);
             transition: transform 0.3s ease;
+            margin-bottom: 1.5rem; /* カード間の余白を調整 */
+            position: relative; /* リボンの基準位置をカード全体にする */
+            z-index: 10; /* カード自体のz-indexを設定 */
         }
         .food-card:nth-child(even) {
             transform: rotate(1.5deg);
         }
         .food-card:hover {
             transform: scale(1.02) rotate(0deg);
+            z-index: 20; /* ホバー時に一番上に来るように */
+        }
+        
+        /* リボンのスタイルを修正。はみ出しを抑え、カードの角にフィットさせる */
+        .ribbon {
+            position: absolute;
+            top: -6px; /* 少しだけ上にはみ出させる */
+            left: -6px; /* 少しだけ左にはみ出させる */
+            padding: 4px 20px;
+            font-size: 11px;
+            font-weight: bold;
+            color: white;
+            transform: rotate(-45deg) translateY(-8px) translateX(-18px); /* 角度と位置を微調整 */
+            box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            z-index: 30; /* カード内で一番上に来るように */
+        }
+        .ribbon-red { background-color: #EF4444; }
+        .ribbon-orange { background-color: #F97316; }
+        .ribbon-amber { background-color: #F59E0B; }
+        
+        /* 画像コンテナのスタイルを追加。はみ出しを防ぐため overflow-hidden は維持しつつ、リボンは外側に配置 */
+        .image-container {
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #f3f4f6;
+            aspect-ratio: 16 / 9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.5rem;
+            position: relative; /* 必要に応じて追加装飾用 */
         }
     </style>
 </head>
-<body class="pb-24">
+<!-- コンテンツの終わりに大きめのパディングを追加して、一番下の要素が固定ボタンに隠れないようにする -->
+<body class="pb-[120px]">
 
 <div class="max-w-md mx-auto bg-white/60 backdrop-blur-sm min-h-screen shadow-xl overflow-hidden relative border-x border-amber-50">
     
@@ -96,10 +131,10 @@
         </a>
     </header>
 
-    <div class="px-5 py-6 space-y-8">
+    <div class="px-5 py-6 space-y-4">
         
         <!-- お店情報リンク -->
-        <a href="http://www.w-club.co.jp/menu.html" target="_blank" rel="noopener noreferrer" class="animate-fade-up block bg-gradient-to-r from-amber-100 to-orange-50 p-4 rounded-2xl shadow-sm border border-orange-200 relative overflow-hidden group">
+        <a href="http://www.w-club.co.jp/menu.html" target="_blank" rel="noopener noreferrer" class="animate-fade-up block bg-gradient-to-r from-amber-100 to-orange-50 p-4 rounded-2xl shadow-sm border border-orange-200 relative overflow-hidden group mb-6">
             <div class="absolute -right-4 -top-4 text-5xl text-orange-200/50 group-hover:scale-110 transition-transform"><i class="fa-solid fa-globe"></i></div>
             <div class="flex items-center justify-between relative z-10">
                 <div class="flex items-center gap-3">
@@ -115,8 +150,8 @@
             </div>
         </a>
 
-        <section class="space-y-6 pb-6">
-            <div class="flex items-center justify-center gap-2 mb-2">
+        <section class="pb-6">
+            <div class="flex items-center justify-center gap-2 mb-4">
                 <i class="fa-solid fa-star text-amber-400 text-sm"></i>
                 <h2 class="text-base font-bold title-font text-brand-brown tracking-widest">3種類から選べます</h2>
                 <i class="fa-solid fa-star text-amber-400 text-sm"></i>
@@ -124,45 +159,42 @@
 
             <!-- ① 手ごねハンバーグ -->
             <div class="food-card animate-fade-up" style="animation-delay: 0.1s;">
-                <div class="relative rounded-lg overflow-hidden bg-gray-100 aspect-video flex items-center justify-center mb-3">
-                    <img src="winefood_1_2.png" alt="手ごねハンバーグ" class="w-full h-full object-cover">
-                    
-                    <!-- 左上の可愛いリボン -->
-                    <div class="absolute top-2 left-[-20px] bg-red-500 text-white text-[10px] font-bold py-1 px-8 transform -rotate-45 shadow-md">
-                        No.1
-                    </div>
+                <!-- 左上の可愛いリボン。はみ出しを抑え、カード自体の左上に配置 -->
+                <div class="ribbon ribbon-red">No.1</div>
+                <div class="image-container">
+                    <!-- 画像URLをセットしてください -->
+                    <img src="winefood_1.png" alt="手ごねハンバーグ" class="w-full h-full object-cover">
                 </div>
-                <h3 class="text-center font-bold text-brand-brown text-base title-font">手ごねハンバーグ</h3>
+                <h3 class="text-center font-bold text-brand-brown text-[15px] title-font mt-1">手ごねハンバーグ</h3>
             </div>
 
             <!-- ② オムライス＆柔らかビーフシチュー御膳弁当 -->
             <div class="food-card animate-fade-up" style="animation-delay: 0.2s;">
-                <div class="relative rounded-lg overflow-hidden bg-gray-100 aspect-video flex items-center justify-center mb-3">
-                    <img src="winefood_2_2.png" alt="オムライス＆柔らかビーフシチュー御膳弁当" class="w-full h-full object-cover">
-                    
-                    <div class="absolute top-2 left-[-20px] bg-orange-500 text-white text-[10px] font-bold py-1 px-8 transform -rotate-45 shadow-md">
-                        No.2
-                    </div>
+                <div class="ribbon ribbon-orange">No.2</div>
+                <div class="image-container">
+                    <!-- 画像URLをセットしてください -->
+                    <img src="winefood_2.png" alt="オムライス＆柔らかビーフシチュー御膳弁当" class="w-full h-full object-cover">
                 </div>
-                <h3 class="text-center font-bold text-brand-brown text-[15px] title-font leading-tight mt-1">オムライス＆<br>柔らかビーフシチュー御膳弁当</h3>
+                <!-- 文字サイズと行間を調整し、1行で収まるように。無理な場合は改行で整える -->
+                <h3 class="text-center font-bold text-brand-brown text-[14px] title-font leading-tight mt-1 px-1">オムライス＆<br>柔らかビーフシチュー御膳弁当</h3>
             </div>
 
             <!-- ③ 海の幸のピラフ＆帆立のフライ御膳弁当 -->
             <div class="food-card animate-fade-up" style="animation-delay: 0.3s;">
-                <div class="relative rounded-lg overflow-hidden bg-gray-100 aspect-video flex items-center justify-center mb-3">
-                    <img src="winefood_3_2.png" alt="海の幸のピラフ＆帆立のフライ御膳弁当" class="w-full h-full object-cover">
-                    
-                    <div class="absolute top-2 left-[-20px] bg-amber-500 text-white text-[10px] font-bold py-1 px-8 transform -rotate-45 shadow-md">
-                        No.3
-                    </div>
+                <div class="ribbon ribbon-amber">No.3</div>
+                <div class="image-container">
+                    <!-- 画像URLをセットしてください -->
+                    <img src="winefood_3.png" alt="海の幸のピラフ＆帆立のフライ御膳弁当" class="w-full h-full object-cover">
                 </div>
-                <h3 class="text-center font-bold text-brand-brown text-[15px] title-font leading-tight mt-1">海の幸のピラフ＆<br>帆立のフライ御膳弁当</h3>
+                <!-- 文字サイズと行間を調整 -->
+                <h3 class="text-center font-bold text-brand-brown text-[14px] title-font leading-tight mt-1 px-1">海の幸のピラフ＆<br>帆立のフライ御膳弁当</h3>
             </div>
 
         </section>
     </div>
 
-    <div class="fixed bottom-0 left-0 right-0 max-w-md mx-auto p-4 bg-gradient-to-t from-white via-white/90 to-transparent z-20 pb-6">
+    <!-- 固定ボタンのz-indexを50にし、常に一番手前に表示されるように設定 -->
+    <div class="fixed bottom-0 left-0 right-0 max-w-md mx-auto p-4 bg-gradient-to-t from-white via-white/90 to-transparent z-[50] pb-6">
         <a href="index.html" class="block w-full bg-brand-orange text-white text-center py-4 rounded-full font-bold shadow-lg hover:bg-orange-700 transition flex items-center justify-center gap-2 title-font text-base tracking-wide border-2 border-orange-700/50 hover:scale-[0.98] active:scale-95">
             <i class="fa-solid fa-book-open"></i> しおりに戻る
         </a>
